@@ -1,0 +1,6 @@
+framework module Pods_SkipiterUITests {
+  umbrella header "Pods-SkipiterUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
