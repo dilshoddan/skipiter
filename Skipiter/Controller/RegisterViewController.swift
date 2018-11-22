@@ -1,25 +1,30 @@
 //
-//  MainNavigationController.swift
+//  RegisterViewController.swift
 //  Skipiter
 //
-//  Created by Admin on 11/21/18.
+//  Created by Admin on 11/22/18.
 //  Copyright © 2018 Home. All rights reserved.
 //
 
 import UIKit
 
-class MainNavigationController: UINavigationController {
+class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         SetControllerDefaults()
     }
     
-
     func SetControllerDefaults(){
-        view.backgroundColor = LoginColors.MainNavigation
-        self.navigationBar.isHidden = true
+        
+        self.title = "RegisterVC"
+        view.backgroundColor = LoginColors.RegisterVC
     }
+    
+
+    
+    
     
     
     

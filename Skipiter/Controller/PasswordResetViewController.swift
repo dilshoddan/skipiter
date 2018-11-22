@@ -1,28 +1,32 @@
 //
-//  MainNavigationController.swift
+//  PasswordResetViewController.swift
 //  Skipiter
 //
-//  Created by Admin on 11/21/18.
+//  Created by Admin on 11/22/18.
 //  Copyright © 2018 Home. All rights reserved.
 //
 
 import UIKit
 
-class MainNavigationController: UINavigationController {
+class PasswordResetViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         SetControllerDefaults()
     }
     
-
     func SetControllerDefaults(){
-        view.backgroundColor = LoginColors.MainNavigation
-        self.navigationBar.isHidden = true
+        
+        self.title = "PasswordResetVC"
+        view.backgroundColor = LoginColors.PasswordResetVC
+        
     }
     
     
     
+    
+
     /*
     // MARK: - Navigation
 

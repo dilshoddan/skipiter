@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.loginView.frame.origin.y">
+            </PersistentString>
+            <PersistentString
+               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
+            </PersistentString>
+            <PersistentString
+               value = "keyboardSize">
+            </PersistentString>
+            <PersistentString
+               value = "keyboardSize.origin.y">
+            </PersistentString>
+            <PersistentString
+               value = "loginViewBottomY - keyboardSize.origin.y">
+            </PersistentString>
+            <PersistentString
+               value = "loginViewBottomY">
+            </PersistentString>
+            <PersistentString
+               value = "self.loginView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
