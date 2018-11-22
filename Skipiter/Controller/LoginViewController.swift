@@ -109,20 +109,6 @@ class LoginViewController: UIViewController {
         
     }
     
-    func AddTapGestures(){
-        registerLabel.isEnabled = true
-        registerLabel.isUserInteractionEnabled = true
-        let registerLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(RegisterLabelTapped(recognizer:)))
-        registerLabel.addGestureRecognizer(registerLabelTapGesture)
-        
-        
-        forgotPasswordLabel.isEnabled = true
-        forgotPasswordLabel.isUserInteractionEnabled = true
-        let forgotPasswordLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(ForgotPasswordTapped(recognizer:)))
-        forgotPasswordLabel.addGestureRecognizer(forgotPasswordLabelTapGesture)
-        
-    }
-    
     func render(_ withKeyboardHeight: CGFloat){
         
         //Render loginSubView view
@@ -163,6 +149,20 @@ class LoginViewController: UIViewController {
         if withKeyboardHeight > 0 {
             loginView.bottom(withKeyboardHeight)
         }
+    }
+    
+    func AddTapGestures(){
+        registerLabel.isEnabled = true
+        registerLabel.isUserInteractionEnabled = true
+        let registerLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(RegisterLabelTapped(recognizer:)))
+        registerLabel.addGestureRecognizer(registerLabelTapGesture)
+        
+        
+        forgotPasswordLabel.isEnabled = true
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        let forgotPasswordLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(ForgotPasswordTapped(recognizer:)))
+        forgotPasswordLabel.addGestureRecognizer(forgotPasswordLabelTapGesture)
+        
     }
     
     

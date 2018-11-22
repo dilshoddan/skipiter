@@ -11,62 +11,74 @@ import Stevia
 
 class ProfileViewController: UIViewController {
 
-    private let stackView = UIStackView()
-    private let okButton = UIButton()
+    private var profileView = UIView()
+    private var bannerImage = UIImageView()
+    private var profileImage = UIImageView()
+    private var segmentedControl: UISegmentedControl!
+    private var logOutButton = UIButton()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SetControllerDefaults()
+        SetControlDefaults()
         render()
     }
     
-    @objc func OkClicked(){
+    @objc func LogOutTapped(){
         navigationController?.popViewController(animated: true)
-        
     }
     
     func render(){
-        stackView.sv(okButton)
-        okButton.height(30%).width(90%).centerVertically().centerHorizontally()
         
-        view.sv(stackView)
-        stackView.height(30%).width(100%).centerInContainer()
-    }
-    
-    func SetControllerDefaults(){
+        view.sv([profileView])
+        profileView.sv([bannerImage, profileImage, segmentedControl])
         
-        self.title = "ProfileVC"
-        view.backgroundColor = LoginColors.ProfileVC
+        profileView.height(100%).width(100%)
         
-        stackView.backgroundColor = LoginColors.LoginContent
+        bannerImage.height(24%).width(100%).centerHorizontally()
+        bannerImage.Top == profileView.Top
         
-        okButton.backgroundColor = LoginColors.LoginViewVC
-        okButton.setTitle("OK", for: .normal)
-        okButton.tintColor = .white
-        okButton.layer.cornerRadius = 5
-        okButton.clipsToBounds = true
-        okButton.isEnabled = true
-        okButton.isUserInteractionEnabled = true
-        okButton.addTarget(self, action: #selector(OkClicked), for: .touchUpInside)
+        profileImage.height(18%).width(30%).left(15)
+        profileImage.CenterY == bannerImage.Bottom
+        
+        segmentedControl.height(5%).width(90%).centerHorizontally()
+        segmentedControl.Bottom == profileView.Bottom
+        
+        logOutButton.height(25).width(50)
+        logOutButton.Right == self.view.Right
         
         
         
     }
     
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
+    func SetControlDefaults(){
+        profileView.backgroundColor = LoginColors.ProfileVC
+        
+        bannerImage.backgroundColor = .gray
+        profileView.addSubview(bannerImage)
+        
+        profileImage.backgroundColor = .gray
+        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.borderWidth = 1.0
+        profileImage.layer.cornerRadius = 5.0
+        profileView.addSubview(profileImage)
+        
+        segmentedControl = UISegmentedControl(items: ["Tweets", "Media", "Likes"])
+        profileView.addSubview(segmentedControl)
+        
+        logOutButton.backgroundColor = LoginColors.LoginViewVC
+        logOutButton.tintColor = .white
+        logOutButton.layer.cornerRadius = 5
+        logOutButton.clipsToBounds = true
+        logOutButton.isEnabled = true
+        logOutButton.isUserInteractionEnabled = true
+        logOutButton.setTitle("Log out", for: .normal)
+        logOutButton.addTarget(self, action: #selector(LogOutTapped), for: .touchUpInside)
+        
+        
+        
+    }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
