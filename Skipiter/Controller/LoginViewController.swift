@@ -28,6 +28,7 @@ class LoginViewController: UIViewController {
         render(0.0)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        AddTapGestures()
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -57,15 +58,68 @@ class LoginViewController: UIViewController {
         
     }
     
-    @objc func RegisterClicked(){
+    @objc func RegisterLabelTapped(recognizer:UITapGestureRecognizer){
         let registerVC = RegisterViewController()
         navigationController?.pushViewController(registerVC, animated: true)
         
     }
     
-    @objc func ForgotPasswordClicked(){
+    @objc func ForgotPasswordTapped(recognizer:UITapGestureRecognizer){
         let passwordResetVC = PasswordResetViewController()
         navigationController?.pushViewController(passwordResetVC, animated: true)
+        
+    }
+    
+    func SetControlDefaults(){
+        
+        
+        self.title = "LoginVC"
+        view.backgroundColor = LoginColors.LoginViewVC
+        loginView.backgroundColor = LoginColors.LoginContent
+        
+        userName.backgroundColor = .white
+        userName.borderStyle = .roundedRect
+        userName.isEnabled = true
+        userName.isUserInteractionEnabled = true
+        
+        userPassword.backgroundColor = .white
+        userPassword.isSecureTextEntry = true
+        userPassword.borderStyle = .roundedRect
+        userPassword.isEnabled = true
+        userPassword.isUserInteractionEnabled = true
+        
+        loginButton.backgroundColor = LoginColors.LoginViewVC
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.tintColor = .white
+        loginButton.layer.cornerRadius = 5
+        loginButton.clipsToBounds = true
+        loginButton.isEnabled = true
+        loginButton.isUserInteractionEnabled = true
+        loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
+        
+        registerLabel.textColor = LoginColors.LoginText
+        registerLabel.text = "Register"
+        
+        
+        
+        forgotPasswordLabel.textColor = LoginColors.LoginText
+        forgotPasswordLabel.text = "Forgot password?"
+        
+        
+        
+    }
+    
+    func AddTapGestures(){
+        registerLabel.isEnabled = true
+        registerLabel.isUserInteractionEnabled = true
+        let registerLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(RegisterLabelTapped(recognizer:)))
+        registerLabel.addGestureRecognizer(registerLabelTapGesture)
+        
+        
+        forgotPasswordLabel.isEnabled = true
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        let forgotPasswordLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(ForgotPasswordTapped(recognizer:)))
+        forgotPasswordLabel.addGestureRecognizer(forgotPasswordLabelTapGesture)
         
     }
     
@@ -109,43 +163,6 @@ class LoginViewController: UIViewController {
         if withKeyboardHeight > 0 {
             loginView.bottom(withKeyboardHeight)
         }
-    }
-    
-    func SetControlDefaults(){
-        
-        
-        self.title = "LoginVC"
-        view.backgroundColor = LoginColors.LoginViewVC
-        loginView.backgroundColor = LoginColors.LoginContent
-        
-        userName.backgroundColor = .white
-        userName.borderStyle = .roundedRect
-        userName.isEnabled = true
-        userName.isUserInteractionEnabled = true
-        
-        userPassword.backgroundColor = .white
-        userPassword.isSecureTextEntry = true
-        userPassword.borderStyle = .roundedRect
-        userPassword.isEnabled = true
-        userPassword.isUserInteractionEnabled = true
-        
-        loginButton.backgroundColor = LoginColors.LoginViewVC
-        loginButton.setTitle("Login", for: .normal)
-        loginButton.tintColor = .white
-        loginButton.layer.cornerRadius = 5
-        loginButton.clipsToBounds = true
-        loginButton.isEnabled = true
-        loginButton.isUserInteractionEnabled = true
-        loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
-        
-        registerLabel.textColor = LoginColors.LoginText
-        registerLabel.text = "Register"
-        
-        
-        forgotPasswordLabel.textColor = LoginColors.LoginText
-        forgotPasswordLabel.text = "Forgot password?"
-        
-        
     }
     
     

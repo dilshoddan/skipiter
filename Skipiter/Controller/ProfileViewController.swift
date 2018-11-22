@@ -23,8 +23,7 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func OkClicked(){
-        let loginVC = LoginViewController()
-        navigationController?.pushViewController(loginVC, animated: true)
+        navigationController?.popViewController(animated: true)
         
     }
     
