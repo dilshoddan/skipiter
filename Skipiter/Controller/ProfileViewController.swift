@@ -66,16 +66,17 @@ class ProfileViewController: UIViewController {
         profileView.addSubview(profileImage)
         
         segmentedControl = UISegmentedControl(items: ["Tweets", "Media", "Likes"])
+        segmentedControl.tintColor = LoginColors.LoginViewVC
         profileView.addSubview(segmentedControl)
         
-        logOutButton.backgroundColor = LoginColors.MainNavigation
-        logOutButton.tintColor = LoginColors.LoginViewVC
-        logOutButton.setTitleColor(LoginColors.LoginButton, for: .normal)
+        logOutButton.backgroundColor = LoginColors.LoginContent
+        logOutButton.tintColor = LoginColors.LoginContent
+        logOutButton.setTitleColor(.white, for: .normal)
         logOutButton.layer.cornerRadius = 5
         logOutButton.clipsToBounds = true
         logOutButton.isEnabled = true
         logOutButton.isUserInteractionEnabled = true
-        logOutButton.setTitle("Log out", for: .normal)
+        logOutButton.setTitle("Out", for: .normal)
         logOutButton.addTarget(self, action: #selector(LogOutTapped), for: .touchUpInside)
         
         
