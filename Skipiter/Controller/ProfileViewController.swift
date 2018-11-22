@@ -69,8 +69,8 @@ class ProfileViewController: UIViewController {
         segmentedControl.tintColor = LoginColors.LoginViewVC
         profileView.addSubview(segmentedControl)
         
-        logOutButton.backgroundColor = LoginColors.LoginContent
-        logOutButton.tintColor = LoginColors.LoginContent
+        logOutButton.backgroundColor = LoginColors.LoginViewVC
+        logOutButton.tintColor = LoginColors.LoginViewVC
         logOutButton.setTitleColor(.white, for: .normal)
         logOutButton.layer.cornerRadius = 5
         logOutButton.clipsToBounds = true
