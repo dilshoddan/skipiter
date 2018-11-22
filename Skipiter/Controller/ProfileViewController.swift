@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
     func render(){
         
         view.sv([profileView])
-        profileView.sv([bannerImage, profileImage, segmentedControl])
+        profileView.sv([bannerImage, profileImage, segmentedControl, logOutButton])
         
         profileView.height(100%).width(100%)
         
@@ -45,20 +45,21 @@ class ProfileViewController: UIViewController {
         segmentedControl.height(5%).width(90%).centerHorizontally()
         segmentedControl.Bottom == profileView.Bottom
         
-        logOutButton.height(25).width(50)
-        logOutButton.Right == self.view.Right
+        logOutButton.height(5%).width(20%)
+        logOutButton.Bottom == bannerImage.Bottom
+        logOutButton.Right == bannerImage.Right
         
         
         
     }
     
     func SetControlDefaults(){
-        profileView.backgroundColor = LoginColors.ProfileVC
+        profileView.backgroundColor = .white
         
-        bannerImage.backgroundColor = .gray
+        bannerImage.backgroundColor = LoginColors.ProfileVC
         profileView.addSubview(bannerImage)
         
-        profileImage.backgroundColor = .gray
+        profileImage.backgroundColor = LoginColors.ProfileVC
         profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.cornerRadius = 5.0
@@ -67,8 +68,9 @@ class ProfileViewController: UIViewController {
         segmentedControl = UISegmentedControl(items: ["Tweets", "Media", "Likes"])
         profileView.addSubview(segmentedControl)
         
-        logOutButton.backgroundColor = LoginColors.LoginViewVC
-        logOutButton.tintColor = .white
+        logOutButton.backgroundColor = LoginColors.MainNavigation
+        logOutButton.tintColor = LoginColors.LoginViewVC
+        logOutButton.setTitleColor(LoginColors.LoginButton, for: .normal)
         logOutButton.layer.cornerRadius = 5
         logOutButton.clipsToBounds = true
         logOutButton.isEnabled = true

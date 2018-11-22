@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1000"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9116CE3F12D3171460A5998BB2EA6E96"
+               BlueprintIdentifier = "7F7C66B912F55E325526B9106A196C9F"
                BuildableName = "Pods_Skipiter.framework"
                BlueprintName = "Pods-Skipiter"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9116CE3F12D3171460A5998BB2EA6E96"
+            BlueprintIdentifier = "7F7C66B912F55E325526B9106A196C9F"
             BuildableName = "Pods_Skipiter.framework"
             BlueprintName = "Pods-Skipiter"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,15 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9116CE3F12D3171460A5998BB2EA6E96"
-            BuildableName = "Pods_Skipiter.framework"
-            BlueprintName = "Pods-Skipiter"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
