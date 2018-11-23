@@ -146,7 +146,7 @@ class RegisterViewController: UIViewController {
             if let selectedTextField = selectedTextField {
                 let selectedTextFieldBottomY = selectedTextField.frame.origin.y + selectedTextField.frame.size.height
                 if selectedTextFieldBottomY > keyboardSize.origin.y {
-                    self.registerView.frame.origin.y = self.registerView.frame.origin.y - (selectedTextFieldBottomY - keyboardSize.origin.y) - 5
+                    registerView.frame.origin.y = registerView.frame.origin.y - (selectedTextFieldBottomY - keyboardSize.origin.y) - 5
                 }
             }
         }
