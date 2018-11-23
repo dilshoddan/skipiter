@@ -12,7 +12,6 @@ import Stevia
 class RegisterViewController: UIViewController {
     
     
-    private var registerView: UIView!
     private var firstNameLabel: UILabel!
     private var firstName: UITextField!
     private var lastNameLabel: UILabel!
@@ -42,28 +41,46 @@ class RegisterViewController: UIViewController {
         self.title = "RegisterVC"
         view.backgroundColor = LoginColors.RegisterVC
         
-        registerView = UIView()
-        registerView.backgroundColor = LoginColors.LoginContent
-        
         firstNameLabel = UILabel()
         firstNameLabel.text = "First name:"
         firstName = UITextField()
+        firstName.backgroundColor = .white
+        firstName.borderStyle = .roundedRect
+        firstName.isEnabled = true
+        firstName.isUserInteractionEnabled = true
         
         lastNameLabel = UILabel()
         lastNameLabel.text = "Last name:"
         lastName = UITextField()
+        lastName.backgroundColor = .white
+        lastName.borderStyle = .roundedRect
+        lastName.isEnabled = true
+        lastName.isUserInteractionEnabled = true
         
         emailLabel = UILabel()
         emailLabel.text = "Email address:"
         email = UITextField()
+        email.backgroundColor = .white
+        email.borderStyle = .roundedRect
+        email.isEnabled = true
+        email.isUserInteractionEnabled = true
         
         userNameLabel = UILabel()
         userNameLabel.text = "User name:"
         userName = UITextField()
+        userName.backgroundColor = .white
+        userName.borderStyle = .roundedRect
+        userName.isEnabled = true
+        userName.isUserInteractionEnabled = true
         
         userPasswordLabel = UILabel()
-        userPasswordLabel.text = "User name:"
+        userPasswordLabel.text = "User password:"
         userPassword = UITextField()
+        userPassword.backgroundColor = .white
+        userPassword.isSecureTextEntry = true
+        userPassword.borderStyle = .roundedRect
+        userPassword.isEnabled = true
+        userPassword.isUserInteractionEnabled = true
         
         
         okButton = UIButton()
@@ -78,24 +95,22 @@ class RegisterViewController: UIViewController {
     }
     
     func render(){
-        registerView.sv([firstNameLabel, firstName, lastNameLabel, lastName, emailLabel, email, userNameLabel, userName, userPasswordLabel, userPassword, okButton])
-        view.sv(registerView)
-        registerView.height(100%).width(100%).centerInContainer()
+        view.sv([firstNameLabel, firstName, lastNameLabel, lastName, emailLabel, email, userNameLabel, userName, userPasswordLabel, userPassword, okButton])
         
-        let heightConstant = CGFloat(20)
-        let leftOffset = CGFloat(20)
+        let heightConstant = CGFloat(30)
+        let leftOffset = CGFloat(10)
         
         for label in [firstNameLabel, lastNameLabel, emailLabel, userNameLabel, userPasswordLabel] {
-            label?.height(heightConstant).width(100%)
+            label?.height(heightConstant).left(leftOffset)
         }
         
         for textField in [firstName, lastName, email, userName, userPassword] {
-            textField?.height(heightConstant + 10).width(100%)
+            textField?.height(heightConstant).left(leftOffset)
         }
+        okButton.height(heightConstant + 15).left(leftOffset)
         
-        okButton.height(heightConstant).width(70%).left(leftOffset)
-        registerView.layout(
-            13,
+        view.layout(
+            (2*heightConstant),
             |-firstNameLabel-|,
             3,
             |-firstName-|,
