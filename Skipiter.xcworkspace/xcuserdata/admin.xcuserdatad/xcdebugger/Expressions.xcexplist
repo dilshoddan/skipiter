@@ -3,28 +3,39 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "RegisterViewController.keyboardWillShow(notification:):RegisterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedTextField!.frame.size.height">
+            </PersistentString>
+            <PersistentString
+               value = "selectedTextField!.frame.origin.y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.loginView.frame.origin.y">
+               value = "loginViewBottomY - keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
+               value = "self.loginView.frame">
             </PersistentString>
             <PersistentString
                value = "keyboardSize">
             </PersistentString>
             <PersistentString
-               value = "keyboardSize.origin.y">
-            </PersistentString>
-            <PersistentString
-               value = "loginViewBottomY - keyboardSize.origin.y">
-            </PersistentString>
-            <PersistentString
                value = "loginViewBottomY">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame">
+               value = "self.loginView.frame.origin.y">
+            </PersistentString>
+            <PersistentString
+               value = "keyboardSize.origin.y">
+            </PersistentString>
+            <PersistentString
+               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

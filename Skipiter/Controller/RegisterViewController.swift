@@ -141,9 +141,13 @@ class RegisterViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.registerView.frame.size.height > keyboardSize.origin.y {
-                self.registerView.frame.origin.y = self.registerView.frame.origin.y - keyboardSize.origin.y
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let selectedTextField = registerView.getSelectedTextField()
+            if let selectedTextField = selectedTextField {
+                let selectedTextFieldBottomY = selectedTextField.frame.origin.y + selectedTextField.frame.size.height
+                if selectedTextFieldBottomY > keyboardSize.origin.y {
+                    self.registerView.frame.origin.y = self.registerView.frame.origin.y - (selectedTextFieldBottomY - keyboardSize.origin.y) - 5
+                }
             }
         }
         UIView.animate(withDuration: 0.2, animations: { () -> Void in
@@ -163,3 +167,30 @@ class RegisterViewController: UIViewController {
     
     
 }
+
+extension UIView {
+    func getSelectedTextField() -> UITextField? {
+        
+        let totalTextFields = getTextFieldsInView(view: self)
+        
+        for textField in totalTextFields{
+            if textField.isFirstResponder{
+                return textField
+            }
+        }
+        return nil
+    }
+    
+    func getTextFieldsInView(view: UIView) -> [UITextField] {
+        
+        var totalTextFields = [UITextField]()
+        
+        for subview in view.subviews as [UIView] {
+            if let textField = subview as? UITextField {
+                totalTextFields += [textField]
+            } else {
+                totalTextFields += getTextFieldsInView(view: subview)
+            }
+        }
+        return totalTextFields
+    }}

@@ -34,8 +34,8 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            let loginViewBottomY = self.loginView.frame.origin.y + self.loginView.frame.size.height + 40
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let loginViewBottomY = self.loginView.frame.origin.y + self.loginView.frame.size.height
             if loginViewBottomY > keyboardSize.origin.y {
                 self.loginView.frame.origin.y = self.loginView.frame.origin.y - (loginViewBottomY - keyboardSize.origin.y)
             }
