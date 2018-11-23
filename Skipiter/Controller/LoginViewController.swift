@@ -119,6 +119,8 @@ class LoginViewController: UIViewController {
     }
     
     func render(_ withKeyboardHeight: CGFloat){
+        let height = CGFloat(25.0)
+        let buttonHeight = CGFloat(height + 5)
         
         //Render loginSubView view
         loginSubView.sv([registerLabel, forgotPasswordLabel])
@@ -130,13 +132,13 @@ class LoginViewController: UIViewController {
         loginView.sv(loginSubView)
         loginView.sv([userName, userPassword, loginButton, loginSubView])
         
-        let heightConstant = CGFloat(25.0)
-        userName.height(heightConstant)
-        userPassword.height(heightConstant)
-        loginButton.height(heightConstant)
-        loginSubView.height(heightConstant)
         
-        loginView.height((4*heightConstant) + (4*13)).width(100%)
+        userName.height(height)
+        userPassword.height(height)
+        loginButton.height(buttonHeight)
+        loginSubView.height(height)
+        
+        loginView.height((3*height + buttonHeight) + (4*13)).width(100%)
         loginView.centerInContainer()
         
         userName.width(90%).centerHorizontally()
@@ -150,7 +152,7 @@ class LoginViewController: UIViewController {
             |-userName-|,
             13,
             |-userPassword-|,
-            13,
+            16,
             |-loginButton-|,
             13,
             |-loginSubView-|

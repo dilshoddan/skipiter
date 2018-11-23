@@ -29,6 +29,9 @@ class RegisterViewController: UIViewController {
         
         SetControllerDefaults()
         render()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func OkClicked(){
@@ -131,11 +134,30 @@ class RegisterViewController: UIViewController {
             13,
             |-userPasswordLabel-|,
             |-userPassword-|,
-            13,
+            23,
             |-okButton-|
         )
         
-        
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.registerView.frame.size.height > keyboardSize.origin.y {
+                self.registerView.frame.origin.y = self.registerView.frame.origin.y - keyboardSize.origin.y
+            }
+        }
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.registerView.layoutIfNeeded()
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        render()
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.registerView.layoutIfNeeded()
+            self.view.layoutIfNeeded()
+        })
     }
     
     
