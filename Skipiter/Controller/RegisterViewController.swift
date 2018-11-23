@@ -12,8 +12,18 @@ import Stevia
 class RegisterViewController: UIViewController {
 
     
-    private let stackView = UIStackView()
-    private let okButton = UIButton()
+    private var stackView: UIStackView!
+    private var firstNameLabel: UILabel!
+    private var firstName: UITextField!
+    private var lastNameLabel: UILabel!
+    private var lastName: UITextField!
+    private var emailLabel: UILabel!
+    private var email: UITextField!
+    private var userNameLabel: UILabel!
+    private var userName: UITextField!
+    private var userPasswordLabel: UILabel!
+    private var userPassword: UILabel!
+    private var okButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +51,29 @@ class RegisterViewController: UIViewController {
         self.title = "RegisterVC"
         view.backgroundColor = LoginColors.RegisterVC
         
+        stackView = UIStackView()
         stackView.backgroundColor = LoginColors.LoginContent
         
+        firstNameLabel = UILabel()
+        firstNameLabel.text = "First name:"
+        firstName = UITextField()
+        
+        lastNameLabel = UILabel()
+        lastNameLabel.text = "Last name:"
+        lastName = UITextField()
+        
+        emailLabel = UILabel()
+        emailLabel.text = "Email address:"
+        email = UITextField()
+        
+        userNameLabel = UILabel()
+        userNameLabel.text = "User name:"
+        userName = UITextField()
+        
+        userPasswordLabel = UILabel()
+        
+        
+        okButton = UIButton()
         okButton.backgroundColor = LoginColors.LoginViewVC
         okButton.setTitle("OK", for: .normal)
         okButton.tintColor = .white

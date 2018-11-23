@@ -8,6 +8,7 @@
 
 import UIKit
 import Stevia
+import Hero
 
 class ProfileViewController: UIViewController {
 
@@ -23,6 +24,7 @@ class ProfileViewController: UIViewController {
         
         SetControlDefaults()
         render()
+        hero.isEnabled = true
     }
     
     @objc func LogOutTapped(){

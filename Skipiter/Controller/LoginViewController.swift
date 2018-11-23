@@ -8,19 +8,20 @@
 
 import UIKit
 import Stevia
+import Hero
 
 class LoginViewController: UIViewController {
     
     var keyboardHeight = CGFloat(0.0)
     
     //Controls
-    private let loginView = UIView()
-    private let loginSubView = UIStackView()
-    private let userName = UITextField()
-    private let userPassword = UITextField()
-    private let loginButton = UIButton()
-    private let registerLabel = UILabel()
-    private let forgotPasswordLabel = UILabel()
+    private var loginView: UIView!
+    private var loginSubView: UIStackView!
+    private var userName: UITextField!
+    private var userPassword: UITextField!
+    private var loginButton: UIButton!
+    private var registerLabel: UILabel!
+    private var forgotPasswordLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         AddTapGestures()
+        hero.isEnabled = true
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -75,19 +77,26 @@ class LoginViewController: UIViewController {
         
         self.title = "LoginVC"
         view.backgroundColor = LoginColors.LoginViewVC
+        
+        loginView = UIView()
         loginView.backgroundColor = LoginColors.LoginContent
         
+        loginSubView = UIStackView()
+        
+        userName = UITextField()
         userName.backgroundColor = .white
         userName.borderStyle = .roundedRect
         userName.isEnabled = true
         userName.isUserInteractionEnabled = true
         
+        userPassword = UITextField()
         userPassword.backgroundColor = .white
         userPassword.isSecureTextEntry = true
         userPassword.borderStyle = .roundedRect
         userPassword.isEnabled = true
         userPassword.isUserInteractionEnabled = true
         
+        loginButton = UIButton()
         loginButton.backgroundColor = LoginColors.LoginViewVC
         loginButton.setTitle("Login", for: .normal)
         loginButton.tintColor = .white
@@ -97,11 +106,11 @@ class LoginViewController: UIViewController {
         loginButton.isUserInteractionEnabled = true
         loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
         
+        registerLabel = UILabel()
         registerLabel.textColor = LoginColors.LoginText
         registerLabel.text = "Register"
         
-        
-        
+        forgotPasswordLabel = UILabel()
         forgotPasswordLabel.textColor = LoginColors.LoginText
         forgotPasswordLabel.text = "Forgot password?"
         
