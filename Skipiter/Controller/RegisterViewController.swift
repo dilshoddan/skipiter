@@ -12,7 +12,7 @@ import Stevia
 class RegisterViewController: UIViewController {
 
     
-    private var stackView: UIStackView!
+    private var registerView: UIView!
     private var firstNameLabel: UILabel!
     private var firstName: UITextField!
     private var lastNameLabel: UILabel!
@@ -22,7 +22,7 @@ class RegisterViewController: UIViewController {
     private var userNameLabel: UILabel!
     private var userName: UITextField!
     private var userPasswordLabel: UILabel!
-    private var userPassword: UILabel!
+    private var userPassword: UITextField!
     private var okButton: UIButton!
     
     override func viewDidLoad() {
@@ -37,13 +37,49 @@ class RegisterViewController: UIViewController {
         
     }
     
-    
     func render(){
-        stackView.sv(okButton)
-        okButton.height(30%).width(90%).centerVertically().centerHorizontally()
+        registerView.sv([firstNameLabel, firstName, lastNameLabel, lastName, emailLabel, email, userNameLabel, userName, userPasswordLabel, userPassword, okButton])
+        view.sv(registerView)
+        registerView.height(100%).width(100%).centerInContainer()
         
-        view.sv(stackView)
-        stackView.height(30%).width(100%).centerInContainer()
+        let heightConstant = CGFloat(20)
+        let leftOffset = CGFloat(20)
+        
+        for label in [firstNameLabel, lastNameLabel, emailLabel, userNameLabel, userPasswordLabel] {
+            label?.height(heightConstant).width(100%).left(leftOffset)
+        }
+        
+        for textField in [firstName, lastName, email, userName, userPassword] {
+            textField?.height(heightConstant).width(100%).left(leftOffset)
+        }
+        
+        okButton.height(heightConstant).width(70%).left(leftOffset)
+        registerView.layout(
+            13,
+            |-firstNameLabel-|,
+            3,
+            |-firstName-|,
+            13,
+            |-lastNameLabel-|,
+            3,
+            |-lastName-|,
+            13,
+            |-emailLabel-|,
+            3,
+            |-email-|,
+            13,
+            |-userNameLabel-|,
+            3,
+            |-userName-|,
+            13,
+            |-userPasswordLabel-|,
+            3,
+            |-userPassword-|,
+            13,
+            |-okButton-|
+        )
+        
+        
     }
     
     func SetControllerDefaults(){
@@ -51,8 +87,8 @@ class RegisterViewController: UIViewController {
         self.title = "RegisterVC"
         view.backgroundColor = LoginColors.RegisterVC
         
-        stackView = UIStackView()
-        stackView.backgroundColor = LoginColors.LoginContent
+        registerView = UIView()
+        registerView.backgroundColor = LoginColors.LoginContent
         
         firstNameLabel = UILabel()
         firstNameLabel.text = "First name:"
@@ -71,6 +107,8 @@ class RegisterViewController: UIViewController {
         userName = UITextField()
         
         userPasswordLabel = UILabel()
+        userPasswordLabel.text = "User name:"
+        userPassword = UITextField()
         
         
         okButton = UIButton()
@@ -86,20 +124,5 @@ class RegisterViewController: UIViewController {
         
         
     }
-
-    
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
