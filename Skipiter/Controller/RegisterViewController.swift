@@ -11,7 +11,7 @@ import Stevia
 
 class RegisterViewController: UIViewController {
     
-    
+    private var registerView: UIStackView!
     private var firstNameLabel: UILabel!
     private var firstName: UITextField!
     private var lastNameLabel: UILabel!
@@ -40,6 +40,9 @@ class RegisterViewController: UIViewController {
         
         self.title = "RegisterVC"
         view.backgroundColor = LoginColors.RegisterVC
+        
+        registerView = UIStackView()
+        registerView.backgroundColor = LoginColors.RegisterVC
         
         firstNameLabel = UILabel()
         firstNameLabel.text = "First name:"
@@ -95,7 +98,10 @@ class RegisterViewController: UIViewController {
     }
     
     func render(){
-        view.sv([firstNameLabel, firstName, lastNameLabel, lastName, emailLabel, email, userNameLabel, userName, userPasswordLabel, userPassword, okButton])
+        
+        registerView.sv([firstNameLabel, firstName, lastNameLabel, lastName, emailLabel, email, userNameLabel, userName, userPasswordLabel, userPassword, okButton])
+        view.sv(registerView)
+        registerView.height(100%).width(100%)
         
         let heightConstant = CGFloat(30)
         let leftOffset = CGFloat(10)
@@ -107,28 +113,23 @@ class RegisterViewController: UIViewController {
         for textField in [firstName, lastName, email, userName, userPassword] {
             textField?.height(heightConstant).left(leftOffset)
         }
-        okButton.height(heightConstant + 15).left(leftOffset)
+        okButton.height(heightConstant + 10).left(leftOffset)
         
-        view.layout(
+        registerView.layout(
             (2*heightConstant),
             |-firstNameLabel-|,
-            3,
             |-firstName-|,
             13,
             |-lastNameLabel-|,
-            3,
             |-lastName-|,
             13,
             |-emailLabel-|,
-            3,
             |-email-|,
             13,
             |-userNameLabel-|,
-            3,
             |-userName-|,
             13,
             |-userPasswordLabel-|,
-            3,
             |-userPassword-|,
             13,
             |-okButton-|
