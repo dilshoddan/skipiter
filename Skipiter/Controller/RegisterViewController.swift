@@ -30,8 +30,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         SetControllerDefaults()
         render()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardNotification), name: UIResponder.keyboardWillChangeFrameNotification,object: nil)
         firstName.delegate = self
         lastName.delegate = self
         email.delegate = self
@@ -138,13 +139,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardNotification(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let selectedTextField = registerView.getSelectedTextField()
             if let selectedTextField = selectedTextField {
                 let selectedTextFieldBottomY = selectedTextField.frame.origin.y + selectedTextField.frame.size.height
                 if selectedTextFieldBottomY > keyboardSize.origin.y {
                     registerView.frame.origin.y = registerView.frame.origin.y - (selectedTextFieldBottomY - keyboardSize.origin.y) - 5
+                }
+                else{
+                    render()
                 }
             }
         }
@@ -154,13 +158,29 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    @objc func keyboardWillHide(notification: NSNotification) {
-        render()
-        UIView.animate(withDuration: 0.2, animations: { () -> Void in
-            self.registerView.layoutIfNeeded()
-            self.view.layoutIfNeeded()
-        })
-    }
+    //    @objc func keyboardWillShow(notification: NSNotification) {
+    //        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+    //            let selectedTextField = registerView.getSelectedTextField()
+    //            if let selectedTextField = selectedTextField {
+    //                let selectedTextFieldBottomY = selectedTextField.frame.origin.y + selectedTextField.frame.size.height
+    //                if selectedTextFieldBottomY > keyboardSize.origin.y {
+    //                    registerView.frame.origin.y = registerView.frame.origin.y - (selectedTextFieldBottomY - keyboardSize.origin.y) - 5
+    //                }
+    //            }
+    //        }
+    //        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+    //            self.registerView.layoutIfNeeded()
+    //            self.view.layoutIfNeeded()
+    //        })
+    //    }
+    //
+    //    @objc func keyboardWillHide(notification: NSNotification) {
+    //        render()
+    //        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+    //            self.registerView.layoutIfNeeded()
+    //            self.view.layoutIfNeeded()
+    //        })
+    //    }
     
     
     

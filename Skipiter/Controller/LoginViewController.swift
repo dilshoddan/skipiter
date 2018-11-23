@@ -27,26 +27,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         SetControlDefaults()
         render(0.0)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardNotification), name: UIResponder.keyboardWillChangeFrameNotification,object: nil)
+        
         AddTapGestures()
         hero.isEnabled = true
         self.userName.delegate = self
         self.userPassword.delegate = self
     }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        self.view.endEditing(true)
-//        return false
+        //        self.view.endEditing(true)
+        //        return false
         textField.resignFirstResponder()
         return true;
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardNotification(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let loginViewBottomY = self.loginView.frame.origin.y + self.loginView.frame.size.height + 20
             if loginViewBottomY > keyboardSize.origin.y {
                 self.loginView.frame.origin.y = self.loginView.frame.origin.y - (loginViewBottomY - keyboardSize.origin.y)
+            }
+            else{
+                render(0.0)
             }
         }
         UIView.animate(withDuration: 0.2, animations: { () -> Void in
@@ -55,13 +63,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    @objc func keyboardWillHide(notification: NSNotification) {
-        render(0.0)
-        UIView.animate(withDuration: 0.2, animations: { () -> Void in
-            self.loginView.layoutIfNeeded()
-            self.view.layoutIfNeeded()
-        })
-    }
+    
+    
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//            let loginViewBottomY = self.loginView.frame.origin.y + self.loginView.frame.size.height + 20
+//            if loginViewBottomY > keyboardSize.origin.y {
+//                self.loginView.frame.origin.y = self.loginView.frame.origin.y - (loginViewBottomY - keyboardSize.origin.y)
+//            }
+//        }
+//        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+//            self.loginView.layoutIfNeeded()
+//            self.view.layoutIfNeeded()
+//        })
+//    }
+//    
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//        render(0.0)
+//        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+//            self.loginView.layoutIfNeeded()
+//            self.view.layoutIfNeeded()
+//        })
+//    }
     
     @objc func LoginClicked(){
         let profileVC = ProfileViewController()
