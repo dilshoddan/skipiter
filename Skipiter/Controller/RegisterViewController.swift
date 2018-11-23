@@ -10,7 +10,7 @@ import UIKit
 import Stevia
 
 class RegisterViewController: UIViewController {
-
+    
     
     private var registerView: UIView!
     private var firstNameLabel: UILabel!
@@ -34,51 +34,6 @@ class RegisterViewController: UIViewController {
     
     @objc func OkClicked(){
         navigationController?.popViewController(animated: true)
-        
-    }
-    
-    func render(){
-        registerView.sv([firstNameLabel, firstName, lastNameLabel, lastName, emailLabel, email, userNameLabel, userName, userPasswordLabel, userPassword, okButton])
-        view.sv(registerView)
-        registerView.height(100%).width(100%).centerInContainer()
-        
-        let heightConstant = CGFloat(20)
-        let leftOffset = CGFloat(20)
-        
-        for label in [firstNameLabel, lastNameLabel, emailLabel, userNameLabel, userPasswordLabel] {
-            label?.height(heightConstant).width(100%).left(leftOffset)
-        }
-        
-        for textField in [firstName, lastName, email, userName, userPassword] {
-            textField?.height(heightConstant).width(100%).left(leftOffset)
-        }
-        
-        okButton.height(heightConstant).width(70%).left(leftOffset)
-        registerView.layout(
-            13,
-            |-firstNameLabel-|,
-            3,
-            |-firstName-|,
-            13,
-            |-lastNameLabel-|,
-            3,
-            |-lastName-|,
-            13,
-            |-emailLabel-|,
-            3,
-            |-email-|,
-            13,
-            |-userNameLabel-|,
-            3,
-            |-userName-|,
-            13,
-            |-userPasswordLabel-|,
-            3,
-            |-userPassword-|,
-            13,
-            |-okButton-|
-        )
-        
         
     }
     
@@ -120,9 +75,53 @@ class RegisterViewController: UIViewController {
         okButton.isEnabled = true
         okButton.isUserInteractionEnabled = true
         okButton.addTarget(self, action: #selector(OkClicked), for: .touchUpInside)
+    }
+    
+    func render(){
+        registerView.sv([firstNameLabel, firstName, lastNameLabel, lastName, emailLabel, email, userNameLabel, userName, userPasswordLabel, userPassword, okButton])
+        view.sv(registerView)
+        registerView.height(100%).width(100%).centerInContainer()
         
+        let heightConstant = CGFloat(20)
+        let leftOffset = CGFloat(20)
+        
+        for label in [firstNameLabel, lastNameLabel, emailLabel, userNameLabel, userPasswordLabel] {
+            label?.height(heightConstant).width(100%)
+        }
+        
+        for textField in [firstName, lastName, email, userName, userPassword] {
+            textField?.height(heightConstant + 10).width(100%)
+        }
+        
+        okButton.height(heightConstant).width(70%).left(leftOffset)
+        registerView.layout(
+            13,
+            |-firstNameLabel-|,
+            3,
+            |-firstName-|,
+            13,
+            |-lastNameLabel-|,
+            3,
+            |-lastName-|,
+            13,
+            |-emailLabel-|,
+            3,
+            |-email-|,
+            13,
+            |-userNameLabel-|,
+            3,
+            |-userName-|,
+            13,
+            |-userPasswordLabel-|,
+            3,
+            |-userPassword-|,
+            13,
+            |-okButton-|
+        )
         
         
     }
-
+    
+    
+    
 }
