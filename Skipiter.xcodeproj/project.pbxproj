@@ -21,7 +21,7 @@
 		F485B7A621A28BF500520C36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F485B7A421A28BF500520C36 /* LaunchScreen.storyboard */; };
 		F485B7B121A28BF500520C36 /* SkipiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F485B7B021A28BF500520C36 /* SkipiterTests.swift */; };
 		F485B7BC21A28BF500520C36 /* SkipiterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F485B7BB21A28BF500520C36 /* SkipiterUITests.swift */; };
-		F4EDB5B521A2946D00E1B544 /* LoginColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EDB5B421A2946D00E1B544 /* LoginColors.swift */; };
+		F4EDB5B521A2946D00E1B544 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EDB5B421A2946D00E1B544 /* ColorConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +68,7 @@
 		F485B7B721A28BF500520C36 /* SkipiterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkipiterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F485B7BB21A28BF500520C36 /* SkipiterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipiterUITests.swift; sourceTree = "<group>"; };
 		F485B7BD21A28BF500520C36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4EDB5B421A2946D00E1B544 /* LoginColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginColors.swift; sourceTree = "<group>"; };
+		F4EDB5B421A2946D00E1B544 /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,7 +194,7 @@
 		F4EDB5AF21A2905F00E1B544 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F4EDB5B421A2946D00E1B544 /* LoginColors.swift */,
+				F4EDB5B421A2946D00E1B544 /* ColorConstants.swift */,
 				8413BD0921A809FE00F8A1D5 /* Extensions.swift */,
 			);
 			path = View;
@@ -426,7 +426,7 @@
 				F485B79E21A28BF300520C36 /* LoginViewController.swift in Sources */,
 				844B2C9921A6B0470099E891 /* PasswordResetViewController.swift in Sources */,
 				844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */,
-				F4EDB5B521A2946D00E1B544 /* LoginColors.swift in Sources */,
+				F4EDB5B521A2946D00E1B544 /* ColorConstants.swift in Sources */,
 				844B2C9B21A6B1A10099E891 /* ProfileViewController.swift in Sources */,
 				8413BD0A21A809FE00F8A1D5 /* Extensions.swift in Sources */,
 				84B3631321A542B900A0B39C /* MainNavigationController.swift in Sources */,

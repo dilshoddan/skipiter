@@ -37,11 +37,11 @@ class PasswordResetViewController: UIViewController {
     func SetControllerDefaults(){
         
         self.title = "PasswordResetVC"
-        view.backgroundColor = LoginColors.PasswordResetVC
+        view.backgroundColor = ColorConstants.PasswordResetVC
         
-        stackView.backgroundColor = LoginColors.LoginContent
+        stackView.backgroundColor = ColorConstants.LoginContent
         
-        okButton.backgroundColor = LoginColors.LoginViewVC
+        okButton.backgroundColor = ColorConstants.LoginViewVC
         okButton.setTitle("OK", for: .normal)
         okButton.tintColor = .white
         okButton.layer.cornerRadius = 5

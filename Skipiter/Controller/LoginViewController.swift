@@ -10,7 +10,7 @@ import UIKit
 import Stevia
 import Hero
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var keyboardHeight = CGFloat(0.0)
     
@@ -31,11 +31,20 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         AddTapGestures()
         hero.isEnabled = true
+        self.userName.delegate = self
+        self.userPassword.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        self.view.endEditing(true)
+//        return false
+        textField.resignFirstResponder()
+        return true;
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let loginViewBottomY = self.loginView.frame.origin.y + self.loginView.frame.size.height
+            let loginViewBottomY = self.loginView.frame.origin.y + self.loginView.frame.size.height + 20
             if loginViewBottomY > keyboardSize.origin.y {
                 self.loginView.frame.origin.y = self.loginView.frame.origin.y - (loginViewBottomY - keyboardSize.origin.y)
             }
@@ -76,10 +85,10 @@ class LoginViewController: UIViewController {
         
         
         self.title = "LoginVC"
-        view.backgroundColor = LoginColors.LoginViewVC
+        view.backgroundColor = ColorConstants.LoginViewVC
         
         loginView = UIView()
-        loginView.backgroundColor = LoginColors.LoginContent
+        loginView.backgroundColor = ColorConstants.LoginContent
         
         loginSubView = UIStackView()
         
@@ -97,7 +106,7 @@ class LoginViewController: UIViewController {
         userPassword.isUserInteractionEnabled = true
         
         loginButton = UIButton()
-        loginButton.backgroundColor = LoginColors.LoginViewVC
+        loginButton.backgroundColor = ColorConstants.LoginViewVC
         loginButton.setTitle("Login", for: .normal)
         loginButton.tintColor = .white
         loginButton.layer.cornerRadius = 5
@@ -107,11 +116,11 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
         
         registerLabel = UILabel()
-        registerLabel.textColor = LoginColors.LoginText
+        registerLabel.textColor = ColorConstants.LoginText
         registerLabel.text = "Register"
         
         forgotPasswordLabel = UILabel()
-        forgotPasswordLabel.textColor = LoginColors.LoginText
+        forgotPasswordLabel.textColor = ColorConstants.LoginText
         forgotPasswordLabel.text = "Forgot password?"
         
         

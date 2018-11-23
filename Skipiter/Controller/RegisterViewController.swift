@@ -9,7 +9,7 @@
 import UIKit
 import Stevia
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     private var registerView: UIStackView!
     private var firstNameLabel: UILabel!
@@ -32,6 +32,16 @@ class RegisterViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        firstName.delegate = self
+        lastName.delegate = self
+        email.delegate = self
+        userName.delegate = self
+        userPassword.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
     }
     
     @objc func OkClicked(){
@@ -42,55 +52,43 @@ class RegisterViewController: UIViewController {
     func SetControllerDefaults(){
         
         self.title = "RegisterVC"
-        view.backgroundColor = LoginColors.RegisterVC
+        view.backgroundColor = ColorConstants.RegisterVC
         
         registerView = UIStackView()
-        registerView.backgroundColor = LoginColors.RegisterVC
+        registerView.backgroundColor = ColorConstants.RegisterVC
         
         firstNameLabel = UILabel()
         firstNameLabel.text = "First name:"
         firstName = UITextField()
-        firstName.backgroundColor = .white
-        firstName.borderStyle = .roundedRect
-        firstName.isEnabled = true
-        firstName.isUserInteractionEnabled = true
         
         lastNameLabel = UILabel()
         lastNameLabel.text = "Last name:"
         lastName = UITextField()
-        lastName.backgroundColor = .white
-        lastName.borderStyle = .roundedRect
-        lastName.isEnabled = true
-        lastName.isUserInteractionEnabled = true
         
         emailLabel = UILabel()
         emailLabel.text = "Email address:"
         email = UITextField()
-        email.backgroundColor = .white
-        email.borderStyle = .roundedRect
-        email.isEnabled = true
-        email.isUserInteractionEnabled = true
         
         userNameLabel = UILabel()
         userNameLabel.text = "User name:"
         userName = UITextField()
-        userName.backgroundColor = .white
-        userName.borderStyle = .roundedRect
-        userName.isEnabled = true
-        userName.isUserInteractionEnabled = true
         
         userPasswordLabel = UILabel()
         userPasswordLabel.text = "User password:"
         userPassword = UITextField()
-        userPassword.backgroundColor = .white
         userPassword.isSecureTextEntry = true
-        userPassword.borderStyle = .roundedRect
-        userPassword.isEnabled = true
-        userPassword.isUserInteractionEnabled = true
+        
+        //set default UITextField attributes
+        for textField in [firstName, lastName, email, userName, userPassword] {
+            textField?.backgroundColor = .white
+            textField?.borderStyle = .roundedRect
+            textField?.isEnabled = true
+            textField?.isUserInteractionEnabled = true
+        }
         
         
         okButton = UIButton()
-        okButton.backgroundColor = LoginColors.LoginViewVC
+        okButton.backgroundColor = ColorConstants.LoginViewVC
         okButton.setTitle("OK", for: .normal)
         okButton.tintColor = .white
         okButton.layer.cornerRadius = 5

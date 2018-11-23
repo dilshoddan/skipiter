@@ -19,7 +19,7 @@ class MainNavigationController: UINavigationController {
     
 
     func SetControllerDefaults(){
-        view.backgroundColor = LoginColors.MainNavigation
+        view.backgroundColor = ColorConstants.MainNavigation
         self.navigationBar.isHidden = true
     }
 

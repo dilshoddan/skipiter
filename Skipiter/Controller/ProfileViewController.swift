@@ -58,21 +58,21 @@ class ProfileViewController: UIViewController {
     func SetControlDefaults(){
         profileView.backgroundColor = .white
         
-        bannerImage.backgroundColor = LoginColors.ProfileVC
+        bannerImage.backgroundColor = ColorConstants.ProfileVC
         profileView.addSubview(bannerImage)
         
-        profileImage.backgroundColor = LoginColors.ProfileVC
+        profileImage.backgroundColor = ColorConstants.ProfileVC
         profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.cornerRadius = 5.0
         profileView.addSubview(profileImage)
         
         segmentedControl = UISegmentedControl(items: ["Tweets", "Media", "Likes"])
-        segmentedControl.tintColor = LoginColors.LoginViewVC
+        segmentedControl.tintColor = ColorConstants.LoginViewVC
         profileView.addSubview(segmentedControl)
         
-        logOutButton.backgroundColor = LoginColors.LoginViewVC
-        logOutButton.tintColor = LoginColors.LoginViewVC
+        logOutButton.backgroundColor = ColorConstants.LoginViewVC
+        logOutButton.tintColor = ColorConstants.LoginViewVC
         logOutButton.setTitleColor(.white, for: .normal)
         logOutButton.layer.cornerRadius = 5
         logOutButton.clipsToBounds = true

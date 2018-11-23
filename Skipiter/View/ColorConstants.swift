@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct LoginColors{
+struct ColorConstants{
     static let LoginContent = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
     static let LoginViewVC = #colorLiteral(red: 0.2884319572, green: 0.8235294223, blue: 0.3813682884, alpha: 1)
     static let LoginButton = #colorLiteral(red: 0.2877186603, green: 0.06008498886, blue: 1, alpha: 1)
