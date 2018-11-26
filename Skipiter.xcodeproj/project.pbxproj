@@ -21,6 +21,8 @@
 		F485B7A621A28BF500520C36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F485B7A421A28BF500520C36 /* LaunchScreen.storyboard */; };
 		F485B7B121A28BF500520C36 /* SkipiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F485B7B021A28BF500520C36 /* SkipiterTests.swift */; };
 		F485B7BC21A28BF500520C36 /* SkipiterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F485B7BB21A28BF500520C36 /* SkipiterUITests.swift */; };
+		F4B2AA5221AC096200A3AEDA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2AA5121AC096200A3AEDA /* ProfileView.swift */; };
+		F4B2AA5421AC0A7A00A3AEDA /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2AA5321AC0A7A00A3AEDA /* RegisterView.swift */; };
 		F4EDB5B521A2946D00E1B544 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EDB5B421A2946D00E1B544 /* ColorConstants.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,8 @@
 		F485B7B721A28BF500520C36 /* SkipiterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkipiterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F485B7BB21A28BF500520C36 /* SkipiterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipiterUITests.swift; sourceTree = "<group>"; };
 		F485B7BD21A28BF500520C36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4B2AA5121AC096200A3AEDA /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F4B2AA5321AC0A7A00A3AEDA /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		F4EDB5B421A2946D00E1B544 /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,8 +198,10 @@
 		F4EDB5AF21A2905F00E1B544 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F4B2AA5121AC096200A3AEDA /* ProfileView.swift */,
 				F4EDB5B421A2946D00E1B544 /* ColorConstants.swift */,
 				8413BD0921A809FE00F8A1D5 /* Extensions.swift */,
+				F4B2AA5321AC0A7A00A3AEDA /* RegisterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -424,6 +430,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F485B79E21A28BF300520C36 /* LoginViewController.swift in Sources */,
+				F4B2AA5421AC0A7A00A3AEDA /* RegisterView.swift in Sources */,
+				F4B2AA5221AC096200A3AEDA /* ProfileView.swift in Sources */,
 				844B2C9921A6B0470099E891 /* PasswordResetViewController.swift in Sources */,
 				844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */,
 				F4EDB5B521A2946D00E1B544 /* ColorConstants.swift in Sources */,
@@ -601,7 +609,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QXSYQXQB5J;
 				INFOPLIST_FILE = Skipiter/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -621,7 +629,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QXSYQXQB5J;
 				INFOPLIST_FILE = Skipiter/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
