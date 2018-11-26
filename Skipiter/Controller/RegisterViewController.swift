@@ -52,6 +52,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         view.sv(registerView)
         registerView.height(100%).width(100%).centerInContainer()
         
+        registerView.updateConstraints()
     }
     
     @objc func keyboardNotification(notification: NSNotification) {
@@ -64,7 +65,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 }
                 else{
                     render()
-                    registerView.updateConstraints()
                 }
             }
         }
