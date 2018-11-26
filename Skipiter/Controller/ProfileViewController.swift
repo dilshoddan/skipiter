@@ -12,11 +12,7 @@ import Hero
 
 class ProfileViewController: UIViewController {
 
-    private var profileView = UIView()
-    private var bannerImage = UIImageView()
-    private var profileImage = UIImageView()
-    private var segmentedControl: UISegmentedControl!
-    private var logOutButton = UIButton()
+    private var profileView: ProfileView!
     
     
     override func viewDidLoad() {
@@ -32,56 +28,14 @@ class ProfileViewController: UIViewController {
     }
     
     func render(){
-        
-        view.sv([profileView])
-        profileView.sv([bannerImage, profileImage, segmentedControl, logOutButton])
-        
-        profileView.height(100%).width(100%)
-        
-        bannerImage.height(24%).width(100%).centerHorizontally()
-        bannerImage.Top == profileView.Top
-        
-        profileImage.height(18%).width(30%).left(15)
-        profileImage.CenterY == bannerImage.Bottom
-        
-        segmentedControl.height(5%).width(90%).centerHorizontally()
-        segmentedControl.Bottom == profileView.Bottom
-        
-        logOutButton.height(5%).width(20%)
-        logOutButton.Bottom == bannerImage.Bottom
-        logOutButton.Right == bannerImage.Right
-        
-        
-        
+        view.sv(profileView)
+        profileView.height(100%).width(100%).centerInContainer()
     }
-    
     func SetControlDefaults(){
+        
+        profileView = ProfileView(frame: view.bounds)
         profileView.backgroundColor = .white
-        
-        bannerImage.backgroundColor = ColorConstants.ProfileVC
-        profileView.addSubview(bannerImage)
-        
-        profileImage.backgroundColor = ColorConstants.ProfileVC
-        profileImage.layer.borderColor = UIColor.white.cgColor
-        profileImage.layer.borderWidth = 1.0
-        profileImage.layer.cornerRadius = 5.0
-        profileView.addSubview(profileImage)
-        
-        segmentedControl = UISegmentedControl(items: ["Tweets", "Media", "Likes"])
-        segmentedControl.tintColor = ColorConstants.LoginViewVC
-        profileView.addSubview(segmentedControl)
-        
-        logOutButton.backgroundColor = ColorConstants.LoginViewVC
-        logOutButton.tintColor = ColorConstants.LoginViewVC
-        logOutButton.setTitleColor(.white, for: .normal)
-        logOutButton.layer.cornerRadius = 5
-        logOutButton.clipsToBounds = true
-        logOutButton.isEnabled = true
-        logOutButton.isUserInteractionEnabled = true
-        logOutButton.setTitle("Out", for: .normal)
-        logOutButton.addTarget(self, action: #selector(LogOutTapped), for: .touchUpInside)
-        
-        
+        profileView.logOutButton.addTarget(self, action: #selector(LogOutTapped), for: .touchUpInside)
         
     }
 
