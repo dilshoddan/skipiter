@@ -54,7 +54,7 @@ class CoreDataWorker {
     }
     
     func Update(user: User, searchKey: String, searchValue: String){
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "User")
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Users")
         fetchRequest.predicate = NSPredicate(format: "\(searchKey) = %@", "\(searchValue)")
         
         do{
@@ -69,5 +69,25 @@ class CoreDataWorker {
         catch {
             print("Could not updated. Error: \(error)")
         }
+    }
+    
+    func IsAuthenticated(userName: String, userPassword: String) -> Bool {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Users")
+        fetchRequest.predicate = NSPredicate(format: "userName = %@", "\(userName)")
+        var authenticated = false
+        do {
+            let fetchedUser = try managedContext.fetch(fetchRequest)
+            if fetchedUser.count > 0 {
+                let user = fetchedUser[0] as! NSManagedObject
+                let fetchedUserPassword = user.value(forKey: "userPassword") as! String
+                if fetchedUserPassword == userPassword {
+                    authenticated = true
+                }
+            }
+        }
+        catch {
+            return authenticated
+        }
+        return authenticated
     }
 }

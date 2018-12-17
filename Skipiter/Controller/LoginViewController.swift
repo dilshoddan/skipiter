@@ -14,17 +14,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //Controls
     private var loginView: LoginView!
+    private var coreDataWorker: CoreDataWorker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         SetControlDefaults()
         render()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardNotification), name: UIResponder.keyboardWillChangeFrameNotification,object: nil)
-        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardNotification),
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
+                                               object: nil)
+        SetCoreDataDefaults()
         AddTapGestures()
         hero.isEnabled = true
-        loginView.userName.delegate = self
-        loginView.userPassword.delegate = self
+        
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -34,7 +37,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.title = "LoginVC"
         loginView = LoginView(frame: self.view.bounds)
         loginView.loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
-        
+        loginView.userName.delegate = self
+        loginView.userPassword.delegate = self
     }
     
     func render(){
@@ -46,7 +50,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        switch textField {
+        case loginView.userName:
+            loginView.userPassword.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        
         return true;
     }
     
@@ -67,9 +77,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func LoginClicked(){
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
-        
+        var authenticated = false
+        let userName = loginView.userName.text
+        let userPassword = loginView.userPassword.text
+        if let userName = userName,
+            let userPassword = userPassword,
+            !(userName.isEmpty),
+            !(userPassword.isEmpty)
+        {
+            authenticated = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
+            if authenticated {
+                let profileVC = ProfileViewController()
+                navigationController?.pushViewController(profileVC, animated: true)
+            }
+            else{
+                loginView.userName.text = ""
+                loginView.userPassword.text = ""
+            }
+        }
     }
     
     @objc func RegisterLabelTapped(recognizer:UITapGestureRecognizer){
@@ -96,6 +121,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let forgotPasswordLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(ForgotPasswordTapped(recognizer:)))
         loginView.forgotPasswordLabel.addGestureRecognizer(forgotPasswordLabelTapGesture)
         
+    }
+    
+    func SetCoreDataDefaults(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
     }
     
     

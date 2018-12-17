@@ -27,7 +27,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        switch textField {
+        case registerView.firstName:
+            registerView.lastName.becomeFirstResponder()
+        case registerView.lastName:
+            registerView.email.becomeFirstResponder()
+        case registerView.email:
+            registerView.userName.becomeFirstResponder()
+        case registerView.userName:
+            registerView.userPassword.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        
         return true;
     }
     
