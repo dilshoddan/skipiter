@@ -77,7 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func LoginClicked(){
-        var authenticated = false
+        var isAuthenticated = false
         let userName = loginView.userName.text
         let userPassword = loginView.userPassword.text
         if let userName = userName,
@@ -85,12 +85,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userName.isEmpty),
             !(userPassword.isEmpty)
         {
-            authenticated = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
-            if authenticated {
+            isAuthenticated = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
+            if isAuthenticated {
                 let profileVC = ProfileViewController()
                 navigationController?.pushViewController(profileVC, animated: true)
             }
             else{
+                let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    print("User name and password do not match")
+                }))
+                self.present(alertController, animated: true, completion: nil)
                 loginView.userName.text = ""
                 loginView.userPassword.text = ""
             }

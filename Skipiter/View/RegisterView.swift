@@ -56,6 +56,7 @@ class RegisterView: UIView {
         emailLabel = UILabel()
         emailLabel.text = "Email address:"
         email = UITextField()
+        email.keyboardType = .emailAddress
         
         userNameLabel = UILabel()
         userNameLabel.text = "User name:"
@@ -65,6 +66,7 @@ class RegisterView: UIView {
         userPasswordLabel.text = "User password:"
         userPassword = UITextField()
         userPassword.isSecureTextEntry = true
+        userPassword.textContentType = .password
         
         //set default UITextField attributes
         for textField in [firstName, lastName, email, userName, userPassword] {
@@ -72,12 +74,16 @@ class RegisterView: UIView {
             textField?.borderStyle = .roundedRect
             textField?.isEnabled = true
             textField?.isUserInteractionEnabled = true
+            
+            textField?.autocorrectionType = .no
+            textField?.autocapitalizationType = .none
+            textField?.spellCheckingType = .no
         }
         
         
         okButton = UIButton()
         okButton.backgroundColor = ColorConstants.LoginViewVC
-        okButton.setTitle("OK", for: .normal)
+        okButton.setTitle("Save", for: .normal)
         okButton.tintColor = .white
         okButton.layer.cornerRadius = 5
         okButton.clipsToBounds = true

@@ -55,10 +55,18 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                             email: email,
                             userName: userName,
                             userPassword: userPassword)
-            
-            coreDataWorker.SaveUser(user: user)
-            
-            navigationController?.popViewController(animated: true)
+            let isUserNameUnique: Bool = coreDataWorker.IsUnique(userName: userName)
+            if isUserNameUnique {
+                coreDataWorker.SaveUser(user: user)
+                navigationController?.popViewController(animated: true)
+            }
+            else{
+                let alertController = UIAlertController(title: "Error", message: "User name exists.\n Please change your user name.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    print("User name exists.\n Please change user name.")
+                }))
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
     

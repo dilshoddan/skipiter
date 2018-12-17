@@ -95,10 +95,14 @@ class LoginView: UIView {
         userName.borderStyle = .roundedRect
         userName.isEnabled = true
         userName.isUserInteractionEnabled = true
+        userName.autocorrectionType = .no
+        userName.autocapitalizationType = .none
+        userName.spellCheckingType = .no
         
         userPassword = UITextField()
         userPassword.backgroundColor = .white
         userPassword.isSecureTextEntry = true
+        userPassword.textContentType = .password
         userPassword.borderStyle = .roundedRect
         userPassword.isEnabled = true
         userPassword.isUserInteractionEnabled = true
@@ -119,6 +123,7 @@ class LoginView: UIView {
         forgotPasswordLabel = UILabel()
         forgotPasswordLabel.textColor = ColorConstants.LoginText
         forgotPasswordLabel.text = "Forgot password?"
+        
         
     }
 }

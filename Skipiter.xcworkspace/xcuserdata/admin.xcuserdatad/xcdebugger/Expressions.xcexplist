@@ -17,10 +17,10 @@
          contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "loginViewBottomY - keyboardSize.origin.y">
+               value = "keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame">
+               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
             </PersistentString>
             <PersistentString
                value = "keyboardSize">
@@ -32,10 +32,18 @@
                value = "self.loginView.frame.origin.y">
             </PersistentString>
             <PersistentString
-               value = "keyboardSize.origin.y">
+               value = "self.loginView.frame">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
+               value = "loginViewBottomY - keyboardSize.origin.y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CoreDataWorker.IsAuthenticated(userName:userPassword:):CoreDataWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user.value(forKey: &quot;userPassword&quot;) as! String">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

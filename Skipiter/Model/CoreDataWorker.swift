@@ -59,12 +59,14 @@ class CoreDataWorker {
         
         do{
             let fetchedUser = try managedContext.fetch(fetchRequest)
-            let updateUser = fetchedUser[0] as! NSManagedObject
-            updateUser.setValue(user.firstName, forKey: "firstName")
-            updateUser.setValue(user.lastName, forKey: "lastName")
-            updateUser.setValue(user.email, forKey: "email")
-            updateUser.setValue(user.userName, forKey: "userName")
-            updateUser.setValue(user.userPassword, forKey: "userPassword")
+            if fetchedUser.count > 0 {
+                let updateUser = fetchedUser[0] as! NSManagedObject
+                updateUser.setValue(user.firstName, forKey: "firstName")
+                updateUser.setValue(user.lastName, forKey: "lastName")
+                updateUser.setValue(user.email, forKey: "email")
+                updateUser.setValue(user.userName, forKey: "userName")
+                updateUser.setValue(user.userPassword, forKey: "userPassword")
+            }
         }
         catch {
             print("Could not updated. Error: \(error)")
@@ -89,5 +91,22 @@ class CoreDataWorker {
             return authenticated
         }
         return authenticated
+    }
+    
+    func IsUnique(userName: String) -> Bool{
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Users")
+        fetchRequest.predicate = NSPredicate(format: "userName = %@", "\(userName)")
+        do {
+            let fetchedUser = try managedContext.fetch(fetchRequest)
+            if fetchedUser.count == 0 {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        catch{
+            return false
+        }
     }
 }
