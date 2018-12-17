@@ -73,24 +73,28 @@ class CoreDataWorker {
         }
     }
     
-    func IsAuthenticated(userName: String, userPassword: String) -> Bool {
+    func IsAuthenticated(userName: String, userPassword: String) -> User {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Users")
         fetchRequest.predicate = NSPredicate(format: "userName = %@", "\(userName)")
-        var authenticated = false
+        var returnUser: User!
         do {
             let fetchedUser = try managedContext.fetch(fetchRequest)
             if fetchedUser.count > 0 {
                 let user = fetchedUser[0] as! NSManagedObject
                 let fetchedUserPassword = user.value(forKey: "userPassword") as! String
                 if fetchedUserPassword == userPassword {
-                    authenticated = true
+                    returnUser = User(firstname: user.value(forKey: "firstName") as! String,
+                                 lastName: user.value(forKey: "lastName") as! String,
+                                 email: user.value(forKey: "email") as! String,
+                                 userName: user.value(forKey: "userName") as! String,
+                                 userPassword: user.value(forKey: "userPassword") as! String)
                 }
             }
         }
         catch {
-            return authenticated
+            return returnUser
         }
-        return authenticated
+        return returnUser
     }
     
     func IsUnique(userName: String) -> Bool{

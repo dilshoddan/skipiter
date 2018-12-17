@@ -13,6 +13,7 @@ import Hero
 class ProfileViewController: UIViewController {
 
     private var profileView: ProfileView!
+    public var user: User!
     
     
     override func viewDidLoad() {
@@ -36,7 +37,9 @@ class ProfileViewController: UIViewController {
         profileView = ProfileView(frame: view.bounds)
         profileView.backgroundColor = .white
         profileView.logOutButton.addTarget(self, action: #selector(LogOutTapped), for: .touchUpInside)
-        
+        if let user = user {
+            profileView.logOutButton.setTitle("LogOut: \(user.userName)", for: .normal)
+        }
     }
 
 

@@ -77,7 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func LoginClicked(){
-        var isAuthenticated = false
+        var authenticatedUser: User!
         let userName = loginView.userName.text
         let userPassword = loginView.userPassword.text
         if let userName = userName,
@@ -85,9 +85,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userName.isEmpty),
             !(userPassword.isEmpty)
         {
-            isAuthenticated = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
-            if isAuthenticated {
+            authenticatedUser = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
+            if let authenticatedUser = authenticatedUser {
                 let profileVC = ProfileViewController()
+                profileVC.user = authenticatedUser
                 navigationController?.pushViewController(profileVC, animated: true)
             }
             else{
