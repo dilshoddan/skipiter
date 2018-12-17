@@ -12,7 +12,7 @@ import Stevia
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     private var registerView: RegisterView!
-    
+    private var coreDataWorker: CoreDataWorker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +23,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                                selector: #selector(keyboardNotification),
                                                name: UIResponder.keyboardWillChangeFrameNotification,
                                                object: nil)
-        registerView.firstName.delegate = self
-        registerView.lastName.delegate = self
-        registerView.email.delegate = self
-        registerView.userName.delegate = self
-        registerView.userPassword.delegate = self
+        SetCoreDataDefaults()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -36,8 +32,22 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func OkClicked(){
-        navigationController?.popViewController(animated: true)
-        
+        if let firstName = registerView.firstName.text,
+            let lastName = registerView.lastName.text,
+            let email = registerView.email.text,
+            let userName = registerView.userName.text,
+            let userPassword = registerView.userPassword.text
+        {
+            let user = User(firstname: firstName,
+                            lastName: lastName,
+                            email: email,
+                            userName: userName,
+                            userPassword: userPassword)
+            
+            coreDataWorker.SaveUser(user: user)
+            
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     func SetControllerDefaults(){
@@ -46,6 +56,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = ColorConstants.RegisterVC
         registerView = RegisterView(frame: view.bounds)
         registerView.okButton.addTarget(self, action: #selector(OkClicked), for: .touchUpInside)
+        
+        registerView.firstName.delegate = self
+        registerView.lastName.delegate = self
+        registerView.email.delegate = self
+        registerView.userName.delegate = self
+        registerView.userPassword.delegate = self
     }
     
     func render(){
@@ -74,6 +90,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
+    func SetCoreDataDefaults(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
+    }
     
     
 }
