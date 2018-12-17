@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import UIKit
 
 class CoreDataWorker {
     private var managedContext: NSManagedObjectContext!
@@ -73,7 +74,24 @@ class CoreDataWorker {
         }
     }
     
-    func IsAuthenticated(userName: String, userPassword: String) -> User {
+    func UpdateProfileImageOf(user: User){
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Users")
+        fetchRequest.predicate = NSPredicate(format: "userName= %@", "\(user.userName)")
+        
+        do{
+            let fetchedUser = try managedContext.fetch(fetchRequest)
+            if fetchedUser.count > 0 {
+                let updateUser = fetchedUser[0] as! NSManagedObject
+                updateUser.setValue(user.profileImage?.jpegData(compressionQuality: 1.0)!, forKey: "profileImage")
+                
+            }
+        }
+        catch {
+            print("Could not updated. Error: \(error)")
+        }
+    }
+    
+    func IsAuthenticated(userName: String, userPassword: String) -> User? {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Users")
         fetchRequest.predicate = NSPredicate(format: "userName = %@", "\(userName)")
         var returnUser: User!
@@ -88,6 +106,11 @@ class CoreDataWorker {
                                  email: user.value(forKey: "email") as! String,
                                  userName: user.value(forKey: "userName") as! String,
                                  userPassword: user.value(forKey: "userPassword") as! String)
+                    
+                    let profileImage = user.value(forKey: "profileImage") as? Data
+                    if let profileImage = profileImage {
+                        returnUser.profileImage = UIImage(data: profileImage)
+                    }
                 }
             }
         }
