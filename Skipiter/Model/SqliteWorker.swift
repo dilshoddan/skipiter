@@ -21,12 +21,14 @@ class SqliteWorker {
         if sqlite3_prepare_v2(db, inserUserCommand, -1, &insertStatement, nil) == SQLITE_OK {
             BindAttributes(ofUser: user, forStatement: insertStatement)
             if sqlite3_step(insertStatement) == SQLITE_DONE {
-                print("Successfully inserted row.")
+                print("Successfully inserted \(user.userName).")
             } else {
-                print("Could not insert row.")
+                let errorMessage = String.init(cString: sqlite3_errmsg(db))
+                print("Could not insert \(user.userName): \(errorMessage)")
             }
         } else {
-            print("INSERT statement could not be prepared.")
+            let errorMessage = String.init(cString: sqlite3_errmsg(db))
+            print("INSERT statement could not be prepared: \(errorMessage)")
         }
         sqlite3_finalize(insertStatement)
     }
@@ -39,22 +41,23 @@ class SqliteWorker {
                 if sqlite3_step(insertStatement) == SQLITE_DONE {
                     print("Successfully inserted \(user.userName)")
                 } else {
-                    print("Could not insert \(user.userName)")
+                    let errorMessage = String.init(cString: sqlite3_errmsg(db))
+                    print("Could not insert \(user.userName): \(errorMessage)")
                 }
                 sqlite3_reset(insertStatement)
             }
-            
-            sqlite3_finalize(insertStatement)
         } else {
-            print("INSERT statement could not be prepared.")
+            let errorMessage = String.init(cString: sqlite3_errmsg(db))
+            print("INSERT statement could not be prepared: \(errorMessage)")
         }
+        
+        sqlite3_finalize(insertStatement)
     }
     
     func SelectUsers() -> [User]{
         var users = [User]()
         var queryStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, selectUsersCommand, -1, &queryStatement, nil) == SQLITE_OK {
-            
             while (sqlite3_step(queryStatement) == SQLITE_ROW) {
                 let user = User(firstname: String(cString: (sqlite3_column_text(queryStatement, 0))!),
                                 lastName: String(cString: (sqlite3_column_text(queryStatement, 1))!),
@@ -65,7 +68,8 @@ class SqliteWorker {
                 users.append(user)
             }
         } else {
-            print("SELECT statement could not be prepared")
+            let errorMessage = String.init(cString: sqlite3_errmsg(db))
+            print("SELECT statement could not be prepared: \(errorMessage)")
         }
         sqlite3_finalize(queryStatement)
         return users
@@ -80,10 +84,12 @@ class SqliteWorker {
             if sqlite3_step(updateStatement) == SQLITE_DONE {
                 print("Successfully updated \(ofUser.userName)")
             } else {
-                print("Could not update \(ofUser.userName)")
+                let errorMessage = String.init(cString: sqlite3_errmsg(db))
+                print("Could not update \(ofUser.userName): \(errorMessage)")
             }
         } else {
-            print("UPDATE statement could not be prepared")
+            let errorMessage = String.init(cString: sqlite3_errmsg(db))
+            print("UPDATE statement could not be prepared: \(errorMessage)")
         }
         sqlite3_finalize(updateStatement)
     }
@@ -95,10 +101,12 @@ class SqliteWorker {
             if sqlite3_step(deleteStatement) == SQLITE_DONE {
                 print("Successfully deleted \(userName).")
             } else {
-                print("Could not delete all users.")
+                let errorMessage = String.init(cString: sqlite3_errmsg(db))
+                print("Could not delete \(userName): \(errorMessage)")
             }
         } else {
-            print("DELETE statement could not be prepared")
+            let errorMessage = String.init(cString: sqlite3_errmsg(db))
+            print("DELETE statement could not be prepared: \(errorMessage)")
         }
         sqlite3_finalize(deleteStatement)
     }
@@ -109,10 +117,12 @@ class SqliteWorker {
             if sqlite3_step(deleteStatement) == SQLITE_DONE {
                 print("Successfully deleted all users.")
             } else {
-                print("Could not delete all users.")
+                let errorMessage = String.init(cString: sqlite3_errmsg(db))
+                print("Could not delete all users: \(errorMessage)")
             }
         } else {
-            print("DELETE statement could not be prepared")
+            let errorMessage = String.init(cString: sqlite3_errmsg(db))
+            print("DELETE statement could not be prepared: \(errorMessage)")
         }
         sqlite3_finalize(deleteStatement)
     }
@@ -137,7 +147,8 @@ class SqliteWorker {
         if sqlite3_open(dbPath.path, &db) == SQLITE_OK {
             print("Successfully opened connection to database at \(dbPath)")
         } else {
-            print("Unable to open database. Verify that you created the directory described " + "in the Getting Started section.")
+            let errorMessage = String.init(cString: sqlite3_errmsg(db))
+            print("Unable to open database: \(errorMessage)")
         }
         return db
     }
@@ -148,10 +159,12 @@ class SqliteWorker {
             if sqlite3_step(createTableStatement) == SQLITE_DONE {
                 print("Users table created.")
             } else {
-                print("Users table could not be created.")
+                let errorMessage = String.init(cString: sqlite3_errmsg(db))
+                print("Users table could not be created: \(errorMessage)")
             }
         } else {
-            print("CREATE TABLE statement could not be prepared.")
+            let errorMessage = String.init(cString: sqlite3_errmsg(db))
+            print("CREATE TABLE statement could not be prepared: \(errorMessage)")
         }
         sqlite3_finalize(createTableStatement)
     }
