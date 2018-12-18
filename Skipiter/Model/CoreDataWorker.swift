@@ -16,15 +16,18 @@ class CoreDataWorker {
         managedContext = appDelegate.persistentContainer.viewContext
     }
     
+    func SetValuesTo(coreUser: NSManagedObject, fromUser: User){
+        coreUser.setValue(fromUser.firstName, forKeyPath: "firstName")
+        coreUser.setValue(fromUser.lastName, forKey: "lastName")
+        coreUser.setValue(fromUser.email, forKey: "email")
+        coreUser.setValue(fromUser.userName, forKey: "userName")
+        coreUser.setValue(fromUser.userPassword, forKey: "userPassword")
+    }
+    
     func SaveUser(user: User){
         let entity = NSEntityDescription.entity(forEntityName: "Users", in: managedContext)!
         let coreUser = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        coreUser.setValue(user.firstName, forKeyPath: "firstName")
-        coreUser.setValue(user.lastName, forKey: "lastName")
-        coreUser.setValue(user.email, forKey: "email")
-        coreUser.setValue(user.userName, forKey: "userName")
-        coreUser.setValue(user.userPassword, forKey: "userPassword")
+        SetValuesTo(coreUser: coreUser, fromUser: user)
         
         do {
             try managedContext.save()
@@ -62,11 +65,7 @@ class CoreDataWorker {
             let fetchedUser = try managedContext.fetch(fetchRequest)
             if fetchedUser.count > 0 {
                 let updateUser = fetchedUser[0] as! NSManagedObject
-                updateUser.setValue(user.firstName, forKey: "firstName")
-                updateUser.setValue(user.lastName, forKey: "lastName")
-                updateUser.setValue(user.email, forKey: "email")
-                updateUser.setValue(user.userName, forKey: "userName")
-                updateUser.setValue(user.userPassword, forKey: "userPassword")
+                SetValuesTo(coreUser: updateUser, fromUser: user)
             }
         }
         catch {
