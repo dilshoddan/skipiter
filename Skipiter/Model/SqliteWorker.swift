@@ -168,6 +168,11 @@ class SqliteWorker {
                                 SELECT firstName, lastName, email, userName, userPassword
                                 FROM Users;
                              """
+    let selectUserCommand = """
+                                SELECT firstName, lastName, email, userName, userPassword
+                                FROM Users
+                                WHERE userName = ?;
+                             """
     let updateUserCommand = """
                                 UPDATE Users
                                 SET firstName = ?,
@@ -202,9 +207,9 @@ class SqliteWorker {
                             Id INT PRIMARY KEY AUTOINCREMENT,
                             firstName CHAR(255),
                             lastName CHAR(255),
-                            email CHAR(255),
-                            userName CHAR(255),
-                            userPassword CHAR(255),
+                            email CHAR(255) NOT NULL,
+                            userName CHAR(255) UNIQUE,
+                            userPassword CHAR(255) NOT NULL,
                             profileImage BLOB,
                             profileBanner BLOB
                             );
