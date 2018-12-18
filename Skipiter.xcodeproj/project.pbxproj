@@ -17,6 +17,7 @@
 		84AA9B0821C77A8D0043A58D /* skipiter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84AA9B0621C77A8D0043A58D /* skipiter.xcdatamodeld */; };
 		84AA9B2B21C7896D0043A58D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA9B2A21C7896D0043A58D /* User.swift */; };
 		84B3631321A542B900A0B39C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3631221A542B900A0B39C /* MainNavigationController.swift */; };
+		84FE727521C8FC1F00688FF1 /* SqliteWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE727421C8FC1F00688FF1 /* SqliteWorker.swift */; };
 		9A1341C3046D67DAEB0CF982 /* Pods_Skipiter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6388877003A8882690FEBF8 /* Pods_Skipiter.framework */; };
 		A364F88386D288AF5DD1421C /* Pods_SkipiterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF52AE093F8658D2C05E8195 /* Pods_SkipiterTests.framework */; };
 		F485B79C21A28BF300520C36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F485B79B21A28BF300520C36 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		84AA9B0721C77A8D0043A58D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		84AA9B2A21C7896D0043A58D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84B3631221A542B900A0B39C /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		84FE727421C8FC1F00688FF1 /* SqliteWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteWorker.swift; sourceTree = "<group>"; };
 		B0495AA16F64840CE1296E5F /* Pods-SkipiterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkipiterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkipiterUITests/Pods-SkipiterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BF52AE093F8658D2C05E8195 /* Pods_SkipiterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkipiterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D96DEE7210F23531A378DFCD /* Pods-Skipiter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skipiter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Skipiter/Pods-Skipiter.release.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				84AA9B0421C7745C0043A58D /* CoreDataWorker.swift */,
 				84AA9B0621C77A8D0043A58D /* skipiter.xcdatamodeld */,
 				84AA9B2A21C7896D0043A58D /* User.swift */,
+				84FE727421C8FC1F00688FF1 /* SqliteWorker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				844B2C9921A6B0470099E891 /* PasswordResetViewController.swift in Sources */,
 				84AA9B2B21C7896D0043A58D /* User.swift in Sources */,
 				844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */,
+				84FE727521C8FC1F00688FF1 /* SqliteWorker.swift in Sources */,
 				F4EDB5B521A2946D00E1B544 /* ColorConstants.swift in Sources */,
 				844B2C9B21A6B1A10099E891 /* ProfileViewController.swift in Sources */,
 				8413BD0A21A809FE00F8A1D5 /* Extensions.swift in Sources */,
