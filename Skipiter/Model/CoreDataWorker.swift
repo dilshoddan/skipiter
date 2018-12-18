@@ -74,7 +74,7 @@ class CoreDataWorker {
         }
     }
     
-    func UpdateProfileImageOf(user: User){
+    func UpdateProfileImageOf(user: User, _ key: String){
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Users")
         fetchRequest.predicate = NSPredicate(format: "userName= %@", "\(user.userName)")
         
@@ -82,7 +82,12 @@ class CoreDataWorker {
             let fetchedUser = try managedContext.fetch(fetchRequest)
             if fetchedUser.count > 0 {
                 let updateUser = fetchedUser[0] as! NSManagedObject
-                updateUser.setValue(user.profileImage?.jpegData(compressionQuality: 1.0)!, forKey: "profileImage")
+                if key == "profileImage" {
+                    updateUser.setValue(user.profileImage?.jpegData(compressionQuality: 1.0)!, forKey: key)
+                }
+                else if key == "profileBanner" {
+                    updateUser.setValue(user.profileBanner?.jpegData(compressionQuality: 1.0)!, forKey: key)
+                }
                 
             }
         }
@@ -102,14 +107,18 @@ class CoreDataWorker {
                 let fetchedUserPassword = user.value(forKey: "userPassword") as! String
                 if fetchedUserPassword == userPassword {
                     returnUser = User(firstname: user.value(forKey: "firstName") as! String,
-                                 lastName: user.value(forKey: "lastName") as! String,
-                                 email: user.value(forKey: "email") as! String,
-                                 userName: user.value(forKey: "userName") as! String,
-                                 userPassword: user.value(forKey: "userPassword") as! String)
+                                      lastName: user.value(forKey: "lastName") as! String,
+                                      email: user.value(forKey: "email") as! String,
+                                      userName: user.value(forKey: "userName") as! String,
+                                      userPassword: user.value(forKey: "userPassword") as! String)
                     
                     let profileImage = user.value(forKey: "profileImage") as? Data
                     if let profileImage = profileImage {
                         returnUser.profileImage = UIImage(data: profileImage)
+                    }
+                    let profileBanner = user.value(forKey: "profileBanner") as? Data
+                    if let profileBanner = profileBanner {
+                        returnUser.profileBanner = UIImage(data: profileBanner)
                     }
                 }
             }

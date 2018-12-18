@@ -15,7 +15,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     private var profileView: ProfileView!
     public var user: User!
     private var coreDataWorker: CoreDataWorker!
-    
+    private var profileImagePicker: UIImagePickerController!
+    private var profileBannerPicker: UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,15 +42,28 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profileView.backgroundColor = .white
         profileView.logOutButton.addTarget(self, action: #selector(LogOutTapped), for: .touchUpInside)
         
-        if let user = user, let profileImage = user.profileImage {
-            profileView.profileImage.image = profileImage
+        profileImagePicker = UIImagePickerController()
+        profileBannerPicker = UIImagePickerController()
+        
+        
+        if let user = user {
+            if let profileImage = user.profileImage{
+                profileView.profileImage.image = profileImage
+            }
+            if let profileBanner = user.profileBanner {
+                profileView.profileBanner.image = profileBanner
+            }
         }
     }
     
-    @objc func PickAnImage(recognizer:UITapGestureRecognizer){
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        self.present(picker, animated: true, completion: nil)
+    @objc func PickProfileImage(recognizer:UITapGestureRecognizer){
+        profileImagePicker.delegate = self
+        self.present(profileImagePicker, animated: true, completion: nil)
+    }
+    
+    @objc func PickProfileBanner(recognizer:UITapGestureRecognizer){
+        profileBannerPicker.delegate = self
+        self.present(profileBannerPicker, animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -60,17 +74,30 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         guard let selectedImage = info[.originalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
-        profileView.profileImage.image = selectedImage
-        user.profileImage = selectedImage
-        coreDataWorker.UpdateProfileImageOf(user: user)
-        picker.dismiss(animated: true, completion: nil)
+        switch picker {
+        case profileImagePicker:
+            profileView.profileImage.image = selectedImage
+            user.profileImage = selectedImage
+            coreDataWorker.UpdateProfileImageOf(user: user, "profileImage")
+            picker.dismiss(animated: true, completion: nil)
+        case profileBannerPicker:
+            profileView.profileBanner.image = selectedImage
+            user.profileBanner = selectedImage
+            coreDataWorker.UpdateProfileImageOf(user: user, "profileBanner")
+            picker.dismiss(animated: true, completion: nil)
+        default:
+            picker.dismiss(animated: true, completion: nil)
+        }
     }
     
     func AddTapGestures(){
-        
         profileView.profileImage.isUserInteractionEnabled = true
-        let pickAnImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(PickAnImage(recognizer:)))
-        profileView.profileImage.addGestureRecognizer(pickAnImageTapGesture)
+        let pickProfileImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(PickProfileImage(recognizer:)))
+        profileView.profileImage.addGestureRecognizer(pickProfileImageTapGesture)
+        
+        profileView.profileBanner.isUserInteractionEnabled = true
+        let pickProfileBannerTapGesture = UITapGestureRecognizer(target: self, action: #selector(PickProfileBanner(recognizer:)))
+        profileView.profileBanner.addGestureRecognizer(pickProfileBannerTapGesture)
     }
     
     func SetCoreDataDefaults(){

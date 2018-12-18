@@ -14,6 +14,7 @@ class User {
     public var userName: String
     public var userPassword: String
     public var profileImage: UIImage?
+    public var profileBanner: UIImage?
     
     init(firstname: String, lastName: String, email: String, userName: String, userPassword: String){
         self.firstName = firstname
@@ -22,12 +23,13 @@ class User {
         self.userName = userName
         self.userPassword = userPassword
     }
-    init(firstname: String, lastName: String, email: String, userName: String, userPassword: String, profileImage: UIImage){
+    init(firstname: String, lastName: String, email: String, userName: String, userPassword: String, profileImage: UIImage, profileBanner: UIImage){
         self.firstName = firstname
         self.lastName = lastName
         self.email = email
         self.userName = userName
         self.userPassword = userPassword
         self.profileImage = profileImage
+        self.profileBanner = profileBanner
     }
 }
