@@ -11,24 +11,22 @@ import Foundation
 class SqliteWorker {
     private var db: OpaquePointer? = nil
     private var dbName: String!
+    public var isDBHealthy: Bool = false
+    
     init() {
         dbName = "skipiterDatabase.sqlite"
-    }
-    
-    private func CloseDB(){
-        if let db = db {
-            do {
-                sqlite3_close(db)
-            }
-            catch {
-                let errorMessage = String.init(cString: sqlite3_errmsg(db))
-                print("Could not close the DB: \(errorMessage) \n iOS error: \(error)")
-            }
+        if OpenDatabase() {
+            self.isDBHealthy = true
+            createTable()
         }
     }
     
+    deinit {
+        sqlite3_close(db)
+    }
+    
     func insert(user: User) {
-        if OpenDatabase() {
+        if isDBHealthy {
             var insertStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, inserUserCommand, -1, &insertStatement, nil) == SQLITE_OK {
                 BindAttributes(ofUser: user, forStatement: insertStatement)
@@ -43,12 +41,11 @@ class SqliteWorker {
                 print("INSERT statement could not be prepared: \(errorMessage)")
             }
             sqlite3_finalize(insertStatement)
-            CloseDB()
         }
     }
     
     func insert(users: [User]) {
-        if OpenDatabase() {
+        if isDBHealthy {
             var insertStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, inserUserCommand, -1, &insertStatement, nil) == SQLITE_OK {
                 for user in users {
@@ -67,13 +64,12 @@ class SqliteWorker {
             }
             
             sqlite3_finalize(insertStatement)
-            CloseDB()
         }
     }
     
     func SelectUsers() -> [User]{
         var users = [User]()
-        if OpenDatabase() {
+        if isDBHealthy {
             var queryStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, selectUsersCommand, -1, &queryStatement, nil) == SQLITE_OK {
                 while (sqlite3_step(queryStatement) == SQLITE_ROW) {
@@ -90,15 +86,12 @@ class SqliteWorker {
                 print("SELECT statement could not be prepared: \(errorMessage)")
             }
             sqlite3_finalize(queryStatement)
-            CloseDB()
-            
-            
         }
         return users
     }
     
     func UpdatePassword(ofUser: User, withNewPassword: String) {
-        if OpenDatabase() {
+        if isDBHealthy {
             var updateStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, updateUserPasswordCommand, -1, &updateStatement, nil) == SQLITE_OK {
                 sqlite3_bind_text(updateStatement, 1, NSString(string: withNewPassword).utf8String, -1, nil)
@@ -115,12 +108,11 @@ class SqliteWorker {
                 print("UPDATE statement could not be prepared: \(errorMessage)")
             }
             sqlite3_finalize(updateStatement)
-            CloseDB()
         }
     }
     
     func deleteUserWithName(userName: String){
-        if OpenDatabase() {
+        if isDBHealthy {
             var deleteStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, deleteUserWithUserNameCommand, -1, &deleteStatement, nil) == SQLITE_OK {
                 sqlite3_bind_text(deleteStatement, 1, NSString(string: userName).utf8String, -1, nil)
@@ -135,12 +127,11 @@ class SqliteWorker {
                 print("DELETE statement could not be prepared: \(errorMessage)")
             }
             sqlite3_finalize(deleteStatement)
-            CloseDB()
         }
     }
     
     func deleteAllUsers() {
-        if OpenDatabase() {
+        if isDBHealthy {
             var deleteStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, deleteAllUsersCommand, -1, &deleteStatement, nil) == SQLITE_OK {
                 if sqlite3_step(deleteStatement) == SQLITE_DONE {
@@ -154,7 +145,6 @@ class SqliteWorker {
                 print("DELETE statement could not be prepared: \(errorMessage)")
             }
             sqlite3_finalize(deleteStatement)
-            CloseDB()
         }
     }
     
@@ -170,7 +160,7 @@ class SqliteWorker {
     
     
     public func createTable() {
-        if OpenDatabase() {
+        if isDBHealthy {
             var createTableStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, createCommand, -1, &createTableStatement, nil) == SQLITE_OK {
                 if sqlite3_step(createTableStatement) == SQLITE_DONE {
@@ -184,7 +174,6 @@ class SqliteWorker {
                 print("CREATE TABLE statement could not be prepared: \(errorMessage)")
             }
             sqlite3_finalize(createTableStatement)
-            CloseDB()
         }
     }
     
