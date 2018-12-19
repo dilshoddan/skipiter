@@ -20,7 +20,7 @@ extension String {
                                              """
     
     public static let selectUserWithUserNameAndPasswordCommand = """
-                                                        SELECT firstName, lastName, email, userName, userPassword
+                                                        SELECT firstName, lastName, email, userName, userPassword, profileImage, profileBanner
                                                         FROM Users
                                                         WHERE userName = ?
                                                         AND userPassword = ?;
@@ -30,6 +30,12 @@ extension String {
                                                         FROM Users
                                                         WHERE userName = ?;
                                                      """
+    
+    public static let updateUserProfileImageCommand = """
+                                                            UPDATE Users
+                                                            SET profileImage = ?
+                                                            WHERE userName = ?;
+                                                        """
     
     public static let updateUserCommand = """
                                             UPDATE Users

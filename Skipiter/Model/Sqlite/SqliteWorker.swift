@@ -5,6 +5,7 @@
 //  Created by Admin on 12/18/18.
 //  Copyright © 2018 Home. All rights reserved.
 //
+import UIKit
 import SQLite3
 import Foundation
 
@@ -53,7 +54,12 @@ class SqliteWorker {
         if isDBHealthy {
             if let queryStatement = SqlPreparationOK(db, sqlCommand: .selectUsersCommand) {
                 while (sqlite3_step(queryStatement) == SQLITE_ROW) {
-                    users.append(CreateUser(fromResult: queryStatement))
+                    do{
+                        try users.append(CreateUser(fromResult: queryStatement))
+                    }
+                    catch {
+                        print("Select users")
+                    }
                 }
                 sqlite3_finalize(queryStatement)
             }
@@ -68,7 +74,12 @@ class SqliteWorker {
                 sqlite3_bind_text(selectStatement, 1, NSString(string: withUserName).utf8String, -1, nil)
                 sqlite3_bind_text(selectStatement, 2, NSString(string: andUserPassword).utf8String, -1, nil)
                 if sqlite3_step(selectStatement) == SQLITE_ROW {
-                    returnUser = CreateUser(fromResult: selectStatement)
+                    do {
+                        try returnUser = CreateUser(fromResult: selectStatement)
+                    }
+                    catch {
+                        print("SelectUser sqlite worker")
+                    }
                 }
                 sqlite3_finalize(selectStatement)
             }
@@ -94,7 +105,7 @@ class SqliteWorker {
     
     
     
-    func UpdatePassword(ofUser: User, withNewPassword: String) {
+    func UpdateUserPassword(ofUser: User, withNewPassword: String) {
         if isDBHealthy {
             if let updateStatement = SqlPreparationOK(db, sqlCommand: .updateUserPasswordCommand) {
                 sqlite3_bind_text(updateStatement, 1, NSString(string: withNewPassword).utf8String, -1, nil)
@@ -105,6 +116,28 @@ class SqliteWorker {
             }
         }
     }
+    
+    func UpdateUserProfileImage(ofUser: User) throws {
+        if isDBHealthy {
+            if let updateStatement = SqlPreparationOK(db, sqlCommand: .updateUserPasswordCommand) {
+                let userImageData = ofUser.profileImage?.jpegData(compressionQuality: 1.0)!
+                if let userImageData = userImageData {
+                    guard userImageData.withUnsafeBytes({ (bytes: UnsafePointer<UInt8>) -> Int32 in
+                        sqlite3_bind_blob(updateStatement, 1, bytes, Int32(userImageData.count), nil)
+                    }) == SQLITE_OK else {
+                        var errorMessage: String { return String(cString: sqlite3_errmsg(db)) }
+                        throw SQLiteError.bind(message: errorMessage)
+                    }
+                    sqlite3_bind_text(updateStatement, 2, NSString(string: ofUser.userName).utf8String, -1, nil)
+                    
+                    SqliteStep(db, withStatement: updateStatement, successMessage: "Successfully updated \(ofUser.userName)", failMessage: "Could not update \(ofUser.userName)")
+                    sqlite3_finalize(updateStatement)
+                }
+            }
+        }
+    }
+    
+    
     
     func deleteUserWithName(userName: String){
         if isDBHealthy {
@@ -147,6 +180,37 @@ class SqliteWorker {
             print("Unable to open database: \(errorMessage)")
             return false
         }
+    }
+    
+    func CreateUser(fromResult: OpaquePointer?) throws -> User {
+        let user = User(firstname: String(cString: (sqlite3_column_text(fromResult, 0))!),
+                        lastName: String(cString: (sqlite3_column_text(fromResult, 1))!),
+                        email: String(cString: (sqlite3_column_text(fromResult, 2))!),
+                        userName: String(cString: (sqlite3_column_text(fromResult, 3))!),
+                        userPassword: String(cString: (sqlite3_column_text(fromResult, 4))!)
+        )
+        
+        let profileImageCount = Int(sqlite3_column_bytes(fromResult, 5))
+        let profileImage = sqlite3_column_blob(fromResult, 5)
+        if profileImageCount > 0, let profileImage = profileImage {
+            let userProfileImage = UIImage(data: Data(bytes: profileImage, count: profileImageCount))
+            if let userProfileImage = userProfileImage {
+                user.profileImage = userProfileImage
+            }
+        }
+        
+        let profileBannerCount = Int(sqlite3_column_bytes(fromResult, 5))
+        let profileBanner = sqlite3_column_blob(fromResult, 5)
+        if profileBannerCount > 0, let profileBanner = profileBanner {
+            let userProfileBanner = UIImage(data: Data(bytes: profileBanner, count: profileBannerCount))
+            if let userProfileBanner = userProfileBanner {
+                user.profileBanner = userProfileBanner
+            }
+        }
+        
+        
+        return user
+        
     }
     
     

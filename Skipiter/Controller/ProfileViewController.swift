@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     private var profileView: ProfileView!
     public var user: User!
     private var coreDataWorker: CoreDataWorker!
+    private var sqliteWorker: SqliteWorker!
     private var profileImagePicker: UIImagePickerController!
     private var profileBannerPicker: UIImagePickerController!
     
@@ -24,7 +25,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         SetControlDefaults()
         render()
         hero.isEnabled = true
-        SetCoreDataDefaults()
+        SetDBDefaults()
         AddTapGestures()
     }
     
@@ -78,12 +79,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         case profileImagePicker:
             profileView.profileImage.image = selectedImage
             user.profileImage = selectedImage
-            coreDataWorker.UpdateProfileImageOf(user: user, "profileImage")
+//            coreDataWorker.UpdateProfileImageOf(user: user, "profileImage")
+            do{
+                try sqliteWorker.UpdateUserProfileImage(ofUser: user)
+            }
+            catch {
+                
+            }
             picker.dismiss(animated: true, completion: nil)
         case profileBannerPicker:
             profileView.profileBanner.image = selectedImage
             user.profileBanner = selectedImage
-            coreDataWorker.UpdateProfileImageOf(user: user, "profileBanner")
+//            coreDataWorker.UpdateProfileImageOf(user: user, "profileBanner")
             picker.dismiss(animated: true, completion: nil)
         default:
             picker.dismiss(animated: true, completion: nil)
@@ -100,9 +107,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profileView.profileBanner.addGestureRecognizer(pickProfileBannerTapGesture)
     }
     
-    func SetCoreDataDefaults(){
+    func SetDBDefaults(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
+        sqliteWorker = SqliteWorker()
     }
 
 

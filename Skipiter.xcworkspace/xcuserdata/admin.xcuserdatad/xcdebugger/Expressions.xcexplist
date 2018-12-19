@@ -11,6 +11,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SqliteWorker.CreateUser(fromResult:):SqliteWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int(sqlite3_column_bytes(fromResult, 6))">
+            </PersistentString>
+            <PersistentString
+               value = "sqlite3_column_blob(fromResult, 5)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString

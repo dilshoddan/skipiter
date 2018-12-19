@@ -8,6 +8,18 @@
 import Foundation
 import SQLite3
 
+enum SQLiteError: Error {
+    case open(result: Int32)
+    case exec(message: String)
+    case prepare(message: String)
+    case bind(message: String)
+    case step(message: String)
+    case column(message: String)
+    case invalidDate
+    case missingData
+    case noDataChanged
+}
+
 extension SqliteWorker {
     
     
@@ -42,14 +54,6 @@ extension SqliteWorker {
         }
     }
     
-    func CreateUser(fromResult: OpaquePointer?) -> User {
-        return User(firstname: String(cString: (sqlite3_column_text(fromResult, 0))!),
-                    lastName: String(cString: (sqlite3_column_text(fromResult, 1))!),
-                    email: String(cString: (sqlite3_column_text(fromResult, 2))!),
-                    userName: String(cString: (sqlite3_column_text(fromResult, 3))!),
-                    userPassword: String(cString: (sqlite3_column_text(fromResult, 4))!)
-        )
-        
-    }
+    
     
 }
