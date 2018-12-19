@@ -85,7 +85,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userName.isEmpty),
             !(userPassword.isEmpty)
         {
-            let authenticatedUser = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
+//            let authenticatedUser = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
             let sqlAuthenticatedUser = sqliteWorker.SelectUser(withUserName: userName, andUserPassword: userPassword)
             if let sqlAuthenticatedUser = sqlAuthenticatedUser {
                 let profileVC = ProfileViewController()

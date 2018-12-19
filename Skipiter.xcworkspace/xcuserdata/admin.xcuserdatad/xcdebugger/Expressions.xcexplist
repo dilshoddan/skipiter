@@ -3,13 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "RegisterViewController.keyboardWillShow(notification:):RegisterViewController.swift">
+         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "selectedTextField!.frame.size.height">
-            </PersistentString>
-            <PersistentString
-               value = "selectedTextField!.frame.origin.y">
+               value = "selectedUser == nil">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -17,10 +14,10 @@
          contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.loginView.frame">
+               value = "self.loginView.frame.origin.y">
             </PersistentString>
             <PersistentString
-               value = "loginViewBottomY - keyboardSize.origin.y">
+               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
             </PersistentString>
             <PersistentString
                value = "keyboardSize">
@@ -32,10 +29,21 @@
                value = "keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y">
+               value = "self.loginView.frame">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
+               value = "loginViewBottomY - keyboardSize.origin.y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RegisterViewController.keyboardWillShow(notification:):RegisterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedTextField!.frame.size.height">
+            </PersistentString>
+            <PersistentString
+               value = "selectedTextField!.frame.origin.y">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

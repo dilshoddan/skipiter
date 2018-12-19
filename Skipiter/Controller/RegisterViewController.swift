@@ -56,9 +56,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                             email: email,
                             userName: userName,
                             userPassword: userPassword)
-            let isUserNameUnique: Bool = coreDataWorker.IsUnique(userName: userName)
-            if isUserNameUnique {
-                coreDataWorker.SaveUser(user: user)
+            
+            //CoreDataWorker
+//            let isUserNameUnique: Bool = coreDataWorker.IsUnique(userName: userName)
+//            if isUserNameUnique {
+//                coreDataWorker.SaveUser(user: user)
+//                navigationController?.popViewController(animated: true)
+//            }
+            //SqliteWorker
+            let isUserUnique = sqliteWorker.IsUserUnique(withUserName: user.userName)
+            if isUserUnique {
                 sqliteWorker.insert(user: user)
                 navigationController?.popViewController(animated: true)
             }

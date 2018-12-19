@@ -64,7 +64,7 @@ class SqliteWorker {
     func SelectUser(withUserName: String, andUserPassword: String) -> User?{
         var returnUser: User?
         if isDBHealthy {
-            if let selectStatement = SqlPreparationOK(db, sqlCommand: .selectUserWithUserNameCommand) {
+            if let selectStatement = SqlPreparationOK(db, sqlCommand: .selectUserWithUserNameAndPasswordCommand) {
                 sqlite3_bind_text(selectStatement, 1, NSString(string: withUserName).utf8String, -1, nil)
                 sqlite3_bind_text(selectStatement, 2, NSString(string: andUserPassword).utf8String, -1, nil)
                 if sqlite3_step(selectStatement) == SQLITE_ROW {
@@ -74,6 +74,22 @@ class SqliteWorker {
             }
         }
         return returnUser
+    }
+    
+    func IsUserUnique(withUserName: String) -> Bool{
+        if isDBHealthy {
+            if let selectStatement = SqlPreparationOK(db, sqlCommand: .selectUserWithUserNameCommand) {
+                sqlite3_bind_text(selectStatement, 1, NSString(string: withUserName).utf8String, -1, nil)
+                if sqlite3_step(selectStatement) == SQLITE_ROW {
+                    let returnedRows = sqlite3_column_int(selectStatement, 0)
+                    if returnedRows == 0 {
+                        return true
+                    }
+                }
+                sqlite3_finalize(selectStatement)
+            }
+        }
+        return false
     }
     
     
