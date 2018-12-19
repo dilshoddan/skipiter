@@ -15,6 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     //Controls
     private var loginView: LoginView!
     private var coreDataWorker: CoreDataWorker!
+    private var sqliteWorker: SqliteWorker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                                selector: #selector(keyboardNotification),
                                                name: UIResponder.keyboardWillChangeFrameNotification,
                                                object: nil)
-        SetCoreDataDefaults()
+        SetDBDefaults()
         AddTapGestures()
         hero.isEnabled = true
         
@@ -77,7 +78,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func LoginClicked(){
-        var authenticatedUser: User!
         let userName = loginView.userName.text
         let userPassword = loginView.userPassword.text
         if let userName = userName,
@@ -85,10 +85,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userName.isEmpty),
             !(userPassword.isEmpty)
         {
-            authenticatedUser = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
-            if let authenticatedUser = authenticatedUser {
+            let authenticatedUser = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
+            let sqlAuthenticatedUser = sqliteWorker.SelectUser(withUserName: userName, andUserPassword: userPassword)
+            if let sqlAuthenticatedUser = sqlAuthenticatedUser {
                 let profileVC = ProfileViewController()
-                profileVC.user = authenticatedUser
+                profileVC.user = sqlAuthenticatedUser
                 navigationController?.pushViewController(profileVC, animated: true)
             }
             else{
@@ -129,9 +130,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func SetCoreDataDefaults(){
+    func SetDBDefaults(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
+        sqliteWorker = SqliteWorker()
     }
     
     

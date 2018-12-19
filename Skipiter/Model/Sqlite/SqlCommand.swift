@@ -19,6 +19,13 @@ extension String {
                                                 FROM Users;
                                              """
     
+    public static let selectUserWithUserNameCommand = """
+                                                        SELECT firstName, lastName, email, userName, userPassword
+                                                        FROM Users
+                                                        WHERE userName = ?
+                                                        AND userPassword = ?;
+                                                     """
+    
     public static let updateUserCommand = """
                                             UPDATE Users
                                             SET firstName = ?,

@@ -61,6 +61,21 @@ class SqliteWorker {
         return users
     }
     
+    func SelectUser(withUserName: String, andUserPassword: String) -> User?{
+        var returnUser: User?
+        if isDBHealthy {
+            if let selectStatement = SqlPreparationOK(db, sqlCommand: .selectUserWithUserNameCommand) {
+                sqlite3_bind_text(selectStatement, 1, NSString(string: withUserName).utf8String, -1, nil)
+                sqlite3_bind_text(selectStatement, 2, NSString(string: andUserPassword).utf8String, -1, nil)
+                if sqlite3_step(selectStatement) == SQLITE_ROW {
+                    returnUser = CreateUser(fromResult: selectStatement)
+                }
+                sqlite3_finalize(selectStatement)
+            }
+        }
+        return returnUser
+    }
+    
     
     
     func UpdatePassword(ofUser: User, withNewPassword: String) {
