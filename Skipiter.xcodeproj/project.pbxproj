@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		095CEF76E0D506D764116016 /* Pods_SkipiterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 372E9ECB3CEC1C1565975EF9 /* Pods_SkipiterUITests.framework */; };
 		8413BD0A21A809FE00F8A1D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413BD0921A809FE00F8A1D5 /* Extensions.swift */; };
+		841BA6CC21CA263000123E6C /* SqlCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BA6CB21CA263000123E6C /* SqlCommand.swift */; };
+		841BA6D221CA45DF00123E6C /* SqliteWorkerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BA6D121CA45DF00123E6C /* SqliteWorkerExtension.swift */; };
 		844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9621A6B0120099E891 /* RegisterViewController.swift */; };
 		844B2C9921A6B0470099E891 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9821A6B0470099E891 /* PasswordResetViewController.swift */; };
 		844B2C9B21A6B1A10099E891 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9A21A6B1A10099E891 /* ProfileViewController.swift */; };
@@ -54,6 +56,8 @@
 		54256E43DAB577BC29AAD3A1 /* Pods-Skipiter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skipiter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Skipiter/Pods-Skipiter.debug.xcconfig"; sourceTree = "<group>"; };
 		7C2C9A794C012497F8C24B48 /* Pods-SkipiterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkipiterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkipiterUITests/Pods-SkipiterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8413BD0921A809FE00F8A1D5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		841BA6CB21CA263000123E6C /* SqlCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlCommand.swift; sourceTree = "<group>"; };
+		841BA6D121CA45DF00123E6C /* SqliteWorkerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteWorkerExtension.swift; sourceTree = "<group>"; };
 		844B2C9621A6B0120099E891 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		844B2C9821A6B0470099E891 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		844B2C9A21A6B1A10099E891 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		841BA6CF21CA2D3400123E6C /* CodeData */ = {
+			isa = PBXGroup;
+			children = (
+				84AA9B0421C7745C0043A58D /* CoreDataWorker.swift */,
+			);
+			path = CodeData;
+			sourceTree = "<group>";
+		};
+		841BA6D021CA2D4100123E6C /* Sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				84FE727421C8FC1F00688FF1 /* SqliteWorker.swift */,
+				841BA6CB21CA263000123E6C /* SqlCommand.swift */,
+				841BA6D121CA45DF00123E6C /* SqliteWorkerExtension.swift */,
+			);
+			path = Sqlite;
+			sourceTree = "<group>";
+		};
 		BD4206CBBF955282C0A0EB36 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,10 +223,10 @@
 		F4EDB5AE21A2905900E1B544 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				84AA9B0421C7745C0043A58D /* CoreDataWorker.swift */,
+				841BA6D021CA2D4100123E6C /* Sqlite */,
+				841BA6CF21CA2D3400123E6C /* CodeData */,
 				84AA9B0621C77A8D0043A58D /* skipiter.xcdatamodeld */,
 				84AA9B2A21C7896D0043A58D /* User.swift */,
-				84FE727421C8FC1F00688FF1 /* SqliteWorker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,6 +471,7 @@
 				F4B2AA5221AC096200A3AEDA /* ProfileView.swift in Sources */,
 				84AA9B0821C77A8D0043A58D /* skipiter.xcdatamodeld in Sources */,
 				84AA9B0521C7745C0043A58D /* CoreDataWorker.swift in Sources */,
+				841BA6D221CA45DF00123E6C /* SqliteWorkerExtension.swift in Sources */,
 				844B2C9921A6B0470099E891 /* PasswordResetViewController.swift in Sources */,
 				84AA9B2B21C7896D0043A58D /* User.swift in Sources */,
 				844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */,
@@ -458,6 +481,7 @@
 				8413BD0A21A809FE00F8A1D5 /* Extensions.swift in Sources */,
 				84A5D9B821AC370B00C0343A /* LoginView.swift in Sources */,
 				84B3631321A542B900A0B39C /* MainNavigationController.swift in Sources */,
+				841BA6CC21CA263000123E6C /* SqlCommand.swift in Sources */,
 				F485B79C21A28BF300520C36 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

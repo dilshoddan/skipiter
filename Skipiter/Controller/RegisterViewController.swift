@@ -13,6 +13,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     private var registerView: RegisterView!
     private var coreDataWorker: CoreDataWorker!
+    private var sqliteWorker: SqliteWorker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                                selector: #selector(keyboardNotification),
                                                name: UIResponder.keyboardWillChangeFrameNotification,
                                                object: nil)
-        SetCoreDataDefaults()
+        SetDBDefaults()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -58,6 +59,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             let isUserNameUnique: Bool = coreDataWorker.IsUnique(userName: userName)
             if isUserNameUnique {
                 coreDataWorker.SaveUser(user: user)
+                sqliteWorker.insert(user: user)
                 navigationController?.popViewController(animated: true)
             }
             else{
@@ -110,9 +112,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    func SetCoreDataDefaults(){
+    func SetDBDefaults(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
+        
+        sqliteWorker = SqliteWorker()
     }
     
     
