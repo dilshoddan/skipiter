@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Skipiter/Controller/RegisterViewController.swift"
-            timestampString = "567069739.830698"
+            timestampString = "567077828.152995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Skipiter/Model/Sqlite/SqliteWorker.swift"
-            timestampString = "567068879.922158"
+            timestampString = "567078261.780866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Skipiter/Controller/ProfileViewController.swift"
-            timestampString = "567077497.093658"
+            timestampString = "567078261.781231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Skipiter/Controller/ProfileViewController.swift"
-            timestampString = "567077498.670089"
+            timestampString = "567078261.781545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -90,11 +90,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Skipiter/Model/Sqlite/SqliteWorker.swift"
-            timestampString = "567077523.284868"
+            timestampString = "567078261.781997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "IsUserUnique(withUserName:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Skipiter/Model/Sqlite/SqliteWorker.swift"
+            timestampString = "567079496.949971"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "CreateUser(fromResult:)"
             landmarkType = "7">
          </BreakpointContent>

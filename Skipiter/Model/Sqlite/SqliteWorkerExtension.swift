@@ -46,9 +46,9 @@ extension SqliteWorker {
     
     func BindAttributes(ofUser: User, forStatement: OpaquePointer?) {
         if let forStatement = forStatement {
-            sqlite3_bind_text(forStatement, 1, NSString(string: ofUser.firstName).utf8String, -1, nil)
-            sqlite3_bind_text(forStatement, 2, NSString(string: ofUser.lastName).utf8String, -1, nil)
-            sqlite3_bind_text(forStatement, 3, NSString(string: ofUser.email).utf8String, -1, nil)
+            sqlite3_bind_text(forStatement, 1, NSString(string: ofUser.firstName ?? "").utf8String, -1, nil)
+            sqlite3_bind_text(forStatement, 2, NSString(string: ofUser.lastName ?? "").utf8String, -1, nil)
+            sqlite3_bind_text(forStatement, 3, NSString(string: ofUser.email ?? "").utf8String, -1, nil)
             sqlite3_bind_text(forStatement, 4, NSString(string: ofUser.userName).utf8String, -1, nil)
             sqlite3_bind_text(forStatement, 5, NSString(string: ofUser.userPassword).utf8String, -1, nil)
         }

@@ -10,41 +10,41 @@ extension String {
     
     public static let inserUserCommand = """
                                             INSERT
-                                            INTO Users (firstName, lastName, email, userName, userPassword)
+                                            INTO Usrs (firstName, lastName, email, userName, userPassword)
                                             VALUES (?, ?, ?, ?, ?);
                                         """
     
     public static let selectUsersCommand = """
                                                 SELECT firstName, lastName, email, userName, userPassword
-                                                FROM Users;
+                                                FROM Usrs;
                                              """
     
     public static let selectUserWithUserNameAndPasswordCommand = """
                                                         SELECT firstName, lastName, email, userName, userPassword, profileImage, profileBanner
-                                                        FROM Users
+                                                        FROM Usrs
                                                         WHERE userName = ?
                                                         AND userPassword = ?;
                                                      """
     public static let selectUserWithUserNameCommand = """
                                                         SELECT COUNT(*)
-                                                        FROM Users
+                                                        FROM Usrs
                                                         WHERE userName = ?;
                                                      """
     
     public static let updateUserProfileImageCommand = """
-                                                            UPDATE Users
+                                                            UPDATE Usrs
                                                             SET profileImage = ?
                                                             WHERE userName = ?;
                                                         """
     
     public static let updateUserProfileBannerCommand = """
-                                                            UPDATE Users
+                                                            UPDATE Usrs
                                                             SET profileBanner = ?
                                                             WHERE userName = ?;
                                                         """
     
     public static let updateUserCommand = """
-                                            UPDATE Users
+                                            UPDATE Usrs
                                             SET firstName = ?,
                                             lastName = ?,
                                             email = ?
@@ -52,32 +52,31 @@ extension String {
                                         """
     
     public static let updateUserPasswordCommand = """
-                                                    UPDATE Users
+                                                    UPDATE Usrs
                                                     SET userPassword = ?
                                                     WHERE userName = ?;
                                                 """
     
     public static let deleteUserWithIDCommand = """
                                                     DELETE
-                                                    FROM Users
+                                                    FROM Usrs
                                                     WHERE Id = ?;
                                               """
     
     public static let deleteUserWithUserNameCommand = """
                                                             DELETE
-                                                            FROM Users
+                                                            FROM Usrs
                                                             WHERE userName = ?;
                                                         """
     
     public static let deleteAllUsersCommand = """
                                                     DELETE
                                                     FROM
-                                                    Users;
+                                                    Usrs;
                                                 """
     
     public static let createCommand = """
-                                            DROP TABLE IF EXISTS USERS;
-                                            CREATE TABLE IF NOT EXISTS Users(
+                                            CREATE TABLE IF NOT EXISTS Usrs(
                                             Id INTEGER PRIMARY KEY AUTOINCREMENT,
                                             firstName CHAR(255),
                                             lastName CHAR(255),

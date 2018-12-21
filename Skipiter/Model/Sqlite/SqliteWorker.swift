@@ -188,23 +188,40 @@ class SqliteWorker {
     }
     
     func CreateUser(fromResult: OpaquePointer?) throws -> User {
-        let user = User(firstname: String(cString: (sqlite3_column_text(fromResult, 0))!),
-                        lastName: String(cString: (sqlite3_column_text(fromResult, 1))!),
-                        email: String(cString: (sqlite3_column_text(fromResult, 2))!),
-                        userName: String(cString: (sqlite3_column_text(fromResult, 3))!),
-                        userPassword: String(cString: (sqlite3_column_text(fromResult, 4))!)
-        )
+        let firstName = sqlite3_column_text(fromResult, 0)
+        let lastName = sqlite3_column_text(fromResult, 1)
+        let email = sqlite3_column_text(fromResult, 2)
+        let userName = sqlite3_column_text(fromResult, 3)
+        let userPassword = sqlite3_column_text(fromResult, 4)
+        let user = User(userName: String(cString: userName!), userPassword: String(cString: userPassword!))
         
-        let profileImageName = String(cString: (sqlite3_column_text(fromResult, 5))!)
-        let profileImage = fileWorker.getImageFromDocumentDirectory(imageName: profileImageName)
-        if let profileImage = profileImage {
-            user.profileImage = profileImage
+        if let firstName = firstName {
+            user.firstName = String(cString: firstName)
         }
         
-        let profileBannerName = String(cString: (sqlite3_column_text(fromResult, 5))!)
-        let profileBanner = fileWorker.getImageFromDocumentDirectory(imageName: profileBannerName)
-        if let profileBanner = profileBanner {
-            user.profileBanner = profileBanner
+        if let lastName = lastName {
+            user.lastName = String(cString: lastName)
+        }
+        
+        if let email = email {
+            user.email = String(cString: email)
+        }
+        
+        let profileImageName = sqlite3_column_text(fromResult, 5)
+        if let profileImageName = profileImageName {
+            let profileImage = fileWorker.getImageFromDocumentDirectory(imageName: String(cString: profileImageName))
+            if let profileImage = profileImage {
+                user.profileImage = profileImage
+            }
+        }
+       
+        
+        let profileBannerName = sqlite3_column_text(fromResult, 6)
+        if let profileBannerName = profileBannerName {
+            let profileBanner = fileWorker.getImageFromDocumentDirectory(imageName: String(cString: profileBannerName))
+            if let profileBanner = profileBanner {
+                user.profileBanner = profileBanner
+            }
         }
         
 //        let profileImageCount = Int(sqlite3_column_bytes(fromResult, 5))
