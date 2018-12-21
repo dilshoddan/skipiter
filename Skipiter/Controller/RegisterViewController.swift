@@ -24,6 +24,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                                selector: #selector(keyboardNotification),
                                                name: UIResponder.keyboardWillChangeFrameNotification,
                                                object: nil)
+        
+        registerView.backButton.addTarget(self, action: #selector(BackButtonTapped), for: .touchUpInside)
+        
         SetDBDefaults()
     }
     
@@ -124,6 +127,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
         
         sqliteWorker = SqliteWorker()
+    }
+    
+    @objc func BackButtonTapped(){
+        navigationController?.popViewController(animated: true)
     }
     
     

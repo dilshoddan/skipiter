@@ -25,6 +25,7 @@ class RegisterView: UIView {
     public var userPasswordLabel: UILabel!
     public var userPassword: UITextField!
     public var okButton: UIButton!
+    public var backButton: UIButton!
 
     
     override init(frame:CGRect){
@@ -90,13 +91,22 @@ class RegisterView: UIView {
         okButton.isEnabled = true
         okButton.isUserInteractionEnabled = true
         
+        backButton = UIButton()
+        backButton.backgroundColor = ColorConstants.LoginViewVC
+        backButton.setTitle("<Back", for: .normal)
+        backButton.tintColor = .black
+        backButton.layer.cornerRadius = 5
+        backButton.clipsToBounds = true
+        backButton.isEnabled = true
+        backButton.isUserInteractionEnabled = true
+        
     }
     
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
             
-            registerView.sv([firstNameLabel, firstName, lastNameLabel, lastName, emailLabel, email, userNameLabel, userName, userPasswordLabel, userPassword, okButton])
+            registerView.sv([firstNameLabel, firstName, lastNameLabel, lastName, emailLabel, email, userNameLabel, userName, userPasswordLabel, userPassword, okButton, backButton])
             self.sv(registerView)
             registerView.height(100%).width(100%)
             
@@ -131,6 +141,10 @@ class RegisterView: UIView {
                 23,
                 |-okButton-|
             )
+            
+            backButton.Left == self.Left
+            backButton.height(4%).width(18%).top(4%)
+            
         }
         super.updateConstraints()
     }
