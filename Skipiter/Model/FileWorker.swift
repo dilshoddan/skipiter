@@ -50,4 +50,14 @@ class FileWorker {
         return path
     }
     
+    func deleteDirectory(directoryName : String){
+        let fileManager = FileManager.default
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(directoryName)
+        if fileManager.fileExists(atPath: paths){
+            try! fileManager.removeItem(atPath: paths)
+        }else{
+            print("Directory not found")
+        }
+    }
+    
 }

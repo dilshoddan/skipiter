@@ -135,7 +135,6 @@
 				84FE727421C8FC1F00688FF1 /* SqliteWorker.swift */,
 				841BA6CB21CA263000123E6C /* SqlCommand.swift */,
 				841BA6D121CA45DF00123E6C /* SqliteWorkerExtension.swift */,
-				84A4DD8921CCDF0F007CF216 /* FileWorker.swift */,
 				84A4DD8B21CCE54C007CF216 /* StringExtension.swift */,
 			);
 			path = Sqlite;
@@ -233,6 +232,7 @@
 				841BA6CF21CA2D3400123E6C /* CodeData */,
 				84AA9B0621C77A8D0043A58D /* skipiter.xcdatamodeld */,
 				84AA9B2A21C7896D0043A58D /* User.swift */,
+				84A4DD8921CCDF0F007CF216 /* FileWorker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
