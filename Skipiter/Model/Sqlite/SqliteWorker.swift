@@ -124,7 +124,10 @@ class SqliteWorker {
             if let updateStatement = SqlPreparationOK(db, sqlCommand: .updateUserProfileImageCommand) {
                 sqlite3_bind_text(updateStatement, 1, NSString(string: imageName).utf8String, -1, nil)
                 sqlite3_bind_text(updateStatement, 2, NSString(string: ofUser.userName).utf8String, -1, nil)
-                SqliteStep(db, withStatement: updateStatement, successMessage: "Successfully updated \(ofUser.userName)", failMessage: "Could not update \(ofUser.userName)")
+                if SqliteStep(db, withStatement: updateStatement, successMessage: "Successfully updated \(ofUser.userName)", failMessage: "Could not update \(ofUser.userName)"),
+                    let profileImage = ofUser.profileImage {
+                    fileWorker.saveImageDocumentDirectory(image: profileImage, imageName: imageName)
+                }
                 sqlite3_finalize(updateStatement)
             }
         }
@@ -136,7 +139,10 @@ class SqliteWorker {
             if let updateStatement = SqlPreparationOK(db, sqlCommand: .updateUserProfileBannerCommand) {
                 sqlite3_bind_text(updateStatement, 1, NSString(string: imageName).utf8String, -1, nil)
                 sqlite3_bind_text(updateStatement, 2, NSString(string: ofUser.userName).utf8String, -1, nil)
-                SqliteStep(db, withStatement: updateStatement, successMessage: "Successfully updated \(ofUser.userName)", failMessage: "Could not update \(ofUser.userName)")
+                if SqliteStep(db, withStatement: updateStatement, successMessage: "Successfully updated \(ofUser.userName)", failMessage: "Could not update \(ofUser.userName)"),
+                    let profileBanner = ofUser.profileBanner {
+                    fileWorker.saveImageDocumentDirectory(image: profileBanner, imageName: imageName)
+                }
                 sqlite3_finalize(updateStatement)
             }
         }

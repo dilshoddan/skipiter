@@ -23,15 +23,17 @@ enum SQLiteError: Error {
 extension SqliteWorker {
     
     
-    func SqliteStep(_ db: OpaquePointer?, withStatement: OpaquePointer?, successMessage: String, failMessage: String){
+    func SqliteStep(_ db: OpaquePointer?, withStatement: OpaquePointer?, successMessage: String, failMessage: String) -> Bool{
         if let withStatement = withStatement {
             if sqlite3_step(withStatement) == SQLITE_DONE {
                 print(successMessage)
+                return true
             } else {
                 let errorMessage = String.init(cString: sqlite3_errmsg(db))
                 print("\(failMessage): \(errorMessage)")
             }
         }
+        return false
     }
     
     func SqlPreparationOK(_ db:OpaquePointer?, sqlCommand: String) -> OpaquePointer? {

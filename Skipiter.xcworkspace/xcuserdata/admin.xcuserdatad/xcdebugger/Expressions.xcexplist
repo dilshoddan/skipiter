@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedUser == nil">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SqliteWorker.UpdateUserProfileImage(ofUser:):SqliteWorker.swift">
          <PersistentStrings>
             <PersistentString
@@ -10,31 +18,6 @@
             </PersistentString>
             <PersistentString
                value = "userImageData.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "RegisterViewController.keyboardWillShow(notification:):RegisterViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "selectedTextField!.frame.size.height">
-            </PersistentString>
-            <PersistentString
-               value = "selectedTextField!.frame.origin.y">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SqliteWorker.CreateUser(fromResult:):SqliteWorker.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "sqlite3_column_text(fromResult, 5)">
-            </PersistentString>
-            <PersistentString
-               value = "Int(sqlite3_column_bytes(fromResult, 6))">
-            </PersistentString>
-            <PersistentString
-               value = "sqlite3_column_blob(fromResult, 5)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -65,10 +48,41 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
+         contextName = "SqliteWorker.UpdateUserProfileImage(ofUser:imageName:):SqliteWorker.swift">
          <PersistentStrings>
             <PersistentString
-               value = "selectedUser == nil">
+               value = "DateFormatter().string(from: Date())">
+            </PersistentString>
+            <PersistentString
+               value = "Date()">
+            </PersistentString>
+            <PersistentString
+               value = "Time()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RegisterViewController.keyboardWillShow(notification:):RegisterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedTextField!.frame.size.height">
+            </PersistentString>
+            <PersistentString
+               value = "selectedTextField!.frame.origin.y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SqliteWorker.CreateUser(fromResult:):SqliteWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sqlite3_column_text(fromResult, 5)">
+            </PersistentString>
+            <PersistentString
+               value = "Int(sqlite3_column_bytes(fromResult, 6))">
+            </PersistentString>
+            <PersistentString
+               value = "sqlite3_column_blob(fromResult, 5)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
