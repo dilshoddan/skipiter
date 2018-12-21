@@ -81,7 +81,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             user.profileImage = selectedImage
 //            coreDataWorker.UpdateProfileImageOf(user: user, "profileImage")
             do{
-                try sqliteWorker.UpdateUserProfileImage(ofUser: user)
+                try sqliteWorker.UpdateUserProfileImage(ofUser: user, imageName: DateFormatter().string(from: Date()))
             }
             catch {
                 
