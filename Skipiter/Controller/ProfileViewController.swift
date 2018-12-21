@@ -90,7 +90,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             profileView.profileBanner.image = selectedImage
             user.profileBanner = selectedImage
             do{
-                try sqliteWorker.UpdateUserProfileBanner(ofUser: user, imageName: DateFormatter().string(from: Date()))
+                try sqliteWorker.UpdateUserProfileBanner(ofUser: user, imageName: "\(Date().millisecondsSince1970)" + ".jpeg")
             }
             catch {
                 
