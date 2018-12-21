@@ -79,7 +79,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         case profileImagePicker:
             profileView.profileImage.image = selectedImage
             user.profileImage = selectedImage
-//            coreDataWorker.UpdateProfileImageOf(user: user, "profileImage")
             do{
                 try sqliteWorker.UpdateUserProfileImage(ofUser: user, imageName: DateFormatter().string(from: Date()))
             }
@@ -90,7 +89,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         case profileBannerPicker:
             profileView.profileBanner.image = selectedImage
             user.profileBanner = selectedImage
-//            coreDataWorker.UpdateProfileImageOf(user: user, "profileBanner")
+            do{
+                try sqliteWorker.UpdateUserProfileBanner(ofUser: user, imageName: DateFormatter().string(from: Date()))
+            }
+            catch {
+                
+            }
             picker.dismiss(animated: true, completion: nil)
         default:
             picker.dismiss(animated: true, completion: nil)

@@ -121,7 +121,19 @@ class SqliteWorker {
     
     func UpdateUserProfileImage(ofUser: User, imageName: String) throws {
         if isDBHealthy {
-            if let updateStatement = SqlPreparationOK(db, sqlCommand: .updateUserPasswordCommand) {
+            if let updateStatement = SqlPreparationOK(db, sqlCommand: .updateUserProfileImageCommand) {
+                sqlite3_bind_text(updateStatement, 1, NSString(string: imageName).utf8String, -1, nil)
+                sqlite3_bind_text(updateStatement, 2, NSString(string: ofUser.userName).utf8String, -1, nil)
+                SqliteStep(db, withStatement: updateStatement, successMessage: "Successfully updated \(ofUser.userName)", failMessage: "Could not update \(ofUser.userName)")
+                sqlite3_finalize(updateStatement)
+            }
+        }
+    }
+    
+    
+    func UpdateUserProfileBanner(ofUser: User, imageName: String) throws {
+        if isDBHealthy {
+            if let updateStatement = SqlPreparationOK(db, sqlCommand: .updateUserProfileBannerCommand) {
                 sqlite3_bind_text(updateStatement, 1, NSString(string: imageName).utf8String, -1, nil)
                 sqlite3_bind_text(updateStatement, 2, NSString(string: ofUser.userName).utf8String, -1, nil)
                 SqliteStep(db, withStatement: updateStatement, successMessage: "Successfully updated \(ofUser.userName)", failMessage: "Could not update \(ofUser.userName)")
