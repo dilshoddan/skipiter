@@ -16,7 +16,7 @@ class FileWorker {
         return url!
     }
     
-    func saveImageDocumentDirectory(image: UIImage, imageName: String){
+    func saveImageDocumentDirectory(image: UIImage, imageName: String) -> Bool{
         let fileManager = FileManager.default
         let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("skipiterImages")
         if !fileManager.fileExists(atPath: path) {
@@ -28,7 +28,7 @@ class FileWorker {
         let urlString: String = imagePath!.absoluteString
         let imageData = image.jpegData(compressionQuality: 1)
         //let imageData = UIImagePNGRepresentation(image)
-        fileManager.createFile(atPath: urlString as String, contents: imageData, attributes: nil)
+        return fileManager.createFile(atPath: urlString as String, contents: imageData, attributes: nil)
     }
     
     func getImageFromDocumentDirectory(imageName: String) -> UIImage?{
