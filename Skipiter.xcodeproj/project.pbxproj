@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		095CEF76E0D506D764116016 /* Pods_SkipiterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 372E9ECB3CEC1C1565975EF9 /* Pods_SkipiterUITests.framework */; };
+		840A579E21EA0A7000A40854 /* SkipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A579D21EA0A7000A40854 /* SkipsView.swift */; };
+		840A57A021EA0C5400A40854 /* SkipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A579F21EA0C5400A40854 /* SkipsViewController.swift */; };
 		8413BD0A21A809FE00F8A1D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413BD0921A809FE00F8A1D5 /* Extensions.swift */; };
 		841BA6CC21CA263000123E6C /* SqlCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BA6CB21CA263000123E6C /* SqlCommand.swift */; };
 		841BA6D221CA45DF00123E6C /* SqliteWorkerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BA6D121CA45DF00123E6C /* SqliteWorkerExtension.swift */; };
@@ -57,6 +59,8 @@
 		372E9ECB3CEC1C1565975EF9 /* Pods_SkipiterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkipiterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54256E43DAB577BC29AAD3A1 /* Pods-Skipiter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skipiter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Skipiter/Pods-Skipiter.debug.xcconfig"; sourceTree = "<group>"; };
 		7C2C9A794C012497F8C24B48 /* Pods-SkipiterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkipiterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkipiterUITests/Pods-SkipiterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		840A579D21EA0A7000A40854 /* SkipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipsView.swift; sourceTree = "<group>"; };
+		840A579F21EA0C5400A40854 /* SkipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipsViewController.swift; sourceTree = "<group>"; };
 		8413BD0921A809FE00F8A1D5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		841BA6CB21CA263000123E6C /* SqlCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlCommand.swift; sourceTree = "<group>"; };
 		841BA6D121CA45DF00123E6C /* SqliteWorkerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteWorkerExtension.swift; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 				8413BD0921A809FE00F8A1D5 /* Extensions.swift */,
 				F4B2AA5321AC0A7A00A3AEDA /* RegisterView.swift */,
 				84A5D9B721AC370B00C0343A /* LoginView.swift */,
+				840A579D21EA0A7000A40854 /* SkipsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				844B2C9621A6B0120099E891 /* RegisterViewController.swift */,
 				844B2C9821A6B0470099E891 /* PasswordResetViewController.swift */,
 				844B2C9A21A6B1A10099E891 /* ProfileViewController.swift */,
+				840A579F21EA0C5400A40854 /* SkipsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -478,6 +484,7 @@
 				84AA9B0821C77A8D0043A58D /* skipiter.xcdatamodeld in Sources */,
 				84AA9B0521C7745C0043A58D /* CoreDataWorker.swift in Sources */,
 				841BA6D221CA45DF00123E6C /* SqliteWorkerExtension.swift in Sources */,
+				840A57A021EA0C5400A40854 /* SkipsViewController.swift in Sources */,
 				844B2C9921A6B0470099E891 /* PasswordResetViewController.swift in Sources */,
 				84A4DD8A21CCDF0F007CF216 /* FileWorker.swift in Sources */,
 				84AA9B2B21C7896D0043A58D /* User.swift in Sources */,
@@ -487,6 +494,7 @@
 				844B2C9B21A6B1A10099E891 /* ProfileViewController.swift in Sources */,
 				8413BD0A21A809FE00F8A1D5 /* Extensions.swift in Sources */,
 				84A5D9B821AC370B00C0343A /* LoginView.swift in Sources */,
+				840A579E21EA0A7000A40854 /* SkipsView.swift in Sources */,
 				84B3631321A542B900A0B39C /* MainNavigationController.swift in Sources */,
 				84A4DD8C21CCE54C007CF216 /* StringExtension.swift in Sources */,
 				841BA6CC21CA263000123E6C /* SqlCommand.swift in Sources */,

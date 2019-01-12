@@ -46,6 +46,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profileImagePicker = UIImagePickerController()
         profileBannerPicker = UIImagePickerController()
         
+        profileView.segmentedControl.addTarget(self, action: #selector(SegmentedControlValueChanged(selectedControl:)), for: .valueChanged)
         
         if let user = user {
             if let profileImage = user.profileImage{
@@ -55,6 +56,19 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 profileView.profileBanner.image = profileBanner
             }
         }
+    }
+    
+    @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){
+        switch selectedControl.selectedSegmentIndex {
+        case 1:
+            let skipsVC = SkipsViewController()
+            navigationController?.pushViewController(skipsVC, animated: true)
+        case 3:
+            navigationController?.popViewController(animated: true)
+        default:
+            break
+        }
+        
     }
     
     @objc func PickProfileImage(recognizer:UITapGestureRecognizer){

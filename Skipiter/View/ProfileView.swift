@@ -68,7 +68,7 @@ class ProfileView: UIView {
         profileImage.layer.cornerRadius = 5.0
         
         segmentedControl = UISegmentedControl()
-        segmentedControl = UISegmentedControl(items: ["Tweets", "Media", "Likes"])
+        segmentedControl = UISegmentedControl(items: ["Profile", "Skips", "Comments", "LogOut"])
         segmentedControl.tintColor = ColorConstants.LoginViewVC
         
         logOutButton = UIButton()

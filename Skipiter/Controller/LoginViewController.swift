@@ -88,9 +88,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //            let authenticatedUser = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
             let sqlAuthenticatedUser = sqliteWorker.SelectUser(withUserName: userName, andUserPassword: userPassword)
             if let sqlAuthenticatedUser = sqlAuthenticatedUser {
-                let profileVC = ProfileViewController()
-                profileVC.user = sqlAuthenticatedUser
-                navigationController?.pushViewController(profileVC, animated: true)
+                let skipsVC = SkipsViewController()
+                skipsVC.user = sqlAuthenticatedUser
+                navigationController?.pushViewController(skipsVC, animated: true)
             }
             else{
                 let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
