@@ -14,14 +14,11 @@ class RegisterView: UIView {
 
     private var shouldSetupConstraints: Bool!
     public var registerView: UIStackView!
-    public var firstNameLabel: UILabel!
-    public var firstName: UITextField!
-    public var lastNameLabel: UILabel!
-    public var lastName: UITextField!
-    public var emailLabel: UILabel!
-    public var email: UITextField!
+    
     public var userNameLabel: UILabel!
     public var userName: UITextField!
+    public var emailLabel: UILabel!
+    public var email: UITextField!
     public var userPasswordLabel: UILabel!
     public var userPassword: UITextField!
     public var okButton: UIButton!
@@ -46,22 +43,15 @@ class RegisterView: UIView {
         registerView = UIStackView()
         registerView.backgroundColor = ColorConstants.RegisterVC
         
-        firstNameLabel = UILabel()
-        firstNameLabel.text = "First name:"
-        firstName = UITextField()
+        userNameLabel = UILabel()
+        userNameLabel.text = "User name:"
+        userName = UITextField()
         
-        lastNameLabel = UILabel()
-        lastNameLabel.text = "Last name:"
-        lastName = UITextField()
         
         emailLabel = UILabel()
         emailLabel.text = "Email address:"
         email = UITextField()
         email.keyboardType = .emailAddress
-        
-        userNameLabel = UILabel()
-        userNameLabel.text = "User name:"
-        userName = UITextField()
         
         userPasswordLabel = UILabel()
         userPasswordLabel.text = "User password:"
@@ -70,7 +60,7 @@ class RegisterView: UIView {
         userPassword.textContentType = .password
         
         //set default UITextField attributes
-        for textField in [firstName, lastName, email, userName, userPassword] {
+        for textField in [userName, email, userPassword] {
             textField?.backgroundColor = .white
             textField?.borderStyle = .roundedRect
             textField?.isEnabled = true
@@ -106,35 +96,29 @@ class RegisterView: UIView {
     override func updateConstraints(){
         if(shouldSetupConstraints){
             
-            registerView.sv([firstNameLabel, firstName, lastNameLabel, lastName, emailLabel, email, userNameLabel, userName, userPasswordLabel, userPassword, okButton, backButton])
+            registerView.sv([userNameLabel, userName, emailLabel, email, userPasswordLabel, userPassword, okButton, backButton])
             self.sv(registerView)
             registerView.height(100%).width(100%)
             
             let heightConstant = CGFloat(30)
             let leftOffset = CGFloat(10)
             
-            for label in [firstNameLabel, lastNameLabel, emailLabel, userNameLabel, userPasswordLabel] {
+            for label in [userNameLabel, emailLabel, userPasswordLabel] {
                 label?.height(heightConstant).left(leftOffset)
             }
             
-            for textField in [firstName, lastName, email, userName, userPassword] {
+            for textField in [userName, email, userPassword] {
                 textField?.height(heightConstant).left(leftOffset)
             }
             okButton.height(heightConstant + 10).left(leftOffset)
             
             registerView.layout(
                 (2*heightConstant),
-                |-firstNameLabel-|,
-                |-firstName-|,
-                13,
-                |-lastNameLabel-|,
-                |-lastName-|,
+                |-userNameLabel-|,
+                |-userName-|,
                 13,
                 |-emailLabel-|,
                 |-email-|,
-                13,
-                |-userNameLabel-|,
-                |-userName-|,
                 13,
                 |-userPasswordLabel-|,
                 |-userPassword-|,

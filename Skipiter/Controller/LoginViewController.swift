@@ -15,7 +15,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     //Controls
     private var loginView: LoginView!
     private var coreDataWorker: CoreDataWorker!
-    private var sqliteWorker: SqliteWorker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,10 +85,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userPassword.isEmpty)
         {
 //            let authenticatedUser = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
-            let sqlAuthenticatedUser = sqliteWorker.SelectUser(withUserName: userName, andUserPassword: userPassword)
-            if let sqlAuthenticatedUser = sqlAuthenticatedUser {
+            let sqlAuthenticatedUser = false //get authenticated on skipiter.vapor.cloud
+            if sqlAuthenticatedUser {
                 let skipsVC = SkipsViewController()
-                skipsVC.user = sqlAuthenticatedUser
+                //skipsVC.user = sqlAuthenticatedUser
                 navigationController?.pushViewController(skipsVC, animated: true)
             }
             else{
@@ -133,7 +132,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func SetDBDefaults(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
-        sqliteWorker = SqliteWorker()
     }
     
     

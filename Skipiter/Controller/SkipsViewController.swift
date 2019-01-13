@@ -14,7 +14,6 @@ class SkipsViewController: UIViewController {
 
     private var skipsView: SkipsView!
     public var user: User!
-    private var sqliteWorker: SqliteWorker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +55,6 @@ class SkipsViewController: UIViewController {
     }
     
     func SetDBDefaults(){
-        sqliteWorker = SqliteWorker()
     }
 
 }

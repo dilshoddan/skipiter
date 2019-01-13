@@ -15,7 +15,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     private var profileView: ProfileView!
     public var user: User!
     private var coreDataWorker: CoreDataWorker!
-    private var sqliteWorker: SqliteWorker!
     private var profileImagePicker: UIImagePickerController!
     private var profileBannerPicker: UIImagePickerController!
     
@@ -48,14 +47,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         profileView.segmentedControl.addTarget(self, action: #selector(SegmentedControlValueChanged(selectedControl:)), for: .valueChanged)
         
-        if let user = user {
-            if let profileImage = user.profileImage{
-                profileView.profileImage.image = profileImage
-            }
-            if let profileBanner = user.profileBanner {
-                profileView.profileBanner.image = profileBanner
-            }
-        }
     }
     
     @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){
@@ -92,23 +83,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         switch picker {
         case profileImagePicker:
             profileView.profileImage.image = selectedImage
-            user.profileImage = selectedImage
-            do{
-                try sqliteWorker.UpdateUserProfileImage(ofUser: user, imageName: "\(Date().millisecondsSince1970)" + ".jpeg")
-            }
-            catch {
-                
-            }
+            //user.profileImage = selectedImage
+            
             picker.dismiss(animated: true, completion: nil)
         case profileBannerPicker:
             profileView.profileBanner.image = selectedImage
-            user.profileBanner = selectedImage
-            do{
-                try sqliteWorker.UpdateUserProfileBanner(ofUser: user, imageName: "\(Date().millisecondsSince1970)" + ".jpeg")
-            }
-            catch {
-                
-            }
+            //user.profileBanner = selectedImage
+            
             picker.dismiss(animated: true, completion: nil)
         default:
             picker.dismiss(animated: true, completion: nil)
@@ -128,7 +109,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func SetDBDefaults(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
-        sqliteWorker = SqliteWorker()
     }
 
 

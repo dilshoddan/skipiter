@@ -13,7 +13,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     private var registerView: RegisterView!
     private var coreDataWorker: CoreDataWorker!
-    private var sqliteWorker: SqliteWorker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +31,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-        case registerView.firstName:
-            registerView.lastName.becomeFirstResponder()
-        case registerView.lastName:
-            registerView.email.becomeFirstResponder()
         case registerView.email:
-            registerView.userName.becomeFirstResponder()
-        case registerView.userName:
             registerView.userPassword.becomeFirstResponder()
         default:
             textField.resignFirstResponder()
@@ -48,28 +41,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func OkClicked(){
-        if let firstName = registerView.firstName.text,
-            let lastName = registerView.lastName.text,
+        if let userName = registerView.userName.text,
             let email = registerView.email.text,
-            let userName = registerView.userName.text,
             let userPassword = registerView.userPassword.text
         {
-            let user = User(firstname: firstName,
-                            lastName: lastName,
-                            email: email,
-                            userName: userName,
-                            userPassword: userPassword)
-            
-            //CoreDataWorker
-//            let isUserNameUnique: Bool = coreDataWorker.IsUnique(userName: userName)
-//            if isUserNameUnique {
-//                coreDataWorker.SaveUser(user: user)
-//                navigationController?.popViewController(animated: true)
-//            }
-            //SqliteWorker
-            let isUserUnique = sqliteWorker.IsUserUnique(withUserName: user.userName)
+            let user = User(userName: userName, email: email, userPassword: userPassword)
+            let isUserUnique = false //check is user's email and usrename is unique
             if isUserUnique {
-                sqliteWorker.insert(user: user)
+                // register the user on skipiter.vapor.cloud
                 navigationController?.popViewController(animated: true)
             }
             else{
@@ -89,8 +68,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         registerView = RegisterView(frame: view.bounds)
         registerView.okButton.addTarget(self, action: #selector(OkClicked), for: .touchUpInside)
         
-        registerView.firstName.delegate = self
-        registerView.lastName.delegate = self
         registerView.email.delegate = self
         registerView.userName.delegate = self
         registerView.userPassword.delegate = self
@@ -125,8 +102,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func SetDBDefaults(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
-        
-        sqliteWorker = SqliteWorker()
     }
     
     @objc func BackButtonTapped(){
