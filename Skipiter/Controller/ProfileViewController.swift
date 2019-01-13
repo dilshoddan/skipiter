@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             let skipsVC = SkipsViewController()
             navigationController?.pushViewController(skipsVC, animated: true)
         case 3:
-            navigationController?.popViewController(animated: true)
+            navigationController?.popToRootViewController(animated: true)
         default:
             break
         }

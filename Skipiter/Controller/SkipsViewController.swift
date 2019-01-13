@@ -32,7 +32,7 @@ class SkipsViewController: UIViewController {
             let profileVC = ProfileViewController()
             navigationController?.pushViewController(profileVC, animated: true)
         case 3:
-            navigationController?.popViewController(animated: true)
+            navigationController?.popToRootViewController(animated: true)
         default:
             break
         }
