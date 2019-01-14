@@ -14,6 +14,7 @@
 		844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9621A6B0120099E891 /* RegisterViewController.swift */; };
 		844B2C9921A6B0470099E891 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9821A6B0470099E891 /* PasswordResetViewController.swift */; };
 		844B2C9B21A6B1A10099E891 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9A21A6B1A10099E891 /* ProfileViewController.swift */; };
+		84617BCC21EDC123006EE05F /* AlamofireWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84617BCB21EDC123006EE05F /* AlamofireWorker.swift */; };
 		84A4DD8A21CCDF0F007CF216 /* FileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4DD8921CCDF0F007CF216 /* FileWorker.swift */; };
 		84A4DD8C21CCE54C007CF216 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4DD8B21CCE54C007CF216 /* StringExtension.swift */; };
 		84A5D9B821AC370B00C0343A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5D9B721AC370B00C0343A /* LoginView.swift */; };
@@ -62,6 +63,7 @@
 		844B2C9621A6B0120099E891 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		844B2C9821A6B0470099E891 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		844B2C9A21A6B1A10099E891 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		84617BCB21EDC123006EE05F /* AlamofireWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireWorker.swift; sourceTree = "<group>"; };
 		84A4DD8921CCDF0F007CF216 /* FileWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWorker.swift; sourceTree = "<group>"; };
 		84A4DD8B21CCE54C007CF216 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		84A5D9B721AC370B00C0343A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -127,6 +129,15 @@
 			path = CodeData;
 			sourceTree = "<group>";
 		};
+		84617BCA21EDC0E6006EE05F /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				841BA6CF21CA2D3400123E6C /* CodeData */,
+				84617BCB21EDC123006EE05F /* AlamofireWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
 		BD4206CBBF955282C0A0EB36 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +186,7 @@
 		F485B79A21A28BF200520C36 /* Skipiter */ = {
 			isa = PBXGroup;
 			children = (
+				84617BCA21EDC0E6006EE05F /* Workers */,
 				F4EDB5B021A2906500E1B544 /* Controller */,
 				F4EDB5AF21A2905F00E1B544 /* View */,
 				F4EDB5AE21A2905900E1B544 /* Model */,
@@ -215,7 +227,6 @@
 		F4EDB5AE21A2905900E1B544 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				841BA6CF21CA2D3400123E6C /* CodeData */,
 				84AA9B0621C77A8D0043A58D /* skipiter.xcdatamodeld */,
 				84AA9B2A21C7896D0043A58D /* User.swift */,
 				84A4DD8B21CCE54C007CF216 /* StringExtension.swift */,
@@ -423,11 +434,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Skipiter/Pods-Skipiter-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
 			);
@@ -471,6 +484,7 @@
 				84A4DD8A21CCDF0F007CF216 /* FileWorker.swift in Sources */,
 				84AA9B2B21C7896D0043A58D /* User.swift in Sources */,
 				844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */,
+				84617BCC21EDC123006EE05F /* AlamofireWorker.swift in Sources */,
 				F4EDB5B521A2946D00E1B544 /* ColorConstants.swift in Sources */,
 				844B2C9B21A6B1A10099E891 /* ProfileViewController.swift in Sources */,
 				8413BD0A21A809FE00F8A1D5 /* Extensions.swift in Sources */,

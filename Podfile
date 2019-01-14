@@ -6,6 +6,7 @@ target 'Skipiter' do
   use_frameworks!
   pod 'SteviaLayout', '4.4.0'
   pod "Hero", '1.4.0'
+  pod "Alamofire", '4.7'
 
   # Pods for Skipiter
 

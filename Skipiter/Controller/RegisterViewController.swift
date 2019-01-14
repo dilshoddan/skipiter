@@ -45,6 +45,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             let email = registerView.email.text,
             let userPassword = registerView.userPassword.text
         {
+            AlamofireWorker.registerUser(with: email, and: userPassword)
             let user = User(userName: userName, email: email, userPassword: userPassword)
             let isUserUnique = false //check is user's email and usrename is unique
             if isUserUnique {
@@ -52,11 +53,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 navigationController?.popViewController(animated: true)
             }
             else{
-                let alertController = UIAlertController(title: "Error", message: "User name exists.\n Please change your user name.", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                    print("User name exists.\n Please change user name.")
-                }))
-                self.present(alertController, animated: true, completion: nil)
+//                let alertController = UIAlertController(title: "Error", message: "User name exists.\n Please change your user name.", preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+//                    print("User name exists.\n Please change user name.")
+//                }))
+//                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
