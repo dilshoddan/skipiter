@@ -51,7 +51,7 @@ class AlamofireWorker {
     }
     
     
-    public static func login(with email: String, and password: String) -> Bool{
+    public static func login(with email: String, and password: String, _ loginVC: LoginViewController) -> Bool{
         var loggedIn: Bool = false
         let headers: HTTPHeaders = [
             "Accept": "application/json"
@@ -84,6 +84,25 @@ class AlamofireWorker {
                                 self.sessionManager = Alamofire.SessionManager(configuration: configuration)
                                 
                                 loggedIn = true
+                                debugPrint("Logged In")
+                                
+                                if loggedIn {
+                                    let skipsVC = SkipsViewController()
+                                    //skipsVC.user = sqlAuthenticatedUser
+                                    loginVC.navigationController?.pushViewController(skipsVC, animated: true)
+                                }
+                                else{
+                                    let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
+                                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                                        print("User name and password do not match")
+                                    }))
+                                    loginVC.present(alertController, animated: true, completion: nil)
+                                    loginVC.loginView.userName.text = ""
+                                    loginVC.loginView.userPassword.text = ""
+                                }
+                                loginVC.loginView.activityIndicator.stopAnimating()
+                                loginVC.loginView.activityIndicator.isHidden = true
+                                loginVC.loginView.activityIndicator.removeFromSuperview()
                                 
                             }
                             catch {

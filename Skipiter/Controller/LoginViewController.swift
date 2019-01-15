@@ -13,7 +13,7 @@ import Hero
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //Controls
-    private var loginView: LoginView!
+    public var loginView: LoginView!
     private var coreDataWorker: CoreDataWorker!
     
     override func viewDidLoad() {
@@ -77,6 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func LoginClicked(){
+        var loggedIn = false
         let userName = loginView.userName.text
         let userPassword = loginView.userPassword.text
         if let userName = userName,
@@ -84,34 +85,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userName.isEmpty),
             !(userPassword.isEmpty)
         {
-            let backgroundQueue = OperationQueue()
-            backgroundQueue.addOperation { () -> Void in
-                self.loginView.activityIndicator.isHidden = false
-                self.loginView.activityIndicator.startAnimating()
-                let loggedIn = AlamofireWorker.login(with: userName, and: userPassword)
-                self.loginView.activityIndicator.stopAnimating()
-                self.loginView.activityIndicator.isHidden = true
-                self.loginView.activityIndicator.removeFromSuperview()
+            self.loginView.activityIndicator.isHidden = false
+            self.loginView.activityIndicator.startAnimating()
+            
+            loggedIn = AlamofireWorker.login(with: userName, and: userPassword, self)
+        
+//            if loggedIn {
+//                let skipsVC = SkipsViewController()
+//                //skipsVC.user = sqlAuthenticatedUser
+//                self.navigationController?.pushViewController(skipsVC, animated: true)
+//            }
+//            else{
+//                let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+//                    print("User name and password do not match")
+//                }))
+//                self.present(alertController, animated: true, completion: nil)
+//                self.loginView.userName.text = ""
+//                self.loginView.userPassword.text = ""
+//            }
+//            self.loginView.activityIndicator.stopAnimating()
+//            self.loginView.activityIndicator.isHidden = true
+//            self.loginView.activityIndicator.removeFromSuperview()
                 
-                
-                OperationQueue.main.addOperation {
-                    if loggedIn {
-                        let skipsVC = SkipsViewController()
-                        //skipsVC.user = sqlAuthenticatedUser
-                        self.navigationController?.pushViewController(skipsVC, animated: true)
-                    }
-                    else{
-                        let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                            print("User name and password do not match")
-                        }))
-                        self.present(alertController, animated: true, completion: nil)
-                        self.loginView.userName.text = ""
-                        self.loginView.userPassword.text = ""
-                    }
-                    
-                }
-            }
+       
             
         }
         
