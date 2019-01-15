@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Skipiter/Controller/RegisterViewController.swift"
-            timestampString = "569236577.538792"
+            filePath = "Skipiter/Workers/AlamofireWorker.swift"
+            timestampString = "569272521.950654"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "OkClicked()"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "ListAllSkips(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,29 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Skipiter/Workers/AlamofireWorker.swift"
-            timestampString = "569271803.250355"
+            timestampString = "569272521.9512219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "login(with:and:_:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Skipiter/Workers/AlamofireWorker.swift"
-            timestampString = "569271803.251124"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "login(with:and:_:)"
-            landmarkType = "9">
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "ListAllSkips(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

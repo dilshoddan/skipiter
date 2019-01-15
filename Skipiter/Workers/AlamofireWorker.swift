@@ -13,7 +13,7 @@ class AlamofireWorker {
     public static var sessionManagerWithBearer: Alamofire.SessionManager?
     public static var sessionManager: Alamofire.SessionManager?
     
-    public static func registerUser(with email: String, and password: String, registerVC: RegisterViewController) -> Bool{
+    public static func registerUser(with email: String, and password: String, _ registerVC: RegisterViewController){
         var registered: Bool = false
         
         DispatchQueue.global(qos: .userInitiated).async {
@@ -51,24 +51,24 @@ class AlamofireWorker {
                 downloadGroup.wait()
                 debugPrint(request)
                 DispatchQueue.main.async {
-                    skipsVC.skipsView.activityIndicator.stopAnimating()
-                    skipsVC.skipsView.activityIndicator.isHidden = true
-                    skipsVC.skipsView.activityIndicator.removeFromSuperview()
+                    registerVC.registerView.activityIndicator.stopAnimating()
+                    registerVC.registerView.activityIndicator.isHidden = true
+                    registerVC.registerView.activityIndicator.removeFromSuperview()
                     
                     if registered {
-                        skipsVC.skips = skips
+                        registerVC.navigationController?.popToRootViewController(animated: true)
                     }
                     else {
-                        let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Error", message: "Cannot register", preferredStyle: .alert)
                         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                            print("Cannot connect to Internet")
+                            print("Cannot register")
                         }))
-                        skipsVC.present(alertController, animated: true, completion: nil)
+                        registerVC.present(alertController, animated: true, completion: nil)
                     }
                 }
                 
             }
-        return registered
+        }
     }
     
     

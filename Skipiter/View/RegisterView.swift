@@ -91,13 +91,17 @@ class RegisterView: UIView {
         backButton.isEnabled = true
         backButton.isUserInteractionEnabled = true
         
+        activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.isHidden = true
+        
     }
     
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
             
-            registerView.sv([userNameLabel, userName, emailLabel, email, userPasswordLabel, userPassword, okButton, backButton])
+            registerView.sv([userNameLabel, userName, emailLabel, email, userPasswordLabel, userPassword, okButton, backButton, activityIndicator])
             self.sv(registerView)
             registerView.height(100%).width(100%)
             
@@ -129,6 +133,7 @@ class RegisterView: UIView {
             
             backButton.Left == self.Left
             backButton.height(4%).width(18%).top(4%)
+            activityIndicator.fillContainer()
             
         }
         super.updateConstraints()
