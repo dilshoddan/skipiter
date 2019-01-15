@@ -10,11 +10,9 @@ import UIKit
 class User {
     public var userName: String
     public var email: String
-    public var userPassword: String
     
-    init(userName: String, email: String, userPassword: String){
+    init(userName: String, email: String){
         self.userName = userName
         self.email = email
-        self.userPassword = userPassword
     }
 }

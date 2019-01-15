@@ -21,13 +21,11 @@ class CoreDataWorker {
     func SetValuesTo(coreUser: NSManagedObject, fromUser: User){
         coreUser.setValue(fromUser.email, forKey: "email")
         coreUser.setValue(fromUser.userName, forKey: "userName")
-        coreUser.setValue(fromUser.userPassword, forKey: "userPassword")
     }
     
     func CreateUserFor(coreUser: NSManagedObject) -> User {
         return User(userName: coreUser.value(forKey: "userName") as! String,
-                    email: coreUser.value(forKey: "email") as! String,
-                    userPassword: coreUser.value(forKey: "userPassword") as! String)
+                    email: coreUser.value(forKey: "email") as! String)
     }
     
     func SaveUser(user: User){

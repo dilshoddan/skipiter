@@ -85,6 +85,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userPassword.isEmpty)
         {
 //            let authenticatedUser = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
+            AlamofireWorker.login(with: userName, and: userPassword)
             let sqlAuthenticatedUser = false //get authenticated on skipiter.vapor.cloud
             if sqlAuthenticatedUser {
                 let skipsVC = SkipsViewController()
@@ -92,13 +93,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 navigationController?.pushViewController(skipsVC, animated: true)
             }
             else{
-                let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                    print("User name and password do not match")
-                }))
-                self.present(alertController, animated: true, completion: nil)
-                loginView.userName.text = ""
-                loginView.userPassword.text = ""
+//                let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+//                    print("User name and password do not match")
+//                }))
+//                self.present(alertController, animated: true, completion: nil)
+//                loginView.userName.text = ""
+//                loginView.userPassword.text = ""
             }
         }
     }

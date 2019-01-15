@@ -46,7 +46,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             let userPassword = registerView.userPassword.text
         {
             AlamofireWorker.registerUser(with: email, and: userPassword)
-            let user = User(userName: userName, email: email, userPassword: userPassword)
+            let user = User(userName: userName, email: email)
             let isUserUnique = false //check is user's email and usrename is unique
             if isUserUnique {
                 // register the user on skipiter.vapor.cloud
