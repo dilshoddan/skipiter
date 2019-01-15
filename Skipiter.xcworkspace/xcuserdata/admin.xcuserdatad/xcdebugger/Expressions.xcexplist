@@ -3,13 +3,13 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in closure #1 in static AlamofireWorker.login(with:and:_:):AlamofireWorker.swift">
-      </ContextState>
-      <ContextState
-         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
+         contextName = "closure #1 in static AlamofireWorker.registerUser(with:and:):AlamofireWorker.swift">
          <PersistentStrings>
             <PersistentString
-               value = "selectedUser == nil">
+               value = "response.result.value">
+            </PersistentString>
+            <PersistentString
+               value = "String(data: response.data, encoding: .utf8)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -17,7 +17,18 @@
          contextName = "closure #1 in closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
          <PersistentStrings>
             <PersistentString
-               value = "decoder.decode([listAllSkipsJsonData].self, from: data)">
+               value = "decoder.decode([listAllSkipsJsonData].self, from: response.data)">
+            </PersistentString>
+            <PersistentString
+               value = "debugPrint(data)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedUser == nil">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -36,10 +47,10 @@
          contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.loginView.frame.origin.y">
+               value = "self.loginView.frame">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
+               value = "loginViewBottomY - keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
                value = "keyboardSize">
@@ -48,13 +59,13 @@
                value = "loginViewBottomY">
             </PersistentString>
             <PersistentString
+               value = "self.loginView.frame.origin.y">
+            </PersistentString>
+            <PersistentString
                value = "keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame">
-            </PersistentString>
-            <PersistentString
-               value = "loginViewBottomY - keyboardSize.origin.y">
+               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -84,6 +95,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #1 in static AlamofireWorker.login(with:and:_:):AlamofireWorker.swift">
+      </ContextState>
+      <ContextState
          contextName = "SqliteWorker.CreateUser(fromResult:):SqliteWorker.swift">
          <PersistentStrings>
             <PersistentString
@@ -110,17 +124,6 @@
       </ContextState>
       <ContextState
          contextName = "closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in static AlamofireWorker.registerUser(with:and:):AlamofireWorker.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "response.result.value">
-            </PersistentString>
-            <PersistentString
-               value = "String(data: response.data, encoding: .utf8)">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>
