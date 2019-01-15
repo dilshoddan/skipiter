@@ -23,6 +23,7 @@ class RegisterView: UIView {
     public var userPassword: UITextField!
     public var okButton: UIButton!
     public var backButton: UIButton!
+    public var activityIndicator: UIActivityIndicatorView!
 
     
     override init(frame:CGRect){

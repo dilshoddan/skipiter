@@ -45,7 +45,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             let email = registerView.email.text,
             let userPassword = registerView.userPassword.text
         {
-            let registered = AlamofireWorker.registerUser(with: email, and: userPassword)
+            let registered = AlamofireWorker.registerUser(with: email, and: userPassword, self)
             let user = User(userName: userName, email: email)
             let isUserUnique = false //check is user's email and usrename is unique
             if registered {

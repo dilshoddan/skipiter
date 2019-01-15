@@ -13,40 +13,61 @@ class AlamofireWorker {
     public static var sessionManagerWithBearer: Alamofire.SessionManager?
     public static var sessionManager: Alamofire.SessionManager?
     
-    public static func registerUser(with email: String, and password: String) -> Bool{
+    public static func registerUser(with email: String, and password: String, registerVC: RegisterViewController) -> Bool{
         var registered: Bool = false
-        let headers: HTTPHeaders = [
-            "Accept": "application/json"
-        ]
         
-        if !email.isEmpty, !password.isEmpty {
-            let parameters = [
-                "email": email,
-                "password": password
+        DispatchQueue.global(qos: .userInitiated).async {
+            let downloadGroup = DispatchGroup()
+            downloadGroup.enter()
+        
+            let headers: HTTPHeaders = [
+                "Accept": "application/json"
             ]
-            
-            let request = Alamofire.request("https://skipiter.vapor.cloud/register", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: headers)
-                .responseJSON { response in
-                    debugPrint(response)
-                    if response.result.isSuccess {
-                        if let data = response.data {
-                            let decoder = JSONDecoder()
-                            do {
-                                let responseData = try decoder.decode(registerJsonData.self, from: data)
-                                debugPrint("New user's id is \(responseData.id)")
-                                registered = true
-                            }
-                            catch {
-                                debugPrint("Register result data cannot be decoded from JSON")
+        
+            if !email.isEmpty, !password.isEmpty {
+                let parameters = [
+                    "email": email,
+                    "password": password
+                ]
+                
+                let request = Alamofire.request("https://skipiter.vapor.cloud/register", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: headers)
+                    .responseJSON { response in
+                        debugPrint(response)
+                        if response.result.isSuccess {
+                            if let data = response.data {
+                                let decoder = JSONDecoder()
+                                do {
+                                    let responseData = try decoder.decode(registerJsonData.self, from: data)
+                                    debugPrint("New user's id is \(responseData.id)")
+                                    registered = true
+                                }
+                                catch {
+                                    debugPrint("Register result data cannot be decoded from JSON")
+                                }
                             }
                         }
+                        downloadGroup.leave()
+                }
+                downloadGroup.wait()
+                debugPrint(request)
+                DispatchQueue.main.async {
+                    skipsVC.skipsView.activityIndicator.stopAnimating()
+                    skipsVC.skipsView.activityIndicator.isHidden = true
+                    skipsVC.skipsView.activityIndicator.removeFromSuperview()
+                    
+                    if registered {
+                        skipsVC.skips = skips
                     }
                     else {
-                        debugPrint("Register failed")
+                        let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            print("Cannot connect to Internet")
+                        }))
+                        skipsVC.present(alertController, animated: true, completion: nil)
                     }
+                }
+                
             }
-            debugPrint(request)
-        }
         return registered
     }
     
@@ -126,6 +147,61 @@ class AlamofireWorker {
         }
     }
     
+    public static func ListAllSkips(_ skipsVC: SkipsViewController){
+        var succeeded: Bool = false
+        var skips = [AlamofireWorker.listAllSkipsJsonData] ()
+        DispatchQueue.global(qos: .userInitiated).async {
+            let downloadGroup = DispatchGroup()
+            downloadGroup.enter()
+            
+            if let sessionManager = sessionManager {
+                
+                let request = sessionManager.request("https://skipiter.vapor.cloud/listAllSkips", encoding: URLEncoding.httpBody)
+                    .responseJSON { response in
+                        debugPrint(response)
+                        if response.result.isSuccess {
+                            if let data = response.data {
+                                let decoder = JSONDecoder()
+                                do {
+                                    let responseData = try decoder.decode([listAllSkipsJsonData].self, from: data)
+                                    succeeded = true
+                                    skips = responseData
+                                    debugPrint("Logged In")
+                                    
+                                }
+                                catch {
+                                    debugPrint("Register result data cannot be decoded from JSON")
+                                }
+                            }
+                        }
+                        else {
+                            debugPrint("Register failed")
+                        }
+                        downloadGroup.leave()
+                }
+                downloadGroup.wait()
+                DispatchQueue.main.async {
+                    skipsVC.skipsView.activityIndicator.stopAnimating()
+                    skipsVC.skipsView.activityIndicator.isHidden = true
+                    skipsVC.skipsView.activityIndicator.removeFromSuperview()
+                    
+                    if succeeded {
+                        skipsVC.skips = skips
+                    }
+                    else {
+                        let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            print("Cannot connect to Internet")
+                        }))
+                        skipsVC.present(alertController, animated: true, completion: nil)
+                    }
+                }
+                debugPrint(request)
+            }
+            
+        }
+    }
+    
     
     
     struct registerJsonData: Codable {
@@ -137,5 +213,11 @@ class AlamofireWorker {
         let id: Int
         let token: String
     }
+    
+    struct listAllSkipsJsonData: Codable {
+        let text: String
+        let date: Date
+    }
+    
     
 }

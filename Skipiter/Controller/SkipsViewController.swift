@@ -11,9 +11,13 @@ import Hero
 import Stevia
 
 class SkipsViewController: UIViewController {
+    
+    
 
-    private var skipsView: SkipsView!
+    public var skipsView: SkipsView!
     public var user: User!
+    public var skips = [AlamofireWorker.listAllSkipsJsonData] ()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,7 @@ class SkipsViewController: UIViewController {
         hero.isEnabled = true
         SetDBDefaults()
         AddTapGestures()
+        ListAllSkips()
     }
     
     @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){
@@ -51,10 +56,30 @@ class SkipsViewController: UIViewController {
         
     }
     
+    func ListAllSkips(){
+        AlamofireWorker.ListAllSkips(self)
+    }
+    
     func AddTapGestures(){
     }
     
     func SetDBDefaults(){
     }
 
+}
+
+extension SkipsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return skips.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath);
+        let dateFormatter = DateFormatter()
+        cell.textLabel?.text = dateFormatter.string(from: skips[indexPath.row].date)
+        cell.detailTextLabel?.text = skips[indexPath.row].text
+        return cell;
+    }
+    
+    
 }
