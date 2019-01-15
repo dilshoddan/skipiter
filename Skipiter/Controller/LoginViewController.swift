@@ -77,7 +77,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func LoginClicked(){
-        var loggedIn = false
         let userName = loginView.userName.text
         let userPassword = loginView.userPassword.text
         if let userName = userName,
@@ -85,31 +84,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userName.isEmpty),
             !(userPassword.isEmpty)
         {
-            self.loginView.activityIndicator.isHidden = false
-            self.loginView.activityIndicator.startAnimating()
+            loginView.activityIndicator.isHidden = false
+            loginView.activityIndicator.startAnimating()
             
-            loggedIn = AlamofireWorker.login(with: userName, and: userPassword, self)
-        
-//            if loggedIn {
-//                let skipsVC = SkipsViewController()
-//                //skipsVC.user = sqlAuthenticatedUser
-//                self.navigationController?.pushViewController(skipsVC, animated: true)
-//            }
-//            else{
-//                let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
-//                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-//                    print("User name and password do not match")
-//                }))
-//                self.present(alertController, animated: true, completion: nil)
-//                self.loginView.userName.text = ""
-//                self.loginView.userPassword.text = ""
-//            }
-//            self.loginView.activityIndicator.stopAnimating()
-//            self.loginView.activityIndicator.isHidden = true
-//            self.loginView.activityIndicator.removeFromSuperview()
-                
-       
-            
+            AlamofireWorker.login(with: userName, and: userPassword, self)
         }
         
     }
