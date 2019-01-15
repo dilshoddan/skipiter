@@ -19,6 +19,7 @@ class LoginView: UIView {
     public var loginButton: UIButton!
     public var registerLabel: UILabel!
     public var forgotPasswordLabel: UILabel!
+    public var activityIndicator: UIActivityIndicatorView!
     
     let screenSize = UIScreen.main.bounds
     
@@ -50,7 +51,7 @@ class LoginView: UIView {
             //Render loginView
             self.sv(loginView)
             loginView.sv(loginSubView)
-            loginView.sv([userName, userPassword, loginButton, loginSubView])
+            loginView.sv([userName, userPassword, loginButton, loginSubView, activityIndicator])
             
             
             userName.height(height)
@@ -65,6 +66,7 @@ class LoginView: UIView {
             userPassword.width(90%).centerHorizontally()
             loginButton.width(90%).centerHorizontally()
             loginSubView.width(90%).centerHorizontally()
+            activityIndicator.fillContainer()
             
             
             loginView.layout(
@@ -123,6 +125,10 @@ class LoginView: UIView {
         forgotPasswordLabel = UILabel()
         forgotPasswordLabel.textColor = ColorConstants.LoginText
         forgotPasswordLabel.text = "Forgot password?"
+        
+        activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.isHidden = true
         
         
     }

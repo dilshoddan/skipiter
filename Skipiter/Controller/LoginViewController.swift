@@ -84,24 +84,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userName.isEmpty),
             !(userPassword.isEmpty)
         {
-//            let authenticatedUser = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
-            let loggedIn = AlamofireWorker.login(with: userName, and: userPassword)
-            let sqlAuthenticatedUser = false //get authenticated on skipiter.vapor.cloud
-            if loggedIn {
-                let skipsVC = SkipsViewController()
-                //skipsVC.user = sqlAuthenticatedUser
-                navigationController?.pushViewController(skipsVC, animated: true)
+            let backgroundQueue = OperationQueue()
+            backgroundQueue.addOperation { () -> Void in
+                self.loginView.activityIndicator.isHidden = false
+                self.loginView.activityIndicator.startAnimating()
+                let loggedIn = AlamofireWorker.login(with: userName, and: userPassword)
+                self.loginView.activityIndicator.stopAnimating()
+                self.loginView.activityIndicator.isHidden = true
+                self.loginView.activityIndicator.removeFromSuperview()
+                
+                
+                OperationQueue.main.addOperation {
+                    if loggedIn {
+                        let skipsVC = SkipsViewController()
+                        //skipsVC.user = sqlAuthenticatedUser
+                        self.navigationController?.pushViewController(skipsVC, animated: true)
+                    }
+                    else{
+                        let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            print("User name and password do not match")
+                        }))
+                        self.present(alertController, animated: true, completion: nil)
+                        self.loginView.userName.text = ""
+                        self.loginView.userPassword.text = ""
+                    }
+                    
+                }
             }
-            else{
-//                let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
-//                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-//                    print("User name and password do not match")
-//                }))
-//                self.present(alertController, animated: true, completion: nil)
-//                loginView.userName.text = ""
-//                loginView.userPassword.text = ""
-            }
+            
         }
+        
     }
     
     @objc func RegisterLabelTapped(recognizer:UITapGestureRecognizer){
