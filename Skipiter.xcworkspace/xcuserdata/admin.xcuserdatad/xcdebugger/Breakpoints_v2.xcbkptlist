@@ -42,13 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Skipiter/Workers/AlamofireWorker.swift"
-            timestampString = "569272521.950654"
+            timestampString = "569273509.26903"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "ListAllSkips(_:)"
-            landmarkType = "7">
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,13 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Skipiter/Workers/AlamofireWorker.swift"
-            timestampString = "569272521.9512219"
+            timestampString = "569273509.270434"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "ListAllSkips(_:)"
-            landmarkType = "7">
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

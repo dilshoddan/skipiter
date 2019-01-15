@@ -219,5 +219,9 @@ class AlamofireWorker {
         let date: Date
     }
     
+    struct listAllSkips: Codable {
+        let skips: [listAllSkipsJsonData]
+    }
+    
     
 }
