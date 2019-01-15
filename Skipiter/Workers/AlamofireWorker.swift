@@ -13,7 +13,8 @@ class AlamofireWorker {
     public static var sessionManagerWithBearer: Alamofire.SessionManager?
     public static var sessionManager: Alamofire.SessionManager?
     
-    public static func registerUser(with email: String, and password: String){
+    public static func registerUser(with email: String, and password: String) -> Bool{
+        var registered: Bool = false
         let headers: HTTPHeaders = [
             "Accept": "application/json"
         ]
@@ -33,6 +34,7 @@ class AlamofireWorker {
                             do {
                                 let responseData = try decoder.decode(registerJsonData.self, from: data)
                                 debugPrint("New user's id is \(responseData.id)")
+                                registered = true
                             }
                             catch {
                                 debugPrint("Register result data cannot be decoded from JSON")
@@ -45,10 +47,12 @@ class AlamofireWorker {
             }
             debugPrint(request)
         }
+        return registered
     }
     
     
-    public static func login(with email: String, and password: String){
+    public static func login(with email: String, and password: String) -> Bool{
+        var loggedIn: Bool = false
         let headers: HTTPHeaders = [
             "Accept": "application/json"
         ]
@@ -79,6 +83,8 @@ class AlamofireWorker {
                                 configuration.httpAdditionalHeaders = headers
                                 self.sessionManager = Alamofire.SessionManager(configuration: configuration)
                                 
+                                loggedIn = true
+                                
                             }
                             catch {
                                 debugPrint("Register result data cannot be decoded from JSON")
@@ -91,6 +97,7 @@ class AlamofireWorker {
             }
             debugPrint(request)
         }
+        return loggedIn
     }
     
     

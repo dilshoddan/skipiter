@@ -85,9 +85,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userPassword.isEmpty)
         {
 //            let authenticatedUser = coreDataWorker.IsAuthenticated(userName: userName, userPassword: userPassword)
-            AlamofireWorker.login(with: userName, and: userPassword)
+            let loggedIn = AlamofireWorker.login(with: userName, and: userPassword)
             let sqlAuthenticatedUser = false //get authenticated on skipiter.vapor.cloud
-            if sqlAuthenticatedUser {
+            if loggedIn {
                 let skipsVC = SkipsViewController()
                 //skipsVC.user = sqlAuthenticatedUser
                 navigationController?.pushViewController(skipsVC, animated: true)
