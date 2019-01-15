@@ -186,7 +186,10 @@ class AlamofireWorker {
                     skipsVC.skipsView.activityIndicator.removeFromSuperview()
                     
                     if succeeded {
-                        skipsVC.skips = skips
+                        skipsVC.skips = skips.map {skip -> AlamofireWorker.listAllSkipsJsonData in
+                            return AlamofireWorker.listAllSkipsJsonData(date: skip.date, text: skip.text)
+                        }
+                        
                     }
                     else {
                         let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
@@ -217,10 +220,6 @@ class AlamofireWorker {
     struct listAllSkipsJsonData: Codable {
         let date: String
         let text: String
-    }
-    
-    struct listAllSkips: Codable {
-        let skips: [listAllSkipsJsonData]
     }
     
     

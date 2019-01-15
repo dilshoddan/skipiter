@@ -16,7 +16,7 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     public var skipsView: SkipsView!
     public var user: User!
-    public var skips = [AlamofireWorker.listAllSkipsJsonData] ()
+    public var skips: [AlamofireWorker.listAllSkipsJsonData] = [AlamofireWorker.listAllSkipsJsonData] ()
     
     
     override func viewDidLoad() {
@@ -62,6 +62,9 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func ListAllSkips(){
         AlamofireWorker.ListAllSkips(self)
         skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text"))
+        skipsView.allSkipsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+        skipsView.allSkipsTable.delegate = self
+        skipsView.allSkipsTable.dataSource = self
     }
     
     func AddTapGestures(){
@@ -75,9 +78,9 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath);
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath);
         
-        cell.textLabel?.text = skips[indexPath.row].date
+        cell.textLabel?.text = skips[indexPath.row].text
         cell.detailTextLabel?.text = skips[indexPath.row].text
         return cell;
     }

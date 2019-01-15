@@ -3,6 +3,28 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SkipsViewController.ListAllSkips():SkipsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "skips">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SqliteWorker.UpdateUserProfileImage(ofUser:imageName:):SqliteWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DateFormatter().string(from: Date())">
+            </PersistentString>
+            <PersistentString
+               value = "Date()">
+            </PersistentString>
+            <PersistentString
+               value = "Time()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in static AlamofireWorker.registerUser(with:and:):AlamofireWorker.swift">
          <PersistentStrings>
             <PersistentString
@@ -10,36 +32,6 @@
             </PersistentString>
             <PersistentString
                value = "String(data: response.data, encoding: .utf8)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "decoder.decode([listAllSkipsJsonData].self, from: response.data)">
-            </PersistentString>
-            <PersistentString
-               value = "debugPrint(data)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "selectedUser == nil">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SqliteWorker.UpdateUserProfileImage(ofUser:):SqliteWorker.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "Int32(userImageData.count)">
-            </PersistentString>
-            <PersistentString
-               value = "userImageData.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -70,32 +62,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SqliteWorker.UpdateUserProfileImage(ofUser:imageName:):SqliteWorker.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "DateFormatter().string(from: Date())">
-            </PersistentString>
-            <PersistentString
-               value = "Date()">
-            </PersistentString>
-            <PersistentString
-               value = "Time()">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "RegisterViewController.keyboardWillShow(notification:):RegisterViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "selectedTextField!.frame.size.height">
-            </PersistentString>
-            <PersistentString
-               value = "selectedTextField!.frame.origin.y">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in closure #1 in static AlamofireWorker.login(with:and:_:):AlamofireWorker.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CoreDataWorker.IsAuthenticated(userName:userPassword:):CoreDataWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user.value(forKey: &quot;userPassword&quot;) as! String">
+            </PersistentString>
+            <PersistentString
+               value = "UIImage(data: profileImage)!">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "SqliteWorker.CreateUser(fromResult:):SqliteWorker.swift">
@@ -112,18 +90,48 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CoreDataWorker.IsAuthenticated(userName:userPassword:):CoreDataWorker.swift">
+         contextName = "closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "user.value(forKey: &quot;userPassword&quot;) as! String">
-            </PersistentString>
-            <PersistentString
-               value = "UIImage(data: profileImage)!">
+               value = "selectedUser == nil">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
+         contextName = "closure #1 in closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "decoder.decode([listAllSkipsJsonData].self, from: response.data)">
+            </PersistentString>
+            <PersistentString
+               value = "debugPrint(data)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SqliteWorker.UpdateUserProfileImage(ofUser:):SqliteWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int32(userImageData.count)">
+            </PersistentString>
+            <PersistentString
+               value = "userImageData.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RegisterViewController.keyboardWillShow(notification:):RegisterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedTextField!.frame.size.height">
+            </PersistentString>
+            <PersistentString
+               value = "selectedTextField!.frame.origin.y">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>
