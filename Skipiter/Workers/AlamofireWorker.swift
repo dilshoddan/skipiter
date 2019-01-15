@@ -163,7 +163,7 @@ class AlamofireWorker {
                             if let data = response.data {
                                 let decoder = JSONDecoder()
                                 do {
-                                    let responseData = try decoder.decode([listAllSkipsJsonData].self, from: data)
+                                    let responseData = try decoder.decode(listAllSkips.self, from: data)
                                     succeeded = true
                                     skips = responseData
                                     debugPrint("Logged In")
