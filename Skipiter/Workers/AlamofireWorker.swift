@@ -189,7 +189,7 @@ class AlamofireWorker {
                         skipsVC.skips = skips.map {skip -> AlamofireWorker.listAllSkipsJsonData in
                             return AlamofireWorker.listAllSkipsJsonData(date: skip.date, text: skip.text)
                         }
-                        
+                        skipsVC.skipsView.allSkipsTable.reloadData()
                     }
                     else {
                         let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
