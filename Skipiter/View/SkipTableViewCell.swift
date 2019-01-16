@@ -25,6 +25,7 @@ class SkipTableViewCell: UITableViewCell {
         lbl.textColor = .black
         lbl.font = UIFont.boldSystemFont(ofSize: 14)
         lbl.textAlignment = .left
+        
         return lbl
     }()
     
@@ -33,6 +34,7 @@ class SkipTableViewCell: UITableViewCell {
         lbl.textColor = .black
         lbl.font = UIFont.systemFont(ofSize: 14)
         lbl.textAlignment = .left
+        lbl.numberOfLines = 3
         return lbl
     }()
     
