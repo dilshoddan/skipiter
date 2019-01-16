@@ -14,16 +14,15 @@ class SkipTableViewCell: UITableViewCell {
     var subView: UIView = UIView()
     var skip : AlamofireWorker.listAllSkipsJsonData? {
         didSet {
-            userName.text = skip?.userName
+            userName.text = "@" + (skip?.userName ?? "") + ":"
             userSkip.text = skip?.text
-            userSkipDate.text = skip?.date
         }
     }
     
     private let userName : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize: 16)
+        lbl.font = UIFont.boldSystemFont(ofSize: 12)
         lbl.textAlignment = .left
         return lbl
     }()
@@ -31,16 +30,17 @@ class SkipTableViewCell: UITableViewCell {
     private let userSkip : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize: 14)
+        lbl.font = UIFont.boldSystemFont(ofSize: 12)
         lbl.textAlignment = .left
         return lbl
     }()
     
     private let userSkipDate : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = UIColor.gray
+        lbl.textColor = .black
         lbl.font = UIFont.boldSystemFont(ofSize: 10)
         lbl.textAlignment = .left
+        lbl.isHidden = true
         return lbl
     }()
     
@@ -61,16 +61,15 @@ class SkipTableViewCell: UITableViewCell {
     }
     
     func SetConstraints(){
-        sv(subView)
-        subView.sv([userName, userSkip, userSkipDate])
-        subView.layout(
+        sv([userName, userSkip])
+        userName.Left == self.Left
+        userSkip.Left == self.Left
+        userSkip.Bottom == self.Bottom
+        layout (
             |-userName-|,
-            |-userSkip-|,
-            |-userSkipDate-|
+            2,
+            |-userSkip-|
         )
-        
-        subView.Top == self.Top
-        subView.Bottom == self.Bottom
     }
 
 }
