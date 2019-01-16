@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){
         switch selectedControl.selectedSegmentIndex {
-        case 1:
+        case 0:
             let skipsVC = SkipsViewController()
             navigationController?.pushViewController(skipsVC, animated: true)
         case 3:

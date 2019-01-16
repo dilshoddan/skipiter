@@ -35,7 +35,7 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){
         switch selectedControl.selectedSegmentIndex {
-        case 0:
+        case 1:
             let profileVC = ProfileViewController()
             navigationController?.pushViewController(profileVC, animated: true)
         case 3:
@@ -60,6 +60,8 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func ListAllSkips(){
+        skipsView.activityIndicator.isHidden = false
+        skipsView.activityIndicator.startAnimating()
         AlamofireWorker.ListAllSkips(self)
         skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text"))
         skipsView.allSkipsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")

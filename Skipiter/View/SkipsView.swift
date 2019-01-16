@@ -50,7 +50,7 @@ class SkipsView: UIView {
         self.backgroundColor = .white
         
         segmentedControl = UISegmentedControl()
-        segmentedControl = UISegmentedControl(items: ["Profile", "Skips", "Comments", "LogOut"])
+        segmentedControl = UISegmentedControl(items: ["Skips", "Profile", "Comments", "LogOut"])
         segmentedControl.tintColor = ColorConstants.LoginViewVC
         
         allSkipsTable = UITableView()
