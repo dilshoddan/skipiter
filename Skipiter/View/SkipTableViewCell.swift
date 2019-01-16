@@ -16,6 +16,7 @@ class SkipTableViewCell: UITableViewCell {
         didSet {
             userName.text = "@" + (skip?.userName ?? "") + ":"
             userSkip.text = skip?.text
+            userSkipDate.text = skip?.date
         }
     }
     
@@ -37,10 +38,9 @@ class SkipTableViewCell: UITableViewCell {
     
     private let userSkipDate : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .black
+        lbl.textColor = UIColor.gray
         lbl.font = UIFont.boldSystemFont(ofSize: 10)
         lbl.textAlignment = .left
-        lbl.isHidden = true
         return lbl
     }()
     
@@ -61,14 +61,14 @@ class SkipTableViewCell: UITableViewCell {
     }
     
     func SetConstraints(){
-        sv([userName, userSkip])
+        sv([userName, userSkip, userSkipDate])
         userName.Left == self.Left
-        userSkip.Left == self.Left
-        userSkip.Bottom == self.Bottom
+        userSkip.Left == userName.Right
+        userSkipDate.Bottom == self.Bottom
         layout (
-            |-userName-|,
+            |-userName-userSkip-|,
             2,
-            |-userSkip-|
+            |-userSkipDate-|
         )
     }
 
