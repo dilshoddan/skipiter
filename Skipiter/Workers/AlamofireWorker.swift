@@ -185,9 +185,7 @@ class AlamofireWorker {
                     
                     
                     if succeeded {
-                        skipsVC.skips = skips.map {skip -> AlamofireWorker.listAllSkipsJsonData in
-                            return AlamofireWorker.listAllSkipsJsonData(date: skip.date, text: skip.text)
-                        }
+                        skipsVC.skips = skips
                         skipsVC.skipsView.skipsTable.reloadData()
                     }
                     else {
@@ -243,9 +241,7 @@ class AlamofireWorker {
                     
                     
                     if succeeded {
-                        profileVC.skips = skips.map {skip -> AlamofireWorker.listAllSkipsJsonData in
-                            return AlamofireWorker.listAllSkipsJsonData(date: skip.date, text: skip.text)
-                        }
+                        profileVC.skips = skips
                         profileVC.profileView.skipsTable.reloadData()
                     }
                     else {
