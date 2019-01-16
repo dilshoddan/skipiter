@@ -35,7 +35,8 @@ class ProfileViewController: UIViewController,
         profileView.activityIndicator.isHidden = false
         profileView.activityIndicator.startAnimating()
         skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text", userName: "MyName"))
-        profileView.skipsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+        
+        profileView.skipsTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "Skip")
         profileView.skipsTable.delegate = self
         profileView.skipsTable.dataSource = self
         AlamofireWorker.ListUserSkips(self)
@@ -131,13 +132,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath);
-        
-        let text = skips[indexPath.row].text
-        let userName = skips[indexPath.row].userName
-        let date = skips[indexPath.row].date
-        cell.textLabel?.text = "\(userName): \(text) \n\(date)"
-        cell.detailTextLabel?.text = skips[indexPath.row].date
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Skip", for: indexPath) as! SkipTableViewCell;
+        let skip = skips[indexPath.row]
+        cell.skip = skip
         return cell;
     }
     

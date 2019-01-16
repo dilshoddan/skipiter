@@ -83,10 +83,8 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Skip", for: indexPath) as! SkipTableViewCell;
-        let text = skips[indexPath.row].text
-        let userName = skips[indexPath.row].userName
-        let date = skips[indexPath.row].date
-        cell.textLabel?.text = "\(userName): \(text) \n\(date)"
+        let skip = skips[indexPath.row]
+        cell.skip = skip
         cell.detailTextLabel?.text = skips[indexPath.row].date
         return cell;
     }
