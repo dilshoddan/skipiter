@@ -36,13 +36,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ProfileViewController.tableView(_:cellForRowAt:):ProfileViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "keyboardSize.origin.y">
+               value = "self.loginView.frame">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
+               value = "loginViewBottomY - keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
                value = "keyboardSize">
@@ -51,13 +54,13 @@
                value = "loginViewBottomY">
             </PersistentString>
             <PersistentString
+               value = "keyboardSize.origin.y">
+            </PersistentString>
+            <PersistentString
                value = "self.loginView.frame.origin.y">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame">
-            </PersistentString>
-            <PersistentString
-               value = "loginViewBottomY - keyboardSize.origin.y">
+               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -90,9 +93,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
-      </ContextState>
-      <ContextState
          contextName = "SkipsViewController.tableView(_:cellForRowAt:):SkipsViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -101,10 +101,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
+      </ContextState>
+      <ContextState
          contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "selectedUser == nil">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SkipTableViewCell.skip.didset:SkipTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "userSkip.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
