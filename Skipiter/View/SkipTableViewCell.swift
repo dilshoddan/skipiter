@@ -28,12 +28,12 @@ class SkipTableViewCell: UITableViewCell {
         return lbl
     }()
     
-    private let userSkip : UILabel = {
-        let lbl = UILabel()
-        lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize: 14)
-        lbl.textAlignment = .left
-        return lbl
+    private let userSkip : UITextView = {
+        let txt = UITextView()
+        txt.textColor = .black
+        txt.font = UIFont.boldSystemFont(ofSize: 14)
+        txt.textAlignment = .left
+        return txt
     }()
     
     private let userSkipDate : UILabel = {
