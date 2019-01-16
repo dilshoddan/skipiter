@@ -64,9 +64,9 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         skipsView.activityIndicator.startAnimating()
         AlamofireWorker.ListAllSkips(self)
         skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text"))
-        skipsView.allSkipsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-        skipsView.allSkipsTable.delegate = self
-        skipsView.allSkipsTable.dataSource = self
+        skipsView.skipsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+        skipsView.skipsTable.delegate = self
+        skipsView.skipsTable.dataSource = self
     }
     
     func AddTapGestures(){

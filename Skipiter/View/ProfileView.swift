@@ -12,6 +12,7 @@ import Stevia
 class ProfileView: UIView {
     
     public var shouldSetupConstraints = true
+    public var skipsTable: UITableView!
     public var profileBanner: UIImageView!
     public var profileImage: UIImageView!
     public var segmentedControl: UISegmentedControl!
@@ -35,13 +36,16 @@ class ProfileView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([profileBanner, profileImage, segmentedControl, logOutButton])
+            self.sv([skipsTable, profileBanner, profileImage, segmentedControl, logOutButton])
             
-            profileBanner.height(24%).width(100%).centerHorizontally()
+            profileBanner.height(16%).width(100%).centerHorizontally()
             profileBanner.Top == self.Top
             
-            profileImage.height(18%).width(30%).left(15)
+            profileImage.height(10%).width(22%).left(15)
             profileImage.CenterY == profileBanner.Bottom
+            
+            skipsTable.height(74%).width(100%)
+            skipsTable.Top == profileBanner.Bottom
             
             segmentedControl.height(5%).width(90%).centerHorizontally()
             segmentedControl.Bottom == self.Bottom
@@ -57,6 +61,8 @@ class ProfileView: UIView {
     
     func SetControlDefaults(){
         self.backgroundColor = .white
+        
+        skipsTable = UITableView()
         
         profileBanner = UIImageView()
         profileBanner.backgroundColor = ColorConstants.ProfileVC

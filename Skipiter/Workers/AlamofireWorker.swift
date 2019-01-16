@@ -166,7 +166,6 @@ class AlamofireWorker {
                                     let responseData = try decoder.decode([listAllSkipsJsonData].self, from: data)
                                     succeeded = true
                                     skips = responseData
-                                    debugPrint("Logged In")
                                     
                                 }
                                 catch {
@@ -189,7 +188,64 @@ class AlamofireWorker {
                         skipsVC.skips = skips.map {skip -> AlamofireWorker.listAllSkipsJsonData in
                             return AlamofireWorker.listAllSkipsJsonData(date: skip.date, text: skip.text)
                         }
-                        skipsVC.skipsView.allSkipsTable.reloadData()
+                        skipsVC.skipsView.skipsTable.reloadData()
+                    }
+                    else {
+                        let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            print("Cannot connect to Internet")
+                        }))
+                        skipsVC.present(alertController, animated: true, completion: nil)
+                    }
+                }
+                debugPrint(request)
+            }
+            
+        }
+    }
+    
+    public static func ListUserSkips(_ skipsVC: SkipsViewController){
+        var succeeded: Bool = false
+        var skips = [AlamofireWorker.listAllSkipsJsonData] ()
+        DispatchQueue.global(qos: .userInitiated).async {
+            let downloadGroup = DispatchGroup()
+            downloadGroup.enter()
+            
+            if let sessionManager = sessionManager {
+                
+                let request = sessionManager.request("https://skipiter.vapor.cloud/listSkips", encoding: URLEncoding.httpBody)
+                    .responseJSON { response in
+                        debugPrint(response)
+                        if response.result.isSuccess {
+                            if let data = response.data {
+                                let decoder = JSONDecoder()
+                                do {
+                                    let responseData = try decoder.decode([listAllSkipsJsonData].self, from: data)
+                                    succeeded = true
+                                    skips = responseData
+                                    
+                                }
+                                catch {
+                                    debugPrint("Register result data cannot be decoded from JSON")
+                                }
+                            }
+                        }
+                        else {
+                            debugPrint("Register failed")
+                        }
+                        downloadGroup.leave()
+                }
+                downloadGroup.wait()
+                DispatchQueue.main.async {
+                    skipsVC.skipsView.activityIndicator.stopAnimating()
+                    skipsVC.skipsView.activityIndicator.isHidden = true
+                    skipsVC.skipsView.activityIndicator.removeFromSuperview()
+                    
+                    if succeeded {
+                        skipsVC.skips = skips.map {skip -> AlamofireWorker.listAllSkipsJsonData in
+                            return AlamofireWorker.listAllSkipsJsonData(date: skip.date, text: skip.text)
+                        }
+                        skipsVC.skipsView.skipsTable.reloadData()
                     }
                     else {
                         let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)

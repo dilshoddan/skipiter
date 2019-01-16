@@ -12,7 +12,7 @@ import Stevia
 class SkipsView: UIView {
 
     public var shouldSetupConstraints = true
-    public var allSkipsTable: UITableView!
+    public var skipsTable: UITableView!
     public var segmentedControl: UISegmentedControl!
     public var activityIndicator: UIActivityIndicatorView!
     
@@ -33,9 +33,9 @@ class SkipsView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([allSkipsTable, segmentedControl, activityIndicator])
+            self.sv([skipsTable, segmentedControl, activityIndicator])
             
-            allSkipsTable.fillContainer()
+            skipsTable.fillContainer()
             
             segmentedControl.height(5%).width(90%).centerHorizontally()
             segmentedControl.Bottom == self.Bottom
@@ -53,7 +53,7 @@ class SkipsView: UIView {
         segmentedControl = UISegmentedControl(items: ["Skips", "Profile", "Comments", "LogOut"])
         segmentedControl.tintColor = ColorConstants.LoginViewVC
         
-        allSkipsTable = UITableView()
+        skipsTable = UITableView()
         
         activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.hidesWhenStopped = true
