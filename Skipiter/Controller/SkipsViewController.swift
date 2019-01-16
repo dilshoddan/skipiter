@@ -63,7 +63,8 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         skipsView.activityIndicator.isHidden = false
         skipsView.activityIndicator.startAnimating()
         skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text", userName: "myName"))
-        skipsView.skipsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+        
+        skipsView.skipsTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "Skip")
         skipsView.skipsTable.delegate = self
         skipsView.skipsTable.dataSource = self
         AlamofireWorker.ListAllSkips(self)
@@ -81,7 +82,7 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath);
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Skip", for: indexPath) as! SkipTableViewCell;
         let text = skips[indexPath.row].text
         let userName = skips[indexPath.row].userName
         let date = skips[indexPath.row].date
