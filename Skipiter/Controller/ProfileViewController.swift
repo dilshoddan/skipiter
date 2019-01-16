@@ -10,13 +10,16 @@ import UIKit
 import Stevia
 import Hero
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+class ProfileViewController: UIViewController,
+    UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate {
+    
     private var profileView: ProfileView!
     public var user: User!
     private var coreDataWorker: CoreDataWorker!
     private var profileImagePicker: UIImagePickerController!
     private var profileBannerPicker: UIImagePickerController!
+    public var skips: [AlamofireWorker.listAllSkipsJsonData] = [AlamofireWorker.listAllSkipsJsonData] ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         hero.isEnabled = true
         SetDBDefaults()
         AddTapGestures()
+        ListUserSkips()
+    }
+    
+    func ListUserSkips(){
+        profileView.activityIndicator.isHidden = false
+        profileView.activityIndicator.startAnimating()
+        
+        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text"))
+        profileView.skipsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+        profileView.skipsTable.delegate = self
+        profileView.skipsTable.dataSource = self
+        
     }
     
     @objc func LogOutTapped(){
@@ -110,6 +125,23 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
     }
+    
+    
+}
 
 
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return skips.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath);
+        
+        cell.textLabel?.text = skips[indexPath.row].text
+        cell.detailTextLabel?.text = skips[indexPath.row].date
+        return cell;
+    }
+    
+    
 }

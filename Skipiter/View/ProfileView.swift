@@ -17,6 +17,7 @@ class ProfileView: UIView {
     public var profileImage: UIImageView!
     public var segmentedControl: UISegmentedControl!
     public var logOutButton: UIButton!
+    public var activityIndicator: UIActivityIndicatorView!
     
     let screenSize = UIScreen.main.bounds
     
@@ -36,7 +37,7 @@ class ProfileView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([skipsTable, profileBanner, profileImage, segmentedControl, logOutButton])
+            self.sv([skipsTable, profileBanner, profileImage, segmentedControl, logOutButton, activityIndicator])
             
             profileBanner.height(16%).width(100%).centerHorizontally()
             profileBanner.Top == self.Top
@@ -54,6 +55,7 @@ class ProfileView: UIView {
             logOutButton.Bottom == profileBanner.Bottom
             logOutButton.Right == profileBanner.Right
             
+            activityIndicator.fillContainer()
             
         }
         super.updateConstraints()
@@ -86,6 +88,10 @@ class ProfileView: UIView {
         logOutButton.isEnabled = true
         logOutButton.isUserInteractionEnabled = true
         logOutButton.setTitle("Out", for: .normal)
+        
+        activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.isHidden = true
         
         
     }

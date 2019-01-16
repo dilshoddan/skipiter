@@ -83,7 +83,7 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath);
         
         cell.textLabel?.text = skips[indexPath.row].text
-        cell.detailTextLabel?.text = skips[indexPath.row].text
+        cell.detailTextLabel?.text = skips[indexPath.row].date
         return cell;
     }
 
