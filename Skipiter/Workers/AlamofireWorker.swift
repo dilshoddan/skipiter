@@ -84,7 +84,7 @@ class AlamofireWorker {
             
             if !email.isEmpty, !password.isEmpty {
                 let parameters = [
-                    "email": email,
+                    "name": email,
                     "password": password
                 ]
                 
