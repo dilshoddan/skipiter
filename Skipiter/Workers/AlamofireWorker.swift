@@ -204,7 +204,7 @@ class AlamofireWorker {
         }
     }
     
-    public static func ListUserSkips(_ skipsVC: SkipsViewController){
+    public static func ListUserSkips(_ profileVC: ProfileViewController){
         var succeeded: Bool = false
         var skips = [AlamofireWorker.listAllSkipsJsonData] ()
         DispatchQueue.global(qos: .userInitiated).async {
@@ -237,22 +237,22 @@ class AlamofireWorker {
                 }
                 downloadGroup.wait()
                 DispatchQueue.main.async {
-                    skipsVC.skipsView.activityIndicator.stopAnimating()
-                    skipsVC.skipsView.activityIndicator.isHidden = true
-                    skipsVC.skipsView.activityIndicator.removeFromSuperview()
+                    profileVC.profileView.activityIndicator.stopAnimating()
+                    profileVC.profileView.activityIndicator.isHidden = true
+                    profileVC.profileView.activityIndicator.removeFromSuperview()
                     
                     if succeeded {
-                        skipsVC.skips = skips.map {skip -> AlamofireWorker.listAllSkipsJsonData in
+                        profileVC.skips = skips.map {skip -> AlamofireWorker.listAllSkipsJsonData in
                             return AlamofireWorker.listAllSkipsJsonData(date: skip.date, text: skip.text)
                         }
-                        skipsVC.skipsView.skipsTable.reloadData()
+                        profileVC.profileView.skipsTable.reloadData()
                     }
                     else {
                         let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
                         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                             print("Cannot connect to Internet")
                         }))
-                        skipsVC.present(alertController, animated: true, completion: nil)
+                        profileVC.present(alertController, animated: true, completion: nil)
                     }
                 }
                 debugPrint(request)

@@ -14,9 +14,8 @@ class ProfileViewController: UIViewController,
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate {
     
-    private var profileView: ProfileView!
+    public var profileView: ProfileView!
     public var user: User!
-    private var coreDataWorker: CoreDataWorker!
     private var profileImagePicker: UIImagePickerController!
     private var profileBannerPicker: UIImagePickerController!
     public var skips: [AlamofireWorker.listAllSkipsJsonData] = [AlamofireWorker.listAllSkipsJsonData] ()
@@ -35,7 +34,7 @@ class ProfileViewController: UIViewController,
     func ListUserSkips(){
         profileView.activityIndicator.isHidden = false
         profileView.activityIndicator.startAnimating()
-        
+        AlamofireWorker.ListUserSkips(self)
         skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text"))
         profileView.skipsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         profileView.skipsTable.delegate = self
@@ -122,8 +121,8 @@ class ProfileViewController: UIViewController,
     }
     
     func SetDBDefaults(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+//        coreDataWorker = CoreDataWorker(appDelegate: appDelegate)
     }
     
     
