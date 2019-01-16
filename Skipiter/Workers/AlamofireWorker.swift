@@ -265,6 +265,7 @@ class AlamofireWorker {
     
     struct registerJsonData: Codable {
         let id: Int
+        let name: String
         let email: String
     }
     
@@ -276,6 +277,7 @@ class AlamofireWorker {
     struct listAllSkipsJsonData: Codable {
         let date: String
         let text: String
+        let userName: String
     }
     
     

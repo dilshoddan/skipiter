@@ -62,7 +62,7 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func ListAllSkips(){
         skipsView.activityIndicator.isHidden = false
         skipsView.activityIndicator.startAnimating()
-        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text"))
+        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text", userName: "myName"))
         skipsView.skipsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         skipsView.skipsTable.delegate = self
         skipsView.skipsTable.dataSource = self
