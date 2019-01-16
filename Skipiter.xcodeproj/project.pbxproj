@@ -12,6 +12,7 @@
 		840A579E21EA0A7000A40854 /* SkipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A579D21EA0A7000A40854 /* SkipsView.swift */; };
 		840A57A021EA0C5400A40854 /* SkipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A579F21EA0C5400A40854 /* SkipsViewController.swift */; };
 		8413BD0A21A809FE00F8A1D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413BD0921A809FE00F8A1D5 /* Extensions.swift */; };
+		8449567E21EFC42700D484C0 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449567D21EFC42700D484C0 /* Extension.swift */; };
 		844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9621A6B0120099E891 /* RegisterViewController.swift */; };
 		844B2C9921A6B0470099E891 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9821A6B0470099E891 /* PasswordResetViewController.swift */; };
 		844B2C9B21A6B1A10099E891 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9A21A6B1A10099E891 /* ProfileViewController.swift */; };
@@ -62,6 +63,7 @@
 		840A579D21EA0A7000A40854 /* SkipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipsView.swift; sourceTree = "<group>"; };
 		840A579F21EA0C5400A40854 /* SkipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipsViewController.swift; sourceTree = "<group>"; };
 		8413BD0921A809FE00F8A1D5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8449567D21EFC42700D484C0 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		844B2C9621A6B0120099E891 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		844B2C9821A6B0470099E891 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		844B2C9A21A6B1A10099E891 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				84A5D9B721AC370B00C0343A /* LoginView.swift */,
 				840A579D21EA0A7000A40854 /* SkipsView.swift */,
 				84076AE721EFBAD60025F63A /* SkipTableViewCell.swift */,
+				8449567D21EFC42700D484C0 /* Extension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				840A57A021EA0C5400A40854 /* SkipsViewController.swift in Sources */,
 				844B2C9921A6B0470099E891 /* PasswordResetViewController.swift in Sources */,
 				84A4DD8A21CCDF0F007CF216 /* FileWorker.swift in Sources */,
+				8449567E21EFC42700D484C0 /* Extension.swift in Sources */,
 				84AA9B2B21C7896D0043A58D /* User.swift in Sources */,
 				844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */,
 				84617BCC21EDC123006EE05F /* AlamofireWorker.swift in Sources */,

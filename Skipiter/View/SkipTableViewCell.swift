@@ -11,6 +11,7 @@ import Stevia
 
 class SkipTableViewCell: UITableViewCell {
 
+    var subView: UIView = UIView()
     var skip : AlamofireWorker.listAllSkipsJsonData? {
         didSet {
             userName.text = skip?.userName
@@ -60,12 +61,16 @@ class SkipTableViewCell: UITableViewCell {
     }
     
     func SetConstraints(){
-        sv([userName, userSkip, userSkipDate])
-        layout(
+        sv(subView)
+        subView.sv([userName, userSkip, userSkipDate])
+        subView.layout(
             |-userName-|,
             |-userSkip-|,
             |-userSkipDate-|
         )
+        
+        subView.Top == self.Top
+        subView.Bottom == self.Bottom
     }
 
 }
