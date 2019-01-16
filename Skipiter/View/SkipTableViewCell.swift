@@ -22,7 +22,7 @@ class SkipTableViewCell: UITableViewCell {
     private let userName : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize: 12)
+        lbl.font = UIFont.boldSystemFont(ofSize: 14)
         lbl.textAlignment = .left
         return lbl
     }()
@@ -30,7 +30,7 @@ class SkipTableViewCell: UITableViewCell {
     private let userSkip : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize: 12)
+        lbl.font = UIFont.boldSystemFont(ofSize: 14)
         lbl.textAlignment = .left
         return lbl
     }()
