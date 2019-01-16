@@ -39,10 +39,10 @@
          contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.loginView.frame">
+               value = "keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
-               value = "loginViewBottomY - keyboardSize.origin.y">
+               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
             </PersistentString>
             <PersistentString
                value = "keyboardSize">
@@ -54,10 +54,10 @@
                value = "self.loginView.frame.origin.y">
             </PersistentString>
             <PersistentString
-               value = "keyboardSize.origin.y">
+               value = "self.loginView.frame">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
+               value = "loginViewBottomY - keyboardSize.origin.y">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -93,21 +93,18 @@
          contextName = "closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
       </ContextState>
       <ContextState
-         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
+         contextName = "SkipsViewController.tableView(_:cellForRowAt:):SkipsViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "selectedUser == nil">
+               value = "&quot;\(userName): \(text) \n\(date)&quot;">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
+         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "decoder.decode([listAllSkipsJsonData].self, from: response.data)">
-            </PersistentString>
-            <PersistentString
-               value = "debugPrint(data)">
+               value = "selectedUser == nil">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -119,6 +116,17 @@
             </PersistentString>
             <PersistentString
                value = "userImageData.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "decoder.decode([listAllSkipsJsonData].self, from: response.data)">
+            </PersistentString>
+            <PersistentString
+               value = "response.result.isSuccess">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

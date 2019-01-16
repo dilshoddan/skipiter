@@ -85,7 +85,7 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let text = skips[indexPath.row].text
         let userName = skips[indexPath.row].userName
         let date = skips[indexPath.row].date
-        cell.textLabel?.text = "\(userName): \(text) /n\(date)"
+        cell.textLabel?.text = "\(userName): \(text) \n\(date)"
         cell.detailTextLabel?.text = skips[indexPath.row].date
         return cell;
     }
