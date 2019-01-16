@@ -34,8 +34,6 @@ class ProfileViewController: UIViewController,
     func ListUserSkips(){
         profileView.activityIndicator.isHidden = false
         profileView.activityIndicator.startAnimating()
-        profileView.skipsTable.estimatedRowHeight = 100
-        profileView.skipsTable.rowHeight = UITableView.automaticDimension
         
         skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text", userName: "MyName"))
         
@@ -44,7 +42,8 @@ class ProfileViewController: UIViewController,
         profileView.skipsTable.dataSource = self
         AlamofireWorker.ListUserSkips(self)
         
-        
+        profileView.skipsTable.estimatedRowHeight = 100
+        profileView.skipsTable.rowHeight = UITableView.automaticDimension
     }
     
     func render(){

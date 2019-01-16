@@ -187,6 +187,8 @@ class AlamofireWorker {
                     if succeeded {
                         skipsVC.skips = skips
                         skipsVC.skipsView.skipsTable.reloadData()
+                        skipsVC.skipsView.skipsTable.estimatedRowHeight = 100
+                        skipsVC.skipsView.skipsTable.rowHeight = UITableView.automaticDimension
                     }
                     else {
                         let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
@@ -243,6 +245,8 @@ class AlamofireWorker {
                     if succeeded {
                         profileVC.skips = skips
                         profileVC.profileView.skipsTable.reloadData()
+                        profileVC.skipsView.skipsTable.estimatedRowHeight = 100
+                        profileVC.skipsView.skipsTable.rowHeight = UITableView.automaticDimension
                     }
                     else {
                         let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)

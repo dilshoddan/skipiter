@@ -62,8 +62,7 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func ListAllSkips(){
         skipsView.activityIndicator.isHidden = false
         skipsView.activityIndicator.startAnimating()
-        skipsView.skipsTable.estimatedRowHeight = 100
-        skipsView.skipsTable.rowHeight = UITableView.automaticDimension
+        
         
         skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text", userName: "myName"))
         
@@ -71,6 +70,9 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         skipsView.skipsTable.delegate = self
         skipsView.skipsTable.dataSource = self
         AlamofireWorker.ListAllSkips(self)
+        
+        skipsView.skipsTable.estimatedRowHeight = 100
+        skipsView.skipsTable.rowHeight = UITableView.automaticDimension
         
     }
     
