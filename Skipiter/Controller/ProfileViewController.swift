@@ -42,10 +42,6 @@ class ProfileViewController: UIViewController,
         
     }
     
-    @objc func LogOutTapped(){
-        navigationController?.popViewController(animated: true)
-    }
-    
     func render(){
         view.sv(profileView)
         profileView.height(100%).width(100%).centerInContainer()
@@ -54,7 +50,6 @@ class ProfileViewController: UIViewController,
         
         profileView = ProfileView(frame: view.bounds)
         profileView.backgroundColor = .white
-        profileView.logOutButton.addTarget(self, action: #selector(LogOutTapped), for: .touchUpInside)
         
         profileImagePicker = UIImagePickerController()
         profileBannerPicker = UIImagePickerController()

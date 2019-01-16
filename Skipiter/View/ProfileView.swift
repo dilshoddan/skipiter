@@ -16,7 +16,6 @@ class ProfileView: UIView {
     public var profileBanner: UIImageView!
     public var profileImage: UIImageView!
     public var segmentedControl: UISegmentedControl!
-    public var logOutButton: UIButton!
     public var activityIndicator: UIActivityIndicatorView!
     
     let screenSize = UIScreen.main.bounds
@@ -37,23 +36,19 @@ class ProfileView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([skipsTable, profileBanner, profileImage, segmentedControl, logOutButton, activityIndicator])
+            self.sv([skipsTable, profileBanner, profileImage, segmentedControl, activityIndicator])
             
             profileBanner.height(16%).width(100%).centerHorizontally()
             profileBanner.Top == self.Top
             
-            profileImage.height(10%).width(22%).left(15)
+            profileImage.height(10%).width(18%).left(15)
             profileImage.CenterY == profileBanner.Bottom
             
             skipsTable.height(74%).width(100%)
-            skipsTable.Top == profileBanner.Bottom
+            skipsTable.Top == profileImage.Bottom
             
             segmentedControl.height(5%).width(90%).centerHorizontally()
             segmentedControl.Bottom == self.Bottom
-            
-            logOutButton.height(5%).width(20%)
-            logOutButton.Bottom == profileBanner.Bottom
-            logOutButton.Right == profileBanner.Right
             
             activityIndicator.fillContainer()
             
@@ -78,16 +73,6 @@ class ProfileView: UIView {
         segmentedControl = UISegmentedControl()
         segmentedControl = UISegmentedControl(items: ["Skips", "Profile", "Comments", "LogOut"])
         segmentedControl.tintColor = ColorConstants.LoginViewVC
-        
-        logOutButton = UIButton()
-        logOutButton.backgroundColor = ColorConstants.LoginViewVC
-        logOutButton.tintColor = ColorConstants.LoginViewVC
-        logOutButton.setTitleColor(.white, for: .normal)
-        logOutButton.layer.cornerRadius = 5
-        logOutButton.clipsToBounds = true
-        logOutButton.isEnabled = true
-        logOutButton.isUserInteractionEnabled = true
-        logOutButton.setTitle("Out", for: .normal)
         
         activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.hidesWhenStopped = true

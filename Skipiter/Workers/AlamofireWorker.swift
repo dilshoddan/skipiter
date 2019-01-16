@@ -51,9 +51,7 @@ class AlamofireWorker {
                 downloadGroup.wait()
                 debugPrint(request)
                 DispatchQueue.main.async {
-                    registerVC.registerView.activityIndicator.stopAnimating()
-                    registerVC.registerView.activityIndicator.isHidden = true
-                    registerVC.registerView.activityIndicator.removeFromSuperview()
+                    
                     
                     if registered {
                         registerVC.navigationController?.popToRootViewController(animated: true)
@@ -65,6 +63,9 @@ class AlamofireWorker {
                         }))
                         registerVC.present(alertController, animated: true, completion: nil)
                     }
+                    registerVC.registerView.activityIndicator.stopAnimating()
+                    registerVC.registerView.activityIndicator.isHidden = true
+                    registerVC.registerView.activityIndicator.removeFromSuperview()
                 }
                 
             }
@@ -123,9 +124,7 @@ class AlamofireWorker {
                 }
                 downloadGroup.wait()
                 DispatchQueue.main.async {
-                    loginVC.loginView.activityIndicator.stopAnimating()
-                    loginVC.loginView.activityIndicator.isHidden = true
-                    loginVC.loginView.activityIndicator.removeFromSuperview()
+                    
                     
                     if loggedIn {
                         let skipsVC = SkipsViewController()
@@ -140,6 +139,9 @@ class AlamofireWorker {
                         loginVC.loginView.userName.text = ""
                         loginVC.loginView.userPassword.text = ""
                     }
+                    loginVC.loginView.activityIndicator.stopAnimating()
+                    loginVC.loginView.activityIndicator.isHidden = true
+                    loginVC.loginView.activityIndicator.removeFromSuperview()
                 }
                 debugPrint(request)
             }
@@ -180,9 +182,7 @@ class AlamofireWorker {
                 }
                 downloadGroup.wait()
                 DispatchQueue.main.async {
-                    skipsVC.skipsView.activityIndicator.stopAnimating()
-                    skipsVC.skipsView.activityIndicator.isHidden = true
-                    skipsVC.skipsView.activityIndicator.removeFromSuperview()
+                    
                     
                     if succeeded {
                         skipsVC.skips = skips.map {skip -> AlamofireWorker.listAllSkipsJsonData in
@@ -197,6 +197,9 @@ class AlamofireWorker {
                         }))
                         skipsVC.present(alertController, animated: true, completion: nil)
                     }
+                    skipsVC.skipsView.activityIndicator.stopAnimating()
+                    skipsVC.skipsView.activityIndicator.isHidden = true
+                    skipsVC.skipsView.activityIndicator.removeFromSuperview()
                 }
                 debugPrint(request)
             }
@@ -237,9 +240,7 @@ class AlamofireWorker {
                 }
                 downloadGroup.wait()
                 DispatchQueue.main.async {
-                    profileVC.profileView.activityIndicator.stopAnimating()
-                    profileVC.profileView.activityIndicator.isHidden = true
-                    profileVC.profileView.activityIndicator.removeFromSuperview()
+                    
                     
                     if succeeded {
                         profileVC.skips = skips.map {skip -> AlamofireWorker.listAllSkipsJsonData in
@@ -254,6 +255,9 @@ class AlamofireWorker {
                         }))
                         profileVC.present(alertController, animated: true, completion: nil)
                     }
+                    profileVC.profileView.activityIndicator.stopAnimating()
+                    profileVC.profileView.activityIndicator.isHidden = true
+                    profileVC.profileView.activityIndicator.removeFromSuperview()
                 }
                 debugPrint(request)
             }
