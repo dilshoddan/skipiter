@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import PromiseKit
 
 class AlamofireWorker {
     
@@ -72,6 +73,35 @@ class AlamofireWorker {
         }
     }
     
+    
+    public static func loginPromise(with email: String, and password: String) -> Promise<[String: Any]> {
+        let headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        let parameters = [
+            "name": email,
+            "password": password
+        ]
+        
+        return Promise { seal in
+            Alamofire.request("https://skipiter.vapor.cloud/login", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: headers)
+                .responseJSON  { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        
+                        guard let json = json  as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+                    
+            }
+        }
+    }
     
     public static func login(with email: String, and password: String, _ loginVC: LoginViewController){
         var loggedIn: Bool = false

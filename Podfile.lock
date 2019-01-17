@@ -1,24 +1,31 @@
 PODS:
   - Alamofire (4.7.0)
   - Hero (1.4.0)
+  - PromiseKit/Alamofire (6.7.1):
+    - Alamofire (~> 4.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/CorePromise (6.7.1)
   - SteviaLayout (4.4.0)
 
 DEPENDENCIES:
   - Alamofire (= 4.7)
   - Hero (= 1.4.0)
+  - PromiseKit/Alamofire
   - SteviaLayout (= 4.4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Hero
+    - PromiseKit
     - SteviaLayout
 
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
+  PromiseKit: ef376fb8b4e92edfeb66bd403b983eaa07fbde0c
   SteviaLayout: dd74d1abd127bbf0ce346ac9430441684fe427d0
 
-PODFILE CHECKSUM: 2446ec6926465dea90fd9fa953265ce152936526
+PODFILE CHECKSUM: a7192345cc18a8ec4d30c70386cb8ba29196aa33
 
 COCOAPODS: 1.5.3

@@ -87,7 +87,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             loginView.activityIndicator.isHidden = false
             loginView.activityIndicator.startAnimating()
             
-            AlamofireWorker.login(with: userName, and: userPassword, self)
+            
+            AlamofireWorker.loginPromise(with: userName, and: userPassword)
+                .done { json -> Void in
+                    //Do something with the JSON info
+                    print(json)
+                }
+                .catch { error in
+                    //Handle error or give feedback to the user
+                    print(error.localizedDescription)
+            }
+            
+            //AlamofireWorker.login(with: userName, and: userPassword, self)
         }
         
     }

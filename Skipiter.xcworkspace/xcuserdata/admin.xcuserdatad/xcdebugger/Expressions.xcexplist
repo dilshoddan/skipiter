@@ -42,10 +42,10 @@
          contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.loginView.frame">
+               value = "self.loginView.frame.origin.y">
             </PersistentString>
             <PersistentString
-               value = "loginViewBottomY - keyboardSize.origin.y">
+               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
             </PersistentString>
             <PersistentString
                value = "keyboardSize">
@@ -57,15 +57,12 @@
                value = "keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y">
+               value = "self.loginView.frame">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
+               value = "loginViewBottomY - keyboardSize.origin.y">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in static AlamofireWorker.login(with:and:_:):AlamofireWorker.swift">
       </ContextState>
       <ContextState
          contextName = "CoreDataWorker.IsAuthenticated(userName:userPassword:):CoreDataWorker.swift">
@@ -75,6 +72,36 @@
             </PersistentString>
             <PersistentString
                value = "UIImage(data: profileImage)!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in static AlamofireWorker.login(with:and:_:):AlamofireWorker.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SkipTableViewCell.skip.didset:SkipTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "userSkip.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SkipsViewController.tableView(_:cellForRowAt:):SkipsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "&quot;\(userName): \(text) \n\(date)&quot;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedUser == nil">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -93,29 +120,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SkipsViewController.tableView(_:cellForRowAt:):SkipsViewController.swift">
+         contextName = "closure #1 in closure #1 in static AlamofireWorker.loginPromise(with:and:):AlamofireWorker.swift">
          <PersistentStrings>
             <PersistentString
-               value = "&quot;\(userName): \(text) \n\(date)&quot;">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
-      </ContextState>
-      <ContextState
-         contextName = "RegisterViewController.OkClicked():RegisterViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "selectedUser == nil">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SkipTableViewCell.skip.didset:SkipTableViewCell.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "userSkip.text">
+               value = "json[&quot;token&quot;] as? String">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "797EBE4684DE2062C561CFE778BB6B16"
+               BlueprintIdentifier = "158FF37CB29F25E0960FC6D737683F71"
                BuildableName = "Pods_Skipiter.framework"
                BlueprintName = "Pods-Skipiter"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "797EBE4684DE2062C561CFE778BB6B16"
+            BlueprintIdentifier = "158FF37CB29F25E0960FC6D737683F71"
             BuildableName = "Pods_Skipiter.framework"
             BlueprintName = "Pods-Skipiter"
             ReferencedContainer = "container:Pods.xcodeproj">
