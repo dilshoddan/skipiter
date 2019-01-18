@@ -48,8 +48,11 @@ class ProfileViewController: UIViewController,
                     self.skips = AlamofireWorker.ConvertDictionaryToSkips(tuple.0)
                     
                     self.profileView.skipsTable.reloadData()
-                    self.profileView.skipsTable.estimatedRowHeight = 600
+                    
                     self.profileView.skipsTable.rowHeight = UITableView.automaticDimension
+                    self.profileView.skipsTable.estimatedRowHeight = 600
+                    self.profileView.skipsTable.setNeedsUpdateConstraints()
+                    self.profileView.skipsTable.updateConstraintsIfNeeded()
                 }
                 else {
                     let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)

@@ -63,11 +63,13 @@ class SkipTableViewCell: UITableViewCell {
     }
     
     func SetConstraints(){
-        sv([userName, userSkip, userSkipDate])
-        userName.Left == self.Left
-        userSkip.Left == userName.Right
+        sv(subView)
+        subView.fillContainer()
+        subView.sv([userName, userSkip, userSkipDate])
+        userName.Left == subView.Left
+        userSkip.Left == userName.Left
         userSkipDate.Bottom == self.Bottom
-        layout (
+        subView.layout (
             |-userName-|,
             |-userSkip-|,
             2,

@@ -63,7 +63,13 @@ class SkipsViewController: UIViewController {
         skipsView.activityIndicator.startAnimating()
         
         
-        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text", userName: "myName"))
+        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "Let's have a long text to see cell is able to show them all propperly. I doubt but still hope", userName: "myName"))
+        self.skipsView.skipsTable.reloadData()
+        
+        self.skipsView.skipsTable.rowHeight = UITableView.automaticDimension
+        self.skipsView.skipsTable.estimatedRowHeight = 600
+        self.skipsView.skipsTable.setNeedsUpdateConstraints()
+        self.skipsView.skipsTable.updateConstraintsIfNeeded()
         
         skipsView.skipsTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "Skip")
         skipsView.skipsTable.delegate = self
@@ -76,8 +82,11 @@ class SkipsViewController: UIViewController {
                     self.skips = AlamofireWorker.ConvertDictionaryToSkips(tuple.0)
                     
                     self.skipsView.skipsTable.reloadData()
-                    self.skipsView.skipsTable.estimatedRowHeight = 600
+                    
                     self.skipsView.skipsTable.rowHeight = UITableView.automaticDimension
+                    self.skipsView.skipsTable.estimatedRowHeight = 600
+                    self.skipsView.skipsTable.setNeedsUpdateConstraints()
+                    self.skipsView.skipsTable.updateConstraintsIfNeeded()
                 }
                 else {
                     let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
