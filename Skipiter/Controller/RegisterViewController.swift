@@ -8,6 +8,7 @@
 
 import UIKit
 import Stevia
+import PromiseKit
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
@@ -39,12 +40,36 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return true;
     }
     
-    @objc func OkClicked(){
+    @objc func OkClicked() {
         if let userName = registerView.userName.text,
             let email = registerView.email.text,
             let userPassword = registerView.userPassword.text
         {
-            AlamofireWorker.registerUser(with: email, and: userPassword, self)
+            registerView.activityIndicator.isHidden = false
+            registerView.activityIndicator.startAnimating()
+            
+            AlamofireWorker.registerUser(with: userName, and: email, and: userPassword)
+                .done{ registered in
+                    if registered {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                    else {
+                        let alertController = UIAlertController(title: "Error", message: "Cannot register", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            print("Cannot register")
+                        }))
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                    self.registerView.activityIndicator.stopAnimating()
+                    self.registerView.activityIndicator.isHidden = true
+                    self.registerView.activityIndicator.removeFromSuperview()
+                    
+            }
+            .catch { error in
+                //Handle error or give feedback to the user
+                print(error.localizedDescription)
+            }
+            
             
         }
     }

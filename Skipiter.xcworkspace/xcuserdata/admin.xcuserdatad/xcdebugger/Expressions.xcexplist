@@ -42,10 +42,10 @@
          contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.loginView.frame.origin.y">
+               value = "self.loginView.frame">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
+               value = "loginViewBottomY - keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
                value = "keyboardSize">
@@ -54,13 +54,13 @@
                value = "loginViewBottomY">
             </PersistentString>
             <PersistentString
+               value = "self.loginView.frame.origin.y">
+            </PersistentString>
+            <PersistentString
                value = "keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame">
-            </PersistentString>
-            <PersistentString
-               value = "loginViewBottomY - keyboardSize.origin.y">
+               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -79,7 +79,18 @@
          contextName = "closure #1 in closure #1 in static AlamofireWorker.login(with:and:_:):AlamofireWorker.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
+         contextName = "SqliteWorker.CreateUser(fromResult:):SqliteWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sqlite3_column_text(fromResult, 5)">
+            </PersistentString>
+            <PersistentString
+               value = "Int(sqlite3_column_bytes(fromResult, 6))">
+            </PersistentString>
+            <PersistentString
+               value = "sqlite3_column_blob(fromResult, 5)">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "SkipTableViewCell.skip.didset:SkipTableViewCell.swift">
@@ -106,18 +117,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SqliteWorker.CreateUser(fromResult:):SqliteWorker.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "sqlite3_column_text(fromResult, 5)">
-            </PersistentString>
-            <PersistentString
-               value = "Int(sqlite3_column_bytes(fromResult, 6))">
-            </PersistentString>
-            <PersistentString
-               value = "sqlite3_column_blob(fromResult, 5)">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "closure #1 in static AlamofireWorker.ListAllSkips(_:):AlamofireWorker.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in closure #1 in static AlamofireWorker.loginPromise(with:and:):AlamofireWorker.swift">
@@ -157,6 +157,14 @@
             </PersistentString>
             <PersistentString
                value = "selectedTextField!.frame.origin.y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SkipsViewController.ListAllSkips():SkipsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.skips">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

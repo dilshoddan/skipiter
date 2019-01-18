@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Skipiter/Workers/AlamofireWorker.swift"
-            timestampString = "569421856.562483"
+            timestampString = "569497673.111735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "loginPromise(with:and:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "registerUser(with:and:and:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Skipiter/Controller/LoginViewController.swift"
-            timestampString = "569421856.562942"
+            timestampString = "569496742.155637"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "LoginClicked()"
             landmarkType = "7">
          </BreakpointContent>
@@ -73,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Skipiter/Controller/LoginViewController.swift"
-            timestampString = "569421856.563006"
+            filePath = "Skipiter/Controller/RegisterViewController.swift"
+            timestampString = "569496749.555038"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "LoginClicked()"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "OkClicked()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

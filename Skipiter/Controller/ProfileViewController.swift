@@ -42,7 +42,7 @@ class ProfileViewController: UIViewController,
         profileView.skipsTable.dataSource = self
         AlamofireWorker.ListUserSkips(self)
         
-        profileView.skipsTable.estimatedRowHeight = 100
+        profileView.skipsTable.estimatedRowHeight = 600
         profileView.skipsTable.rowHeight = UITableView.automaticDimension
     }
     

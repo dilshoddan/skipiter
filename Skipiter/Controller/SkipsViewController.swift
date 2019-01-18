@@ -9,10 +9,9 @@
 import UIKit
 import Hero
 import Stevia
+import PromiseKit
 
 class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
 
     public var skipsView: SkipsView!
     public var user: User!
@@ -69,9 +68,47 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         skipsView.skipsTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "Skip")
         skipsView.skipsTable.delegate = self
         skipsView.skipsTable.dataSource = self
-        AlamofireWorker.ListAllSkips(self)
         
-        skipsView.skipsTable.estimatedRowHeight = 100
+        AlamofireWorker.ListAllSkips()
+            .done{ tuple in
+                
+                if tuple.1 {
+                    for skip in tuple.0 {
+                        guard
+                            let date = skip["date"] as? String,
+                            let text = skip["text"] as? String,
+                            let userName = skip["userName"] as? String
+                            else {
+                                continue
+
+                        }
+                        self.skips.append(AlamofireWorker.listAllSkipsJsonData(date: date,
+                                                                               text: text,
+                                                                               userName: userName))
+                    }
+                    
+                    self.skipsView.skipsTable.reloadData()
+                    self.skipsView.skipsTable.estimatedRowHeight = 600
+                    self.skipsView.skipsTable.rowHeight = UITableView.automaticDimension
+                }
+                else {
+                    let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                        print("Cannot connect to Internet")
+                    }))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                self.skipsView.activityIndicator.stopAnimating()
+                self.skipsView.activityIndicator.isHidden = true
+                self.skipsView.activityIndicator.removeFromSuperview()
+                
+        }
+            .catch { error in
+                print(error.localizedDescription)
+                
+        }
+        
+        //skipsView.skipsTable.estimatedRowHeight = 100
         skipsView.skipsTable.rowHeight = UITableView.automaticDimension
         
     }

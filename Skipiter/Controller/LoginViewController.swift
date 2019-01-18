@@ -89,9 +89,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             
             AlamofireWorker.loginPromise(with: userName, and: userPassword)
-                .done { json -> Void in
-                    //Do something with the JSON info
-                    print(json)
+                .done { loggedIn -> Void in
+                    if loggedIn {
+                        let skipsVC = SkipsViewController()
+                        self.navigationController?.pushViewController(skipsVC, animated: true)
+                    }
+                    else {
+                        let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            print("User name and password do not match")
+                        }))
+                        self.present(alertController, animated: true, completion: nil)
+                        self.loginView.userName.text = ""
+                        self.loginView.userPassword.text = ""
+                    }
+                    self.loginView.activityIndicator.stopAnimating()
+                    self.loginView.activityIndicator.isHidden = true
+                    self.loginView.activityIndicator.removeFromSuperview()
                 }
                 .catch { error in
                     //Handle error or give feedback to the user
