@@ -44,7 +44,7 @@ class ProfileView: UIView {
             profileImage.height(10%).width(18%).left(15)
             profileImage.CenterY == profileBanner.Bottom
             
-            skipsTable.height(74%).width(100%)
+            skipsTable.top(1%).height(73%).width(100%).centerHorizontally()
             skipsTable.Top == profileImage.Bottom
             
             segmentedControl.height(5%).width(90%).centerHorizontally()

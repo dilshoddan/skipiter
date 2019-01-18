@@ -63,6 +63,7 @@ class SkipsViewController: UIViewController {
         skipsView.activityIndicator.startAnimating()
         
         
+        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2018", text: "Let's have a long text to see cell is able to show them all propperly. I doubt but still hope", userName: "myName"))
         skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "Let's have a long text to see cell is able to show them all propperly. I doubt but still hope", userName: "myName"))
         self.skipsView.skipsTable.reloadData()
         
