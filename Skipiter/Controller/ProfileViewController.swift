@@ -164,6 +164,5 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         cell.skip = skip
         return cell;
     }
-    
-    
+        
 }

@@ -68,13 +68,17 @@ class SkipTableViewCell: UITableViewCell {
         userSkip.Left == userName.Right
         userSkipDate.Bottom == self.Bottom
         layout (
-            |-userName-userSkip-|,
+            |-userName-|,
+            |-userSkip-|,
             2,
             |-userSkipDate-|
         )
     }
 
 }
+
+
+
 
 
 //import UIKit

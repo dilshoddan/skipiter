@@ -11,7 +11,7 @@ import Hero
 import Stevia
 import PromiseKit
 
-class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SkipsViewController: UIViewController {
 
     public var skipsView: SkipsView!
     public var user: User!
@@ -107,6 +107,14 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func SetDBDefaults(){
     }
     
+   
+
+    
+    
+}
+
+
+extension SkipsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return skips.count
     }
@@ -118,8 +126,6 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.detailTextLabel?.text = skips[indexPath.row].date
         return cell;
     }
-
-    
     
 }
 
