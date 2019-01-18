@@ -35,8 +35,7 @@ class SkipsView: UIView {
         if(shouldSetupConstraints){
             self.sv([skipsTable, segmentedControl, activityIndicator])
             
-            skipsTable.top(1%).height(99%).width(100%).centerVertically().centerHorizontally()
-            
+            skipsTable.top(2%).height(98%).width(100%)            
             segmentedControl.height(5%).width(90%).centerHorizontally()
             segmentedControl.Bottom == self.Bottom
             activityIndicator.fillContainer()
