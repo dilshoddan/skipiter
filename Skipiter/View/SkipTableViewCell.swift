@@ -70,10 +70,12 @@ class SkipTableViewCell: UITableViewCell {
         userSkip.Left == userName.Left
         userSkipDate.Bottom == self.Bottom
         subView.layout (
+            0,
             |-userName-|,
             |-userSkip-|,
             2,
-            |-userSkipDate-|
+            |-userSkipDate-|,
+            0
         )
     }
 
