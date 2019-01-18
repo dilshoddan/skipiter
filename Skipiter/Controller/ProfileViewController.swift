@@ -40,7 +40,32 @@ class ProfileViewController: UIViewController,
         profileView.skipsTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "Skip")
         profileView.skipsTable.delegate = self
         profileView.skipsTable.dataSource = self
-        AlamofireWorker.ListUserSkips(self)
+        
+        AlamofireWorker.ListUserSkips()
+            .done { tuple in
+                
+                if tuple.1 {
+                    self.skips = AlamofireWorker.ConvertDictionaryToSkips(tuple.0)
+                    
+                    self.profileView.skipsTable.reloadData()
+                    self.profileView.skipsTable.estimatedRowHeight = 600
+                    self.profileView.skipsTable.rowHeight = UITableView.automaticDimension
+                }
+                else {
+                    let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                        print("Cannot connect to Internet")
+                    }))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                self.profileView.activityIndicator.stopAnimating()
+                self.profileView.activityIndicator.isHidden = true
+                self.profileView.activityIndicator.removeFromSuperview()
+                
+            }
+            .catch { error in
+                print(error.localizedDescription)
+        }
         
         profileView.skipsTable.estimatedRowHeight = 600
         profileView.skipsTable.rowHeight = UITableView.automaticDimension

@@ -73,19 +73,7 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             .done{ tuple in
                 
                 if tuple.1 {
-                    for skip in tuple.0 {
-                        guard
-                            let date = skip["date"] as? String,
-                            let text = skip["text"] as? String,
-                            let userName = skip["userName"] as? String
-                            else {
-                                continue
-
-                        }
-                        self.skips.append(AlamofireWorker.listAllSkipsJsonData(date: date,
-                                                                               text: text,
-                                                                               userName: userName))
-                    }
+                    self.skips = AlamofireWorker.ConvertDictionaryToSkips(tuple.0)
                     
                     self.skipsView.skipsTable.reloadData()
                     self.skipsView.skipsTable.estimatedRowHeight = 600
@@ -108,7 +96,7 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
         }
         
-        //skipsView.skipsTable.estimatedRowHeight = 100
+        skipsView.skipsTable.estimatedRowHeight = 600
         skipsView.skipsTable.rowHeight = UITableView.automaticDimension
         
     }
@@ -131,6 +119,8 @@ class SkipsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell;
     }
 
+    
+    
 }
 
 

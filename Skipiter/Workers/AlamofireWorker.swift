@@ -120,65 +120,56 @@ class AlamofireWorker {
     
     }
     
-    public static func ListAllSkips_old(_ skipsVC: SkipsViewController){
-        var succeeded: Bool = false
-        var skips = [AlamofireWorker.listAllSkipsJsonData] ()
-        DispatchQueue.global(qos: .userInitiated).async {
-            let downloadGroup = DispatchGroup()
-            downloadGroup.enter()
-            
+    public static func ListUserSkips() -> Promise<([[String: Any]], Bool)> {
+        
+        return Promise { seal in
             if let sessionManager = sessionManager {
                 
-                let request = sessionManager.request("https://skipiter.vapor.cloud/listAllSkips", encoding: URLEncoding.httpBody)
+                sessionManager.request("https://skipiter.vapor.cloud/listSkips", encoding: URLEncoding.httpBody)
                     .responseJSON { response in
-                        debugPrint(response)
-                        if response.result.isSuccess {
-                            if let data = response.data {
-                                let decoder = JSONDecoder()
-                                do {
-                                    let responseData = try decoder.decode([listAllSkipsJsonData].self, from: data)
-                                    succeeded = true
-                                    skips = responseData
-                                    
-                                }
-                                catch {
-                                    debugPrint("Register result data cannot be decoded from JSON")
-                                }
+                        
+                        switch response.result {
+                        case .success(let json):
+                            
+                            guard let arrayOfDictionary = json  as? [[String: Any]] else {
+                                return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
                             }
+                            
+                            seal.fulfill((arrayOfDictionary, true))
+                        case .failure(let error):
+                            seal.reject(error)
                         }
-                        else {
-                            debugPrint("Register failed")
-                        }
-                        downloadGroup.leave()
                 }
-                downloadGroup.wait()
-                DispatchQueue.main.async {
-                    
-                    
-                    if succeeded {
-                        skipsVC.skips = skips
-                        skipsVC.skipsView.skipsTable.reloadData()
-                        skipsVC.skipsView.skipsTable.estimatedRowHeight = 100
-                        skipsVC.skipsView.skipsTable.rowHeight = UITableView.automaticDimension
-                    }
-                    else {
-                        let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                            print("Cannot connect to Internet")
-                        }))
-                        skipsVC.present(alertController, animated: true, completion: nil)
-                    }
-                    skipsVC.skipsView.activityIndicator.stopAnimating()
-                    skipsVC.skipsView.activityIndicator.isHidden = true
-                    skipsVC.skipsView.activityIndicator.removeFromSuperview()
-                }
-                debugPrint(request)
+                
+                
             }
             
         }
+        
     }
     
-    public static func ListUserSkips(_ profileVC: ProfileViewController){
+    
+    public static func ConvertDictionaryToSkips(_ arrayOfDictionaries: [[String: Any]]) -> [AlamofireWorker.listAllSkipsJsonData]{
+        var skips = [AlamofireWorker.listAllSkipsJsonData] ()
+        for skip in arrayOfDictionaries {
+            guard
+                let date = skip["date"] as? String,
+                let text = skip["text"] as? String,
+                let userName = skip["userName"] as? String
+                else {
+                    continue
+                    
+            }
+            skips.append(AlamofireWorker.listAllSkipsJsonData(date: date,
+                                                              text: text,
+                                                              userName: userName))
+        }
+        return skips
+    }
+    
+    
+    
+    public static func ListUserSkips_old(_ profileVC: ProfileViewController){
         var succeeded: Bool = false
         var skips = [AlamofireWorker.listAllSkipsJsonData] ()
         DispatchQueue.global(qos: .userInitiated).async {
@@ -373,7 +364,63 @@ class AlamofireWorker {
         }
     }
     
-    
+    public static func ListAllSkips_old(_ skipsVC: SkipsViewController){
+        var succeeded: Bool = false
+        var skips = [AlamofireWorker.listAllSkipsJsonData] ()
+        DispatchQueue.global(qos: .userInitiated).async {
+            let downloadGroup = DispatchGroup()
+            downloadGroup.enter()
+            
+            if let sessionManager = sessionManager {
+                
+                let request = sessionManager.request("https://skipiter.vapor.cloud/listAllSkips", encoding: URLEncoding.httpBody)
+                    .responseJSON { response in
+                        debugPrint(response)
+                        if response.result.isSuccess {
+                            if let data = response.data {
+                                let decoder = JSONDecoder()
+                                do {
+                                    let responseData = try decoder.decode([listAllSkipsJsonData].self, from: data)
+                                    succeeded = true
+                                    skips = responseData
+                                    
+                                }
+                                catch {
+                                    debugPrint("Register result data cannot be decoded from JSON")
+                                }
+                            }
+                        }
+                        else {
+                            debugPrint("Register failed")
+                        }
+                        downloadGroup.leave()
+                }
+                downloadGroup.wait()
+                DispatchQueue.main.async {
+                    
+                    
+                    if succeeded {
+                        skipsVC.skips = skips
+                        skipsVC.skipsView.skipsTable.reloadData()
+                        skipsVC.skipsView.skipsTable.estimatedRowHeight = 100
+                        skipsVC.skipsView.skipsTable.rowHeight = UITableView.automaticDimension
+                    }
+                    else {
+                        let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            print("Cannot connect to Internet")
+                        }))
+                        skipsVC.present(alertController, animated: true, completion: nil)
+                    }
+                    skipsVC.skipsView.activityIndicator.stopAnimating()
+                    skipsVC.skipsView.activityIndicator.isHidden = true
+                    skipsVC.skipsView.activityIndicator.removeFromSuperview()
+                }
+                debugPrint(request)
+            }
+            
+        }
+    }
     
     struct registerJsonData: Codable {
         let id: Int
