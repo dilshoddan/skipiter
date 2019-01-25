@@ -14,11 +14,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //Controls
     public var loginView: LoginView!
-    public var splashView: SplashView!
+    public var splashScreenVC: SplashScreenViewController!
     private var coreDataWorker: CoreDataWorker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ShowSplashScreen()
+        
         SetControlDefaults()
         render()
         NotificationCenter.default.addObserver(self,
@@ -27,11 +30,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                                object: nil)
         SetDBDefaults()
         AddTapGestures()
-        hero.isEnabled = true
+        
         
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func ShowSplashScreen(){
+        
+        hero.isEnabled = true
+        navigationController?.hero.isEnabled = true
+        
+        splashScreenVC = SplashScreenViewController()
+        navigationController?.pushViewController(splashScreenVC, animated: true)
+        
+        UIView.animate(withDuration: 4.0, delay: 4.2, options: .curveEaseOut, animations: {
+            self.navigationController?.popViewController(animated: true)
+        }, completion: { finished in
+            print("Napkins opened!")
+        })
+        
     }
     
     func SetControlDefaults(){
@@ -41,19 +60,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginView.userName.delegate = self
         loginView.userPassword.delegate = self
         
-        splashView = SplashView()
+        
     }
     
     func render(){
         //Render loginView
         
-//        view.sv(loginView)
-//        loginView.height(100%).width(100%).centerInContainer()
-//        loginView.updateConstraints()
+        view.sv(loginView)
+        loginView.height(100%).width(100%).centerInContainer()
+        loginView.updateConstraints()
         
-        view.sv(splashView)
-        splashView.height(100%).width(100%).centerInContainer()
-        splashView.updateConstraints()
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
