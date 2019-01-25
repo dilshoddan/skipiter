@@ -12,16 +12,15 @@ import Hero
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    
     //Controls
     public var loginView: LoginView!
     public var splashScreenVC: SplashScreenViewController!
     private var coreDataWorker: CoreDataWorker!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ShowSplashScreen()
-        
         SetControlDefaults()
         render()
         NotificationCenter.default.addObserver(self,
@@ -37,21 +36,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func ShowSplashScreen(){
-        
-        hero.isEnabled = true
-        navigationController?.hero.isEnabled = true
-        
-        splashScreenVC = SplashScreenViewController()
-        navigationController?.pushViewController(splashScreenVC, animated: true)
-        
-        UIView.animate(withDuration: 4.0, delay: 4.2, options: .curveEaseOut, animations: {
-            self.navigationController?.popViewController(animated: true)
-        }, completion: { finished in
-            print("Napkins opened!")
-        })
-        
-    }
+    
     
     func SetControlDefaults(){
         self.title = "LoginVC"

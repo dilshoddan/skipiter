@@ -8,6 +8,7 @@
 
 import UIKit
 import Stevia
+import Hero
 
 class SplashScreenViewController: UIViewController {
 
@@ -18,8 +19,25 @@ class SplashScreenViewController: UIViewController {
         SetControlDefaults()
         render()
         hero.isEnabled = true
+        navigationController?.hero.isEnabled = true
+        
+        ShowSplashScreen()
+    }
+    
+    func ShowSplashScreen(){
+        
+        hero.isEnabled = true
+        navigationController?.hero.isEnabled = true
+        
+        let loginVC = LoginViewController()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.navigationController?.pushViewController(loginVC, animated: true)
+        })
+        
+        
         
     }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

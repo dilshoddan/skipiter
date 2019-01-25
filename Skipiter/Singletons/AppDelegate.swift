@@ -20,12 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
-            let loginVC = LoginViewController()
+            let splashScreen = SplashScreenViewController()
             //navigationController = UINavigationController(rootViewController: loginViewController)
             
             let mainNavigation = MainNavigationController()
+            mainNavigation.hero.isEnabled = true
             mainNavigation.title = "MainNC"
-            mainNavigation.viewControllers = [loginVC]
+            mainNavigation.viewControllers = [splashScreen]
             window.rootViewController = mainNavigation
             window.makeKeyAndVisible()
             
