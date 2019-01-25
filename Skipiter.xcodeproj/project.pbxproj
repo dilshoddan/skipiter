@@ -16,7 +16,7 @@
 		844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9621A6B0120099E891 /* RegisterViewController.swift */; };
 		844B2C9921A6B0470099E891 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9821A6B0470099E891 /* PasswordResetViewController.swift */; };
 		844B2C9B21A6B1A10099E891 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B2C9A21A6B1A10099E891 /* ProfileViewController.swift */; };
-		8461532A21FB30800098FD59 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461532921FB30800098FD59 /* LaunchScreen.swift */; };
+		8461532A21FB30800098FD59 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461532921FB30800098FD59 /* SplashView.swift */; };
 		84617BCC21EDC123006EE05F /* AlamofireWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84617BCB21EDC123006EE05F /* AlamofireWorker.swift */; };
 		84A4DD8A21CCDF0F007CF216 /* FileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4DD8921CCDF0F007CF216 /* FileWorker.swift */; };
 		84A4DD8C21CCE54C007CF216 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4DD8B21CCE54C007CF216 /* StringExtension.swift */; };
@@ -68,7 +68,7 @@
 		844B2C9621A6B0120099E891 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		844B2C9821A6B0470099E891 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		844B2C9A21A6B1A10099E891 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		8461532921FB30800098FD59 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		8461532921FB30800098FD59 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		84617BCB21EDC123006EE05F /* AlamofireWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireWorker.swift; sourceTree = "<group>"; };
 		84A4DD8921CCDF0F007CF216 /* FileWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWorker.swift; sourceTree = "<group>"; };
 		84A4DD8B21CCE54C007CF216 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 				840A579D21EA0A7000A40854 /* SkipsView.swift */,
 				84076AE721EFBAD60025F63A /* SkipTableViewCell.swift */,
 				8449567D21EFC42700D484C0 /* Extension.swift */,
-				8461532921FB30800098FD59 /* LaunchScreen.swift */,
+				8461532921FB30800098FD59 /* SplashView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -487,7 +487,7 @@
 			files = (
 				F485B79E21A28BF300520C36 /* LoginViewController.swift in Sources */,
 				F4B2AA5421AC0A7A00A3AEDA /* RegisterView.swift in Sources */,
-				8461532A21FB30800098FD59 /* LaunchScreen.swift in Sources */,
+				8461532A21FB30800098FD59 /* SplashView.swift in Sources */,
 				F4B2AA5221AC096200A3AEDA /* ProfileView.swift in Sources */,
 				84AA9B0821C77A8D0043A58D /* skipiter.xcdatamodeld in Sources */,
 				84076AE821EFBAD60025F63A /* SkipTableViewCell.swift in Sources */,

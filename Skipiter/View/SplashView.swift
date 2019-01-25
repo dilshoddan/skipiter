@@ -10,7 +10,7 @@ import UIKit
 import Stevia
 
 
-class LaunchScreen: UIView {
+class SplashView: UIView {
 
     public var shouldSetupConstraints = true
     public var containerView: UIView!
@@ -36,7 +36,7 @@ class LaunchScreen: UIView {
         if(shouldSetupConstraints){
             
             containerView.sv([iconImage])
-            iconImage.height(40%).width(40%).centerHorizontally().centerVertically()
+            iconImage.height(22%).width(40%).centerHorizontally().centerVertically()
             
             self.sv(containerView)
             containerView.fillContainer()
@@ -51,9 +51,10 @@ class LaunchScreen: UIView {
         self.backgroundColor = ColorConstants.LoginViewVC
         
         containerView = UIView()
-        containerView.backgroundColor = ColorConstants.LoginContent
+        containerView.backgroundColor = ColorConstants.LoginViewVC
         
         iconImage = UIImageView()
+        iconImage.image = UIImage(named: "YellowIconLarge")
             
         
         

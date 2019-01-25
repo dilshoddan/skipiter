@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //Controls
     public var loginView: LoginView!
+    public var splashView: SplashView!
     private var coreDataWorker: CoreDataWorker!
     
     override func viewDidLoad() {
@@ -39,14 +40,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginView.loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
         loginView.userName.delegate = self
         loginView.userPassword.delegate = self
+        
+        splashView = SplashView()
     }
     
     func render(){
         //Render loginView
         
-        view.sv(loginView)
-        loginView.height(100%).width(100%).centerInContainer()
-        loginView.updateConstraints()
+//        view.sv(loginView)
+//        loginView.height(100%).width(100%).centerInContainer()
+//        loginView.updateConstraints()
+        
+        view.sv(splashView)
+        splashView.height(100%).width(100%).centerInContainer()
+        splashView.updateConstraints()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
