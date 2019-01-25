@@ -15,12 +15,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //Controls
     public var loginView: LoginView!
-    public var splashScreenVC: SplashScreenViewController!
+    public var splashScreen: SplashView!
     private var coreDataWorker: CoreDataWorker!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         SetControlDefaults()
         render()
         NotificationCenter.default.addObserver(self,
@@ -40,10 +43,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func SetControlDefaults(){
         self.title = "LoginVC"
+        
         loginView = LoginView(frame: self.view.bounds)
+        loginView.hero.id = "loginView"
         loginView.loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
         loginView.userName.delegate = self
         loginView.userPassword.delegate = self
+        
+        
         
         
     }
