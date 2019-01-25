@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         
-        
+        hero.isEnabled = true
         SetControlDefaults()
         render()
         NotificationCenter.default.addObserver(self,
@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginView.loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
         loginView.userName.delegate = self
         loginView.userPassword.delegate = self
-        
+        loginView.hero.modifiers = [.fade, .scale(1.5)]
         
         
         
