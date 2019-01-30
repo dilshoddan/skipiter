@@ -66,9 +66,7 @@ class ComposeViewController: UIViewController, UITabBarDelegate {
             AlamofireWorker.ComposeSkip(text: text)
                 .done { sent -> Void in
                     if sent {
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.window?.rootViewController = MainNavigationController(rootViewController: MainTabBarController())
-                        //                        self.navigationController?.pushViewController(skipsVC, animated: true)
+                        self.navigationController?.popToRootViewController(animated: true)
                     }
                     else {
                         let alertController = UIAlertController(title: "Error", message: "Sorry, Connection issues", preferredStyle: .alert)
