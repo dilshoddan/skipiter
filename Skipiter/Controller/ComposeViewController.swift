@@ -15,7 +15,7 @@ class ComposeViewController: UIViewController {
 
         self.title = "Compose"
         self.view.backgroundColor = .red
-        navigationController?.isNavigationBarHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
 
