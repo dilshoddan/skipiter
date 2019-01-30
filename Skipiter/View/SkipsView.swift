@@ -13,6 +13,8 @@ class SkipsView: UIView {
 
     public var shouldSetupConstraints = true
     public var skipsTable: UITableView!
+    public var composeImage: UIImageView!
+    
     public var activityIndicator: UIActivityIndicatorView!
     
     let screenSize = UIScreen.main.bounds
@@ -32,10 +34,13 @@ class SkipsView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([skipsTable, activityIndicator])
+            self.sv([skipsTable, composeImage, activityIndicator])
+            
             
             skipsTable.top(2%).height(98%).width(100%)
+            
             activityIndicator.fillContainer()
+            composeImage.height(7%).width(12%).right(5%).bottom(15%)
             
             
         }
@@ -46,6 +51,9 @@ class SkipsView: UIView {
         self.backgroundColor = .white
         
         skipsTable = UITableView()
+        
+        composeImage = UIImageView()
+        composeImage.image = UIImage(named: "Compose_S")
         
         activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.hidesWhenStopped = true

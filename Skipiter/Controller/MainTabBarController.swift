@@ -44,6 +44,7 @@ class MainTabBarController: UITabBarController {
         //viewControllers = [loginVC, skipsVC, searchVC, notificationsVC, messagesVC]
         
         viewControllers = [skipsVC, searchVC, notificationsVC, messagesVC]
+        self.tabBar.tintColor = ColorConstants.LoginViewVC
     }
 
 }
