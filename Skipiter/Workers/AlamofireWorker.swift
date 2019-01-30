@@ -93,6 +93,34 @@ class AlamofireWorker {
     }
     
 
+    public static func ComposeSkip() -> Promise<Bool> {
+        
+        return Promise { seal in
+            if let sessionManager = sessionManager {
+                
+                sessionManager.request("https://skipiter.vapor.cloud/listAllSkips", encoding: URLEncoding.httpBody)
+                    .responseJSON { response in
+                        
+                        switch response.result {
+                        case .success(let json):
+                            
+                            guard let arrayOfDictionary = json  as? [[String: Any]] else {
+                                return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                            }
+                            
+                            seal.fulfill(true))
+                        case .failure(let error):
+                            seal.reject(error)
+                        }
+                }
+                
+                
+            }
+            
+        }
+        
+    }
+    
     public static func ListAllSkips() -> Promise<([[String: Any]], Bool)> {
        
         return Promise { seal in
