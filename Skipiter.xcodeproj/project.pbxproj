@@ -14,6 +14,7 @@
 		8413BD0A21A809FE00F8A1D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413BD0921A809FE00F8A1D5 /* Extensions.swift */; };
 		8437C2B62201F13F007B81F9 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C2B52201F13F007B81F9 /* NotificationsViewController.swift */; };
 		8437C2B82201F158007B81F9 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C2B72201F158007B81F9 /* MessagesViewController.swift */; };
+		8437C2BA220211E8007B81F9 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C2B9220211E8007B81F9 /* ComposeViewController.swift */; };
 		8449567E21EFC42700D484C0 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449567D21EFC42700D484C0 /* Extension.swift */; };
 		844A1FF02201DFCD0032AA09 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A1FEF2201DFCD0032AA09 /* MainTabBarController.swift */; };
 		844A1FF22201E1E00032AA09 /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A1FF12201E1E00032AA09 /* SearchUserViewController.swift */; };
@@ -71,6 +72,7 @@
 		8413BD0921A809FE00F8A1D5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8437C2B52201F13F007B81F9 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		8437C2B72201F158007B81F9 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		8437C2B9220211E8007B81F9 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		8449567D21EFC42700D484C0 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		844A1FEF2201DFCD0032AA09 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		844A1FF12201E1E00032AA09 /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				844A1FF12201E1E00032AA09 /* SearchUserViewController.swift */,
 				8437C2B52201F13F007B81F9 /* NotificationsViewController.swift */,
 				8437C2B72201F158007B81F9 /* MessagesViewController.swift */,
+				8437C2B9220211E8007B81F9 /* ComposeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				84B3631321A542B900A0B39C /* MainNavigationController.swift in Sources */,
 				84A4DD8C21CCE54C007CF216 /* StringExtension.swift in Sources */,
 				F485B79C21A28BF300520C36 /* AppDelegate.swift in Sources */,
+				8437C2BA220211E8007B81F9 /* ComposeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -61,6 +61,7 @@ class SkipsViewController: UIViewController {
         
         
         
+        
     }
     
     func ListAllSkips(){
@@ -116,7 +117,19 @@ class SkipsViewController: UIViewController {
         
     }
     
+    @objc func ComposeImageTapped(recognizer:UITapGestureRecognizer){
+        let composeVC = ComposeViewController()
+        
+        navigationController?.pushViewController(composeVC, animated: true)
+        
+    }
+    
     func AddTapGestures(){
+        skipsView.composeImage.isUserInteractionEnabled = true
+        let composeImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(ComposeImageTapped(recognizer:)))
+        skipsView.composeImage.addGestureRecognizer(composeImageTapGesture)
+        
+        
     }
     
     func SetDBDefaults(){

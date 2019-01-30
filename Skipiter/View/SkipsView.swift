@@ -40,7 +40,7 @@ class SkipsView: UIView {
             skipsTable.top(2%).height(98%).width(100%)
             
             activityIndicator.fillContainer()
-            composeImage.height(7%).width(12%).right(5%).bottom(15%)
+            composeImage.height(7%).width(11%).right(5%).bottom(15%)
             
             
         }
