@@ -21,8 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
             let splashView = SplashScreenViewController()
+            let loginVC = LoginViewController()
             navigationController?.hero.isEnabled = true
-            window.rootViewController = splashView
+            window.rootViewController = loginVC
             window.makeKeyAndVisible()
             
             

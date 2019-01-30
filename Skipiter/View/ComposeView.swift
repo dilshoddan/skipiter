@@ -40,7 +40,8 @@ class ComposeView: UIView {
             self.sv([tabBar, composeText, activityIndicator])
             
 //            cancelItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-            tabBar.height(10%).width(100%).top(0%)
+            //UIEdgeInsetsMake(6, 0, -6, 0)
+            tabBar.height(10%).width(100%)
             composeText.height(98%).width(100%).top(10%)
             activityIndicator.fillContainer()
             

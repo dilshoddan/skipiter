@@ -10,7 +10,7 @@ import UIKit
 import Stevia
 import Hero
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITabBarDelegate {
 
     public var composeView: ComposeView!
     
@@ -34,7 +34,7 @@ class ComposeViewController: UIViewController {
     func SetControlDefaults(){
         
         composeView = ComposeView(frame: self.view.bounds)
-        
+        composeView.tabBar.delegate = self
     }
     
     func render(){
@@ -42,5 +42,21 @@ class ComposeViewController: UIViewController {
         view.sv(composeView)
         composeView.height(100%).width(100%).centerInContainer()
         composeView.updateConstraints()
+    }
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        switch item {
+        case composeView.cancelItem:
+            navigationController?.popViewController(animated: true)
+        case composeView.acceptItem:
+            SaveCompose()
+            navigationController?.popViewController(animated: true)
+        default:
+            print("That's it")
+        }
+    }
+    
+    func SaveCompose(){
+        
     }
 }
