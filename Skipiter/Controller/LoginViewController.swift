@@ -22,7 +22,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        Hero.shared.defaultAnimation = .none
+        navigationController?.hero.isEnabled = true
         hero.isEnabled = true
         SetControlDefaults()
         render()
@@ -49,7 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginView.loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
         loginView.userName.delegate = self
         loginView.userPassword.delegate = self
-        loginView.hero.modifiers = [.fade, .scale(2.5)]
+        loginView.hero.modifiers = [.cascade(delta: 1, direction: CascadeDirection.bottomToTop, delayMatchedViews: true), .scale(1.5)]
         
         
         
@@ -92,6 +93,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
+    override func touchesBegan(_: Set<UITouch>, with: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @objc func LoginClicked(){
         let userName = loginView.userName.text
         let userPassword = loginView.userPassword.text
@@ -100,6 +105,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             !(userName.isEmpty),
             !(userPassword.isEmpty)
         {
+            self.view.endEditing(true)
             loginView.activityIndicator.isHidden = false
             loginView.activityIndicator.startAnimating()
             

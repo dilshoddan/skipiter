@@ -21,6 +21,8 @@ class SkipsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Hero.shared.defaultAnimation = .none
+        navigationController?.hero.isEnabled = true
         SetControlDefaults()
         render()
         hero.isEnabled = true
@@ -38,7 +40,9 @@ class SkipsViewController: UIViewController {
             let profileVC = ProfileViewController()
             navigationController?.pushViewController(profileVC, animated: true)
         case 3:
-            navigationController?.popToRootViewController(animated: true)
+//            navigationController?.popToRootViewController(animated: true)
+            let loginVC = LoginViewController()
+            navigationController?.pushViewController(loginVC, animated: true)
         default:
             break
         }

@@ -68,7 +68,8 @@ class AlamofireWorker {
                     case .success(let json):
                         
                         guard let json = json  as? [String: Any], let token = json["token"] as? String else {
-                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                            return seal.fulfill(false)
+                                //seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
                         }
                         
                         var headers = Alamofire.SessionManager.defaultHTTPHeaders

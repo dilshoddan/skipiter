@@ -13,22 +13,27 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var window: UIWindow?
+    public var window: UIWindow?
     var navigationController: UINavigationController?
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
-            let splashScreen = SplashScreenViewController()
+            let splashView = SplashScreenViewController()
+            let loginVC = LoginViewController()
             //navigationController = UINavigationController(rootViewController: loginViewController)
             
             let mainNavigation = MainNavigationController()
             mainNavigation.hero.isEnabled = true
             mainNavigation.title = "MainNC"
-            mainNavigation.viewControllers = [splashScreen]
+            mainNavigation.viewControllers = [splashView]
             window.rootViewController = mainNavigation
             window.makeKeyAndVisible()
+            
+            
+            
+            
             
             
         }

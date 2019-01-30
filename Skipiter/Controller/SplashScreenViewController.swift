@@ -16,6 +16,9 @@ class SplashScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Hero.shared.defaultAnimation = .none
+        navigationController?.hero.isEnabled = true
         SetControlDefaults()
         render()
         hero.isEnabled = true
@@ -33,8 +36,6 @@ class SplashScreenViewController: UIViewController {
 //        navigationController?.hero.navigationAnimationType = .zoom
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
             self.navigationController?.pushViewController(loginVC, animated: true)
-            self.navigationController?.viewControllers = [loginVC]
-            //self.navigationController?.present(loginVC, animated: true, completion: {})
         })
     
         
