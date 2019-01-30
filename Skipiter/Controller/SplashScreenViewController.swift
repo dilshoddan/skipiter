@@ -32,8 +32,9 @@ class SplashScreenViewController: UIViewController {
         let loginVC = LoginViewController()
 //        navigationController?.hero.navigationAnimationType = .zoom
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            //self.navigationController?.pushViewController(loginVC, animated: true)
-            self.navigationController?.present(loginVC, animated: true, completion: {})
+            self.navigationController?.pushViewController(loginVC, animated: true)
+            self.navigationController?.viewControllers = [loginVC]
+            //self.navigationController?.present(loginVC, animated: true, completion: {})
         })
     
         
