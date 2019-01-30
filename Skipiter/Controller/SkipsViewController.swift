@@ -23,6 +23,7 @@ class SkipsViewController: UIViewController {
         
         Hero.shared.defaultAnimation = .none
         navigationController?.hero.isEnabled = true
+        navigationController?.isNavigationBarHidden = false
         SetControlDefaults()
         render()
         hero.isEnabled = true
@@ -58,7 +59,7 @@ class SkipsViewController: UIViewController {
         skipsView = SkipsView(frame: view.bounds)
         skipsView.backgroundColor = .white
         
-        skipsView.segmentedControl.addTarget(self, action: #selector(SegmentedControlValueChanged(selectedControl:)), for: .valueChanged)
+        
         
     }
     

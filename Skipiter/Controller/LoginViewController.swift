@@ -24,6 +24,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         Hero.shared.defaultAnimation = .none
         navigationController?.hero.isEnabled = true
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.tabBarController?.tabBar.isHidden = true
         hero.isEnabled = true
         SetControlDefaults()
         render()
@@ -113,8 +115,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             AlamofireWorker.loginPromise(with: userName, and: userPassword)
                 .done { loggedIn -> Void in
                     if loggedIn {
-                        let skipsVC = SkipsViewController()
-                        self.navigationController?.pushViewController(skipsVC, animated: true)
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.window?.rootViewController = MainNavigationController(rootViewController: MainTabBarController())
+//                        self.navigationController?.pushViewController(skipsVC, animated: true)
                     }
                     else {
                         let alertController = UIAlertController(title: "Error", message: "User name and password do not match", preferredStyle: .alert)

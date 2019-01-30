@@ -15,7 +15,6 @@ class ProfileView: UIView {
     public var skipsTable: UITableView!
     public var profileBanner: UIImageView!
     public var profileImage: UIImageView!
-    public var segmentedControl: UISegmentedControl!
     public var activityIndicator: UIActivityIndicatorView!
     
     let screenSize = UIScreen.main.bounds
@@ -36,7 +35,7 @@ class ProfileView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([skipsTable, profileBanner, profileImage, segmentedControl, activityIndicator])
+            self.sv([skipsTable, profileBanner, profileImage, activityIndicator])
             
             profileBanner.height(16%).width(100%).centerHorizontally()
             profileBanner.Top == self.Top
@@ -46,9 +45,6 @@ class ProfileView: UIView {
             
             skipsTable.top(2%).height(72%).width(100%)
             skipsTable.Top == profileImage.Bottom
-            
-            segmentedControl.height(5%).width(90%).centerHorizontally()
-            segmentedControl.Bottom == self.Bottom
             
             activityIndicator.fillContainer()
             
@@ -69,10 +65,6 @@ class ProfileView: UIView {
         profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.cornerRadius = 5.0
-        
-        segmentedControl = UISegmentedControl()
-        segmentedControl = UISegmentedControl(items: ["Skips", "Profile", "Comments", "LogOut"])
-        segmentedControl.tintColor = ColorConstants.LoginViewVC
         
         activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.hidesWhenStopped = true

@@ -13,13 +13,12 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let loginVC = LoginViewController()
         
         let skipsVC = SkipsViewController()
         skipsVC.title = "Skips"
         let skipsItem:UITabBarItem = UITabBarItem(title: nil,
                                                   image: UIImage(named: "Home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
-                                                  selectedImage: UIImage(named: "Home"))
+                                                  selectedImage: UIImage(named: "Home_S"))
         skipsVC.tabBarItem = skipsItem
         
         let searchVC = SearchUserViewController()
@@ -27,23 +26,24 @@ class MainTabBarController: UITabBarController {
         
         let searchItem:UITabBarItem = UITabBarItem(title: nil,
                                                   image: UIImage(named: "Search")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
-                                                  selectedImage: UIImage(named: "Search"))
+                                                  selectedImage: UIImage(named: "Search_S"))
         searchVC.tabBarItem = searchItem
         
         let notificationsVC = NotificationsViewController()
         let notificationsItem:UITabBarItem = UITabBarItem(title: nil,
                                                    image: UIImage(named: "Notification")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
-                                                   selectedImage: UIImage(named: "Notification"))
+                                                   selectedImage: UIImage(named: "Notification_S"))
         notificationsVC.tabBarItem = notificationsItem
         
         let messagesVC = MessagesViewController()
         let messagesItem:UITabBarItem = UITabBarItem(title: nil,
                                                           image: UIImage(named: "Messages")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
-                                                          selectedImage: UIImage(named: "Messages"))
+                                                          selectedImage: UIImage(named: "Messages_S"))
         messagesVC.tabBarItem = messagesItem
         
-        viewControllers = [loginVC, skipsVC, searchVC, notificationsVC, messagesVC]
+        //viewControllers = [loginVC, skipsVC, searchVC, notificationsVC, messagesVC]
         
+        viewControllers = [skipsVC, searchVC, notificationsVC, messagesVC]
     }
 
 }

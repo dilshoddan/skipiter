@@ -9,6 +9,8 @@
 import UIKit
 import Stevia
 import PromiseKit
+import Hero
+
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
@@ -16,6 +18,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Hero.shared.defaultAnimation = .none
+        navigationController?.hero.isEnabled = true
+        navigationController?.isNavigationBarHidden = true
         
         SetControllerDefaults()
         render()

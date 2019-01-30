@@ -14,6 +14,7 @@ class SearchUserViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .yellow
+        navigationController?.isNavigationBarHidden = false
         // Do any additional setup after loading the view.
     }
     

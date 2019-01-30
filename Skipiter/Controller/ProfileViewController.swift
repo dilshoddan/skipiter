@@ -23,6 +23,10 @@ class ProfileViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        Hero.shared.defaultAnimation = .none
+        navigationController?.hero.isEnabled = true
+        navigationController?.isNavigationBarHidden = false
         SetControlDefaults()
         render()
         hero.isEnabled = true
@@ -86,7 +90,7 @@ class ProfileViewController: UIViewController,
         profileImagePicker = UIImagePickerController()
         profileBannerPicker = UIImagePickerController()
         
-        profileView.segmentedControl.addTarget(self, action: #selector(SegmentedControlValueChanged(selectedControl:)), for: .valueChanged)
+        
         
     }
     

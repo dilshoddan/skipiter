@@ -13,7 +13,6 @@ class SkipsView: UIView {
 
     public var shouldSetupConstraints = true
     public var skipsTable: UITableView!
-    public var segmentedControl: UISegmentedControl!
     public var activityIndicator: UIActivityIndicatorView!
     
     let screenSize = UIScreen.main.bounds
@@ -33,11 +32,9 @@ class SkipsView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([skipsTable, segmentedControl, activityIndicator])
+            self.sv([skipsTable, activityIndicator])
             
-            skipsTable.top(2%).height(98%).width(100%)            
-            segmentedControl.height(5%).width(90%).centerHorizontally()
-            segmentedControl.Bottom == self.Bottom
+            skipsTable.top(2%).height(98%).width(100%)
             activityIndicator.fillContainer()
             
             
@@ -47,10 +44,6 @@ class SkipsView: UIView {
     
     func SetControlDefaults(){
         self.backgroundColor = .white
-        
-        segmentedControl = UISegmentedControl()
-        segmentedControl = UISegmentedControl(items: ["Skips", "Profile", "Comments", "LogOut"])
-        segmentedControl.tintColor = ColorConstants.LoginViewVC
         
         skipsTable = UITableView()
         
