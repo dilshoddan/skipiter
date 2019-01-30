@@ -11,12 +11,12 @@ import Stevia
 import Hero
 
 class ComposeViewController: UIViewController, UITabBarDelegate {
-
+    
     public var composeView: ComposeView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = "Compose"
         Hero.shared.defaultAnimation = .none
         navigationController?.hero.isEnabled = true
@@ -28,7 +28,7 @@ class ComposeViewController: UIViewController, UITabBarDelegate {
     }
     
     deinit {
-       
+        
     }
     
     func SetControlDefaults(){
@@ -57,6 +57,34 @@ class ComposeViewController: UIViewController, UITabBarDelegate {
     }
     
     func SaveCompose(){
-        
+        let text = composeView.composeText.text
+        if let text = text, !(text.isEmpty) {
+            self.view.endEditing(true)
+            composeView.activityIndicator.isHidden = false
+            composeView.activityIndicator.startAnimating()
+            
+            AlamofireWorker.ComposeSkip(text: text)
+                .done { sent -> Void in
+                    if sent {
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.window?.rootViewController = MainNavigationController(rootViewController: MainTabBarController())
+                        //                        self.navigationController?.pushViewController(skipsVC, animated: true)
+                    }
+                    else {
+                        let alertController = UIAlertController(title: "Error", message: "Sorry, Connection issues", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            print("Sorry, Connection issues")
+                        }))
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                    self.composeView.activityIndicator.stopAnimating()
+                    self.composeView.activityIndicator.isHidden = true
+                    self.composeView.activityIndicator.removeFromSuperview()
+                }
+                .catch { error in
+                    //Handle error or give feedback to the user
+                    print(error.localizedDescription)
+            }
+        }
     }
 }

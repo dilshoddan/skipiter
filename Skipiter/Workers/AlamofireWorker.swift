@@ -93,12 +93,19 @@ class AlamofireWorker {
     }
     
 
-    public static func ComposeSkip() -> Promise<Bool> {
+    public static func ComposeSkip(text: String) -> Promise<Bool> {
+//        let headers: HTTPHeaders = [
+//            "Accept": "application/json"
+//        ]
+        
+        let parameters = [
+            "text": text
+        ]
         
         return Promise { seal in
-            if let sessionManager = sessionManager {
+            if let sessionManagerWithBearer = sessionManagerWithBearer {
                 
-                sessionManager.request("https://skipiter.vapor.cloud/listAllSkips", encoding: URLEncoding.httpBody)
+                sessionManagerWithBearer.request("https://skipiter.vapor.cloud/skip", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         
                         switch response.result {
@@ -108,7 +115,7 @@ class AlamofireWorker {
                                 return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
                             }
                             
-                            seal.fulfill(true))
+                            seal.fulfill(true)
                         case .failure(let error):
                             seal.reject(error)
                         }
