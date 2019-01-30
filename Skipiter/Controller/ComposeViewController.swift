@@ -7,26 +7,40 @@
 //
 
 import UIKit
+import Stevia
+import Hero
 
 class ComposeViewController: UIViewController {
 
+    public var composeView: ComposeView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Compose"
-        self.view.backgroundColor = .red
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        Hero.shared.defaultAnimation = .none
+        navigationController?.hero.isEnabled = true
+        SetControlDefaults()
+        render()
+        hero.isEnabled = true
+        navigationController?.hero.isEnabled = true
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    deinit {
+       
     }
-    */
-
+    
+    func SetControlDefaults(){
+        
+        composeView = ComposeView(frame: self.view.bounds)
+        
+    }
+    
+    func render(){
+        
+        view.sv(composeView)
+        composeView.height(100%).width(100%).centerInContainer()
+        composeView.updateConstraints()
+    }
 }

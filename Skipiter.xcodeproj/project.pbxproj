@@ -15,6 +15,7 @@
 		8437C2B62201F13F007B81F9 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C2B52201F13F007B81F9 /* NotificationsViewController.swift */; };
 		8437C2B82201F158007B81F9 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C2B72201F158007B81F9 /* MessagesViewController.swift */; };
 		8437C2BA220211E8007B81F9 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C2B9220211E8007B81F9 /* ComposeViewController.swift */; };
+		8437C2BC22022C16007B81F9 /* ComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C2BB22022C16007B81F9 /* ComposeView.swift */; };
 		8449567E21EFC42700D484C0 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449567D21EFC42700D484C0 /* Extension.swift */; };
 		844A1FF02201DFCD0032AA09 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A1FEF2201DFCD0032AA09 /* MainTabBarController.swift */; };
 		844A1FF22201E1E00032AA09 /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A1FF12201E1E00032AA09 /* SearchUserViewController.swift */; };
@@ -73,6 +74,7 @@
 		8437C2B52201F13F007B81F9 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		8437C2B72201F158007B81F9 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		8437C2B9220211E8007B81F9 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		8437C2BB22022C16007B81F9 /* ComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeView.swift; sourceTree = "<group>"; };
 		8449567D21EFC42700D484C0 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		844A1FEF2201DFCD0032AA09 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		844A1FF12201E1E00032AA09 /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				84076AE721EFBAD60025F63A /* SkipTableViewCell.swift */,
 				8449567D21EFC42700D484C0 /* Extension.swift */,
 				8461532921FB30800098FD59 /* SplashView.swift */,
+				8437C2BB22022C16007B81F9 /* ComposeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				8449567E21EFC42700D484C0 /* Extension.swift in Sources */,
 				84AA9B2B21C7896D0043A58D /* User.swift in Sources */,
 				844B2C9721A6B0120099E891 /* RegisterViewController.swift in Sources */,
+				8437C2BC22022C16007B81F9 /* ComposeView.swift in Sources */,
 				84617BCC21EDC123006EE05F /* AlamofireWorker.swift in Sources */,
 				F4EDB5B521A2946D00E1B544 /* ColorConstants.swift in Sources */,
 				844B2C9B21A6B1A10099E891 /* ProfileViewController.swift in Sources */,
