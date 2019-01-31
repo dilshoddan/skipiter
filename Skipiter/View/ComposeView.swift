@@ -57,12 +57,12 @@ class ComposeView: UIView {
         
         cancelItem = UITabBarItem()
         cancelItem.image = UIImage(named: "Cross_S")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        cancelItem.imageInsets = UIEdgeInsets(top: 6, left: -35, bottom: -6, right: -5)
+        cancelItem.imageInsets = UIEdgeInsets(top: 15, left: -85, bottom: -15, right: -5)
 //        cancelItem.titlePositionAdjustment = UIOffset.init(horizontal: 80, vertical: 50)
         
         acceptItem = UITabBarItem()
         acceptItem.image = UIImage(named: "OK")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        acceptItem.imageInsets = UIEdgeInsets(top: 6, left: -5, bottom: -6, right: -35)
+        acceptItem.imageInsets = UIEdgeInsets(top: 15, left: -5, bottom: -15, right: -85)
 //        acceptItem.titlePositionAdjustment = UIOffset.init(horizontal: -30, vertical: 0)
         
         tabBar.items = [cancelItem, acceptItem]
