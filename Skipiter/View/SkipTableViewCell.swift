@@ -25,7 +25,8 @@ class SkipTableViewCell: UITableViewCell {
     private let profileImage : UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "Me_S")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        
+        img.contentMode = .scaleAspectFill
+//        img.layer.masksToBounds = true
         return img
     }()
     
@@ -101,16 +102,9 @@ class SkipTableViewCell: UITableViewCell {
     
     func SetConstraints(){
         sv([leftView, rightView])
-        leftView.width(20%)
+        leftView.width(10%)
         rightView.width(80%)
-        leftView.Right == rightView.Left
         leftView.Top == rightView.Top
-//        rightView.fillContainer()
-        //        rightView.Left == self.Left
-        //        bottomView.Left == rightView.Left
-        //        rightView.height(85%).width(100%)
-        ////        bottomView.height(15%).width(100%)
-        //        bottomView.Top == rightView.Bottom
         layout(
             0,
             |-leftView-rightView-|,
@@ -129,10 +123,6 @@ class SkipTableViewCell: UITableViewCell {
         
         //        rightView.fillContainer()
         rightView.sv([userName, userSkip, userSkipDate, bottomView])
-//        userName.Left == rightView.Left
-//        userSkip.Left == userName.Left
-//        userSkip.Top == userName.Bottom
-//        userSkipDate.Top == userSkip.Bottom
         rightView.layout (
             0,
             |-userName-|,
@@ -147,14 +137,9 @@ class SkipTableViewCell: UITableViewCell {
         
         bottomView.sv([replyImage, reTweetImage, loveImage, messageImage])
         
-//        replyImage.top(0).bottom(0)
-//        reTweetImage.top(0).bottom(0)
-//        loveImage.top(0).bottom(0)
-//        messageImage.top(0).bottom(0)
-        
         bottomView.layout(
             3,
-            |-replyImage-45-reTweetImage-45-loveImage-45-messageImage-|,
+            |-replyImage-45-reTweetImage-80-loveImage-45-messageImage-|,
             5
         )
         
