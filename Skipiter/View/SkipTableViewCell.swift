@@ -101,12 +101,26 @@ class SkipTableViewCell: UITableViewCell {
     
     func SetConstraints(){
         sv([leftView, rightView, bottomView])
+        rightView.Left == leftView.Right
+        bottomView.Left == leftView.Right
+        layout(
+            0,
+            |-leftView-rightView-|,
+            |-bottomView-|,
+            0
+        )
         
-//        rightView.fillContainer()
+        leftView.width(15%).height(85%)
+        rightView.width(85%).height(85%)
+        bottomView.width(85%).height(15%)
+        
+        leftView.sv(profileImage)
+        
+        
+        //        rightView.fillContainer()
         rightView.sv([userName, userSkip, userSkipDate])
         userName.Left == rightView.Left
         userSkip.Left == userName.Left
-        userSkipDate.Bottom == self.Bottom
         rightView.layout (
             0,
             |-userName-|,
@@ -115,6 +129,14 @@ class SkipTableViewCell: UITableViewCell {
             |-userSkipDate-|,
             0
         )
+        
+        bottomView.sv([replyImage, reTweetImage, loveImage, messageImage])
+        replyImage.Left == bottomView.Left
+        replyImage.Right == reTweetImage.Left
+        reTweetImage.Right == loveImage.Left
+        loveImage.Right == messageImage.Left
+        
+        
     }
     
 }
