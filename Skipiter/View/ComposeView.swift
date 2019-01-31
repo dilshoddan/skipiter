@@ -54,8 +54,14 @@ class ComposeView: UIView {
         self.backgroundColor = .white
         
         tabBar = UITabBar()
-        cancelItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
-        acceptItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
+        cancelItem = UITabBarItem()
+        cancelItem.selectedImage = UIImage(named: "Cross_S")
+        cancelItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        
+        acceptItem = UITabBarItem()
+        acceptItem.selectedImage = UIImage(named: "OK")
+        acceptItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        
         tabBar.items = [cancelItem, acceptItem]
         
         composeText = UITextView()
