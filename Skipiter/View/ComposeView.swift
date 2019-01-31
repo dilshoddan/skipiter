@@ -55,11 +55,11 @@ class ComposeView: UIView {
         
         tabBar = UITabBar()
         cancelItem = UITabBarItem()
-        cancelItem.selectedImage = UIImage(named: "Cross_S")
+        cancelItem.image = UIImage(named: "Cross_S")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         cancelItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         
         acceptItem = UITabBarItem()
-        acceptItem.selectedImage = UIImage(named: "OK")
+        acceptItem.image = UIImage(named: "OK")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         acceptItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         
         tabBar.items = [cancelItem, acceptItem]
