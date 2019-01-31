@@ -33,28 +33,28 @@ class SkipTableViewCell: UITableViewCell {
     private let replyImage : UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "Reply")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        
+        img.contentMode = .scaleAspectFill
         return img
     }()
     
     private let reTweetImage : UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "Retweet")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        
+        img.contentMode = .scaleAspectFill
         return img
     }()
     
     private let loveImage : UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "Love")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        
+        img.contentMode = .scaleAspectFill
         return img
     }()
     
     private let messageImage : UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "Messages")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        
+        img.contentMode = .scaleAspectFill
         return img
     }()
     
@@ -103,7 +103,13 @@ class SkipTableViewCell: UITableViewCell {
     func SetConstraints(){
         sv([profileImage, userName, userSkip, userSkipDate, replyImage, reTweetImage, loveImage, messageImage])
         userSkipDate.right(5%)
-        profileImage.left(5%)
+        profileImage.width(15%).left(5%)
+        replyImage.width(8%)
+        reTweetImage.width(8%)
+        loveImage.width(8%)
+        messageImage.width(8%)
+        
+        userSkip.width(75%).left(25%)
         
         layout(
             0,
@@ -111,11 +117,11 @@ class SkipTableViewCell: UITableViewCell {
             0,
             |-userSkip-|,
             7,
-            |-replyImage-reTweetImage-loveImage-messageImage-|,
+            |-replyImage-45-reTweetImage-45-loveImage-45-messageImage-|,
             7
         )
         
-        
+        profileImage.Top == userName.Top
         
         
         
