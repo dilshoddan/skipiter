@@ -5,13 +5,15 @@
 //  Created by Admin on 1/16/19.
 //  Copyright © 2019 Home. All rights reserved.
 //
-
 import UIKit
 import Stevia
 
 class SkipTableViewCell: UITableViewCell {
-
-    var subView: UIView = UIView()
+    
+    var rightView: UIView = UIView()
+    var leftView: UIView = UIView()
+    var bottomView: UIView = UIView()
+    
     var skip : AlamofireWorker.listAllSkipsJsonData? {
         didSet {
             userName.text = "@" + (skip?.userName ?? "") + ":"
@@ -19,6 +21,41 @@ class SkipTableViewCell: UITableViewCell {
             userSkipDate.text = skip?.date
         }
     }
+    
+    private let profileImage : UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "Me_S")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
+        return img
+    }()
+    
+    private let replyImage : UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "Reply")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
+        return img
+    }()
+    
+    private let reTweetImage : UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "Retweet")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
+        return img
+    }()
+    
+    private let loveImage : UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "Love")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
+        return img
+    }()
+    
+    private let messageImage : UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "Messages")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
+        return img
+    }()
     
     private let userName : UILabel = {
         let lbl = UILabel()
@@ -48,7 +85,7 @@ class SkipTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -63,13 +100,14 @@ class SkipTableViewCell: UITableViewCell {
     }
     
     func SetConstraints(){
-        sv(subView)
-        subView.fillContainer()
-        subView.sv([userName, userSkip, userSkipDate])
-        userName.Left == subView.Left
+        sv([leftView, rightView, bottomView])
+        
+//        rightView.fillContainer()
+        rightView.sv([userName, userSkip, userSkipDate])
+        userName.Left == rightView.Left
         userSkip.Left == userName.Left
         userSkipDate.Bottom == self.Bottom
-        subView.layout (
+        rightView.layout (
             0,
             |-userName-|,
             |-userSkip-|,
@@ -78,7 +116,7 @@ class SkipTableViewCell: UITableViewCell {
             0
         )
     }
-
+    
 }
 
 

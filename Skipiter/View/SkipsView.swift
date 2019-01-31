@@ -13,6 +13,7 @@ class SkipsView: UIView {
 
     public var shouldSetupConstraints = true
     public var skipsTable: UITableView!
+    
     public var composeImage: UIImageView!
     
     public var activityIndicator: UIActivityIndicatorView!
