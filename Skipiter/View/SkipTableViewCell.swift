@@ -101,47 +101,69 @@ class SkipTableViewCell: UITableViewCell {
     }
     
     func SetConstraints(){
-        sv([leftView, rightView])
-        leftView.width(10%)
-        rightView.width(80%)
-        leftView.Top == rightView.Top
+        sv([profileImage, userName, userSkip, userSkipDate, replyImage, reTweetImage, loveImage, messageImage])
+        userSkipDate.right(5%)
+        profileImage.left(5%)
+        
         layout(
             0,
-            |-leftView-rightView-|,
-            0
-        )
-        
-        
-        
-        leftView.sv(profileImage)
-        profileImage.fillContainer()
-        leftView.layout(
-            0,
-            |-profileImage-|,
-            0
-        )
-        
-        //        rightView.fillContainer()
-        rightView.sv([userName, userSkip, userSkipDate, bottomView])
-        rightView.layout (
-            0,
-            |-userName-|,
+            |-profileImage-userName-|,
             0,
             |-userSkip-|,
-            0,
-            |-userSkipDate-|,
-            0,
-            |-bottomView-|,
-            0
+            7,
+            |-replyImage-reTweetImage-loveImage-messageImage-|,
+            7
         )
         
-        bottomView.sv([replyImage, reTweetImage, loveImage, messageImage])
         
-        bottomView.layout(
-            3,
-            |-replyImage-45-reTweetImage-80-loveImage-45-messageImage-|,
-            5
-        )
+        
+        
+        
+        
+        
+        
+        
+//        sv([leftView, rightView])
+//        leftView.width(10%)
+//        rightView.width(80%)
+//        leftView.Top == rightView.Top
+//        layout(
+//            0,
+//            |-leftView-rightView-|,
+//            0
+//        )
+//
+//
+//
+//        leftView.sv(profileImage)
+//        profileImage.fillContainer()
+//        leftView.layout(
+//            0,
+//            |-profileImage-|,
+//            0
+//        )
+//
+//        //        rightView.fillContainer()
+//        rightView.sv([userName, userSkip, userSkipDate, bottomView])
+//        rightView.layout (
+//            0,
+//            |-userName-|,
+//            0,
+//            |-userSkip-|,
+//            0,
+//            |-userSkipDate-|,
+//            0,
+//            |-bottomView-|,
+//            0
+//        )
+//
+//        bottomView.sv([replyImage, reTweetImage, loveImage, messageImage])
+//
+//        bottomView.layout(
+//            3,
+//            |-replyImage-45-reTweetImage-80-loveImage-45-messageImage-|,
+//            5
+//        )
         
         
     }
