@@ -100,43 +100,62 @@ class SkipTableViewCell: UITableViewCell {
     }
     
     func SetConstraints(){
-        sv([leftView, rightView, bottomView])
-        bottomView.Left == rightView.Left
+        sv([leftView, rightView])
+        leftView.width(20%)
+        rightView.width(80%)
         leftView.Right == rightView.Left
         leftView.Top == rightView.Top
+//        rightView.fillContainer()
+        //        rightView.Left == self.Left
+        //        bottomView.Left == rightView.Left
+        //        rightView.height(85%).width(100%)
+        ////        bottomView.height(15%).width(100%)
+        //        bottomView.Top == rightView.Bottom
         layout(
             0,
             |-leftView-rightView-|,
-            |-bottomView-|,
             0
         )
         
-        leftView.width(15%).height(85%)
-        rightView.width(85%).height(85%)
-        bottomView.width(85%).height(15%)
+        
         
         leftView.sv(profileImage)
-        
+        profileImage.fillContainer()
+        leftView.layout(
+            0,
+            |-profileImage-|,
+            0
+        )
         
         //        rightView.fillContainer()
-        rightView.sv([userName, userSkip, userSkipDate])
-        userName.Left == rightView.Left
-        userSkip.Left == userName.Left
+        rightView.sv([userName, userSkip, userSkipDate, bottomView])
+//        userName.Left == rightView.Left
+//        userSkip.Left == userName.Left
+//        userSkip.Top == userName.Bottom
+//        userSkipDate.Top == userSkip.Bottom
         rightView.layout (
             0,
             |-userName-|,
+            0,
             |-userSkip-|,
-            2,
+            0,
             |-userSkipDate-|,
+            0,
+            |-bottomView-|,
             0
         )
         
         bottomView.sv([replyImage, reTweetImage, loveImage, messageImage])
         
+//        replyImage.top(0).bottom(0)
+//        reTweetImage.top(0).bottom(0)
+//        loveImage.top(0).bottom(0)
+//        messageImage.top(0).bottom(0)
+        
         bottomView.layout(
-            0,
-            |-replyImage-reTweetImage-loveImage-messageImage-|,
-            0
+            3,
+            |-replyImage-45-reTweetImage-45-loveImage-45-messageImage-|,
+            5
         )
         
         
