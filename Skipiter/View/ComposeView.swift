@@ -42,7 +42,7 @@ class ComposeView: UIView {
 //            cancelItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
             //UIEdgeInsetsMake(6, 0, -6, 0)
             tabBar.height(10%).width(100%)
-            composeText.height(98%).width(100%).top(10%)
+            composeText.height(90%).width(100%).top(10%)
             activityIndicator.fillContainer()
             
             
@@ -54,13 +54,16 @@ class ComposeView: UIView {
         self.backgroundColor = .white
         
         tabBar = UITabBar()
+        
         cancelItem = UITabBarItem()
         cancelItem.image = UIImage(named: "Cross_S")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        cancelItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        cancelItem.imageInsets = UIEdgeInsets(top: 6, left: -35, bottom: -6, right: -5)
+//        cancelItem.titlePositionAdjustment = UIOffset.init(horizontal: 80, vertical: 50)
         
         acceptItem = UITabBarItem()
         acceptItem.image = UIImage(named: "OK")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        acceptItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        acceptItem.imageInsets = UIEdgeInsets(top: 6, left: -5, bottom: -6, right: -35)
+//        acceptItem.titlePositionAdjustment = UIOffset.init(horizontal: -30, vertical: 0)
         
         tabBar.items = [cancelItem, acceptItem]
         
