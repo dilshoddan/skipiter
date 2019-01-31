@@ -101,9 +101,9 @@ class SkipTableViewCell: UITableViewCell {
     
     func SetConstraints(){
         sv([leftView, rightView, bottomView])
-        bottomView.Left == rightView.Right
-        leftView.Left == self.Left
-        rightView.Right == self.Right
+        bottomView.Left == rightView.Left
+        leftView.Right == rightView.Left
+        leftView.Top == rightView.Top
         layout(
             0,
             |-leftView-rightView-|,
@@ -132,7 +132,7 @@ class SkipTableViewCell: UITableViewCell {
         )
         
         bottomView.sv([replyImage, reTweetImage, loveImage, messageImage])
-        replyImage.Left == bottomView.Left
+        
         bottomView.layout(
             0,
             |-replyImage-reTweetImage-loveImage-messageImage-|,
