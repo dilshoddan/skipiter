@@ -27,6 +27,11 @@ class SkipTableViewCell: UITableViewCell {
         img.image = UIImage(named: "l2")
         img.contentMode = .scaleAspectFill
         img.clipsToBounds = true
+        
+        img.layer.borderColor = UIColor.white.cgColor
+        img.layer.borderWidth = 1.0
+        img.layer.cornerRadius = 25.0
+        
         return img
     }()
     
@@ -114,11 +119,13 @@ class SkipTableViewCell: UITableViewCell {
         userName.Left == userSkip.Left
         align(tops: [profileImage, userName, userSkipDate])
         
-        userSkip.Top == userName.Bottom - 2
-        
+        userSkip.Top == userName.Bottom
+        userSkip.Left == userName.Left
+        userSkip.right(5%)
+        userSkip.bottom(0)
         
         userSkipDate.right(5%)
-        
+        self.bottom(0)
         
         
         
