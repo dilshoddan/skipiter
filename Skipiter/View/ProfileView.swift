@@ -37,13 +37,13 @@ class ProfileView: UIView {
         if(shouldSetupConstraints){
             self.sv([skipsTable, profileBanner, profileImage, activityIndicator])
             
-            profileBanner.height(16%).width(100%).centerHorizontally()
+            profileBanner.height(16%).width(100%)
             profileBanner.Top == self.Top
             
-            profileImage.height(10%).width(18%).left(15)
+            profileImage.size(90).left(10%)
             profileImage.CenterY == profileBanner.Bottom
             
-            skipsTable.top(2%).height(72%).width(100%)
+            skipsTable.height(72%).width(100%)
             skipsTable.Top == profileImage.Bottom
             
             activityIndicator.fillContainer()
@@ -65,6 +65,10 @@ class ProfileView: UIView {
         profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.cornerRadius = 5.0
+        
+        profileImage.image = UIImage(named: "l2")
+        profileImage.contentMode = .scaleAspectFill
+        profileImage.clipsToBounds = true
         
         activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.hidesWhenStopped = true
