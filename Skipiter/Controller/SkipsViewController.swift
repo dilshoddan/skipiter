@@ -112,8 +112,8 @@ class SkipsViewController: UIViewController {
 //
 //        }
         
-//        skipsView.skipsTable.estimatedRowHeight = 600
-//        skipsView.skipsTable.rowHeight = UITableView.automaticDimension
+        skipsView.skipsTable.estimatedRowHeight = 600
+        skipsView.skipsTable.rowHeight = UITableView.automaticDimension
         
     }
     

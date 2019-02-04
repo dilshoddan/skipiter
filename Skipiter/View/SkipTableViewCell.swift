@@ -110,11 +110,12 @@ class SkipTableViewCell: UITableViewCell {
         sv([profileImage, userName, userSkipDate, userSkip])
         //, replyImage, reTweetImage, loveImage, messageImage])
         //        userName.top(0)
+        
         userName.top(3)
         
         profileImage.size(50).left(5%)
         profileImage.Right == userName.Left - 5
-        profileImage.bottom(3)
+//        profileImage.bottom(3)
         
         userName.Left == userSkip.Left
         align(tops: [profileImage, userName, userSkipDate])
@@ -122,11 +123,12 @@ class SkipTableViewCell: UITableViewCell {
         userSkip.Top == userName.Bottom
         userSkip.Left == userName.Left
         userSkip.right(5%)
-        userSkip.bottom(0)
+//        userSkip.Bottom == self.Bottom
         
         userSkipDate.right(5%)
-        self.bottom(0)
-        
+//        userSkip.bottom(0)
+        userSkip.bottom(0)
+       
         
         
         
