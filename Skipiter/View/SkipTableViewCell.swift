@@ -151,9 +151,9 @@ class SkipTableViewCell: UITableViewCell {
         
         align(tops: [replyImage, reTweetImage, loveImage, messageImage])
         replyImage.Left == userName.Left
-        replyImage.Right == reTweetImage.Left - 30
-        reTweetImage.Right == loveImage.Left - 30
-        loveImage.Right == messageImage.Left - 30
+        replyImage.Right == reTweetImage.Left - 40
+        reTweetImage.Right == loveImage.Left - 40
+        loveImage.Right == messageImage.Left - 40
 //        messageImage.Right == userSkip.Right
         replyImage.bottom(10)
         
