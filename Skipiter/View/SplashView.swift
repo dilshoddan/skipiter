@@ -36,7 +36,7 @@ class SplashView: UIView {
         if(shouldSetupConstraints){
             
             containerView.sv([iconImage])
-            iconImage.height(22%).width(40%).centerHorizontally().centerVertically()
+            iconImage.centerHorizontally().centerVertically()
             
             self.sv(containerView)
             containerView.fillContainer()
@@ -54,8 +54,10 @@ class SplashView: UIView {
         containerView.backgroundColor = ColorConstants.LoginViewVC
         
         iconImage = UIImageView()
-        iconImage.image = UIImage(named: "YellowIconLarge")
-            
+        iconImage.image = UIImage(named: "YellowIconLarge")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        iconImage.contentMode = .scaleAspectFill
+        iconImage.clipsToBounds = true
+        
         
         
         

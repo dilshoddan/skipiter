@@ -35,37 +35,62 @@ class SkipTableViewCell: UITableViewCell {
         return img
     }()
     
-    private let replyImage : UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "Reply")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        img.contentMode = .scaleAspectFill
-        img.clipsToBounds = true
+    private let replyImage : UIButton = {
+        let img = UIButton()
+        img.setBackgroundImage(UIImage(named: "Reply")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
         return img
     }()
     
-    private let reTweetImage : UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "Retweet")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        img.contentMode = .scaleAspectFill
-        img.clipsToBounds = true
+//    private let replyImage : UIImageView = {
+//        let img = UIImageView()
+//        img.image = UIImage(named: "Reply")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+//        img.contentMode = .scaleAspectFill
+//        img.clipsToBounds = true
+//        return img
+//    }()
+    
+    private let reTweetImage : UIButton = {
+        let img = UIButton()
+        img.setBackgroundImage(UIImage(named: "Retweet")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
+        
         return img
     }()
     
-    private let loveImage : UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "Love")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        img.contentMode = .scaleAspectFill
-        img.clipsToBounds = true
+//    private let reTweetImage : UIImageView = {
+//        let img = UIImageView()
+//        img.image = UIImage(named: "Retweet")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+//        img.contentMode = .scaleAspectFill
+//        img.clipsToBounds = true
+//        return img
+//    }()
+    
+    private let loveImage : UIButton = {
+        let img = UIButton()
+        img.setBackgroundImage(UIImage(named: "Love")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
         return img
     }()
     
-    private let messageImage : UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "Messages")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        img.contentMode = .scaleAspectFill
-        img.clipsToBounds = true
+//    private let loveImage : UIImageView = {
+//        let img = UIImageView()
+//        img.image = UIImage(named: "Love")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+//        img.contentMode = .scaleAspectFill
+//        img.clipsToBounds = true
+//        return img
+//    }()
+    
+    private let messageImage : UIButton = {
+        let img = UIButton()
+        img.setBackgroundImage(UIImage(named: "Messages")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
         return img
     }()
+    
+//    private let messageImage : UIImageView = {
+//        let img = UIImageView()
+//        img.image = UIImage(named: "Messages")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+//        img.contentMode = .scaleAspectFill
+//        img.clipsToBounds = true
+//        return img
+//    }()
     
     private let userName : UILabel = {
         let lbl = UILabel()
@@ -103,6 +128,7 @@ class SkipTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         SetConstraints()
         
+        AddButtonActions()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -112,12 +138,6 @@ class SkipTableViewCell: UITableViewCell {
     func SetConstraints(){
         
         bottomView.sv([replyImage, reTweetImage, loveImage, messageImage])
-//        replyImage.Left == bottomView.Left
-//        replyImage.Right == reTweetImage.Left
-//        reTweetImage.Right == loveImage.Left
-//        loveImage.Right == messageImage.Left
-//
-        
         bottomView.layout(
             0,
             |-replyImage-reTweetImage-10-loveImage-10-messageImage-|,
@@ -125,8 +145,6 @@ class SkipTableViewCell: UITableViewCell {
         )
         
         sv([profileImage, userName, userSkipDate, userSkip, replyImage, reTweetImage, loveImage, messageImage])
-        //, replyImage, reTweetImage, loveImage, messageImage])
-        //        userName.top(0)
         
         userName.top(3)
         
@@ -141,86 +159,39 @@ class SkipTableViewCell: UITableViewCell {
         userSkip.Top == userName.Bottom
         userSkip.Left == userName.Left
         userSkip.right(5%)
-//        userSkip.bottom(5)
         
         replyImage.Top == userSkip.Bottom + 10
-        
-//        reTweetImage.Top == userSkip.Bottom
-//        loveImage.Top == userSkip.Bottom
-//        messageImage.Top == userSkip.Bottom
         
         align(tops: [replyImage, reTweetImage, loveImage, messageImage])
         replyImage.Left == userName.Left
         replyImage.Right == reTweetImage.Left - 40
         reTweetImage.Right == loveImage.Left - 40
         loveImage.Right == messageImage.Left - 40
-//        messageImage.Right == userSkip.Right
         replyImage.bottom(10)
         
+    }
+    
+    @objc func ReplyImageTapped(){
+        print("REPLY: \(skip?.userName)")
+    }
+    
+    @objc func ReTweetImageTapped(){
+        print("RETWEET: \(skip?.userName)")
+    }
+    
+    @objc func LoveImageTapped(){
+        print("LOVE : \(skip?.userName)")
+    }
+    
+    @objc func MessageImageTapped(){
+        print("MESSAGE: \(skip?.userName)")
+    }
         
-        
-        
-        
-        
-        
-        //        userName.top(0)
-        //        userSkip.bottom(0)
-        //        profileImage.width(10%).left(5%)
-        //        replyImage.width(3%)
-        //        reTweetImage.width(3%)
-        //        loveImage.width(3%)
-        //        messageImage.width(3%)
-        
-        //        userSkip.width(75%)
-        //        userSkip.Left == profileImage.Right + 15
-        
-        //        align(tops: [profileImage, userName, userSkipDate])
-        
-        
-        
-        //        sv([leftView, rightView])
-        //        leftView.width(10%)
-        //        rightView.width(80%)
-        //        leftView.Top == rightView.Top
-        //        layout(
-        //            0,
-        //            |-leftView-rightView-|,
-        //            0
-        //        )
-        //
-        //
-        //
-        //        leftView.sv(profileImage)
-        //        profileImage.fillContainer()
-        //        leftView.layout(
-        //            0,
-        //            |-profileImage-|,
-        //            0
-        //        )
-        //
-        //        //        rightView.fillContainer()
-        //        rightView.sv([userName, userSkip, userSkipDate, bottomView])
-        //        rightView.layout (
-        //            0,
-        //            |-userName-|,
-        //            0,
-        //            |-userSkip-|,
-        //            0,
-        //            |-userSkipDate-|,
-        //            0,
-        //            |-bottomView-|,
-        //            0
-        //        )
-        //
-        //        bottomView.sv([replyImage, reTweetImage, loveImage, messageImage])
-        //
-        //        bottomView.layout(
-        //            3,
-        //            |-replyImage-45-reTweetImage-80-loveImage-45-messageImage-|,
-        //            5
-        //        )
-        
-        
+    func AddButtonActions(){
+        replyImage.addTarget(self, action: #selector(ReplyImageTapped), for: .touchUpInside)
+        reTweetImage.addTarget(self, action: #selector(ReTweetImageTapped), for: .touchUpInside)
+        loveImage.addTarget(self, action: #selector(LoveImageTapped), for: .touchUpInside)
+        messageImage.addTarget(self, action: #selector(MessageImageTapped), for: .touchUpInside)
     }
     
 }

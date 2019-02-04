@@ -74,7 +74,7 @@ class SkipsViewController: UIViewController {
         }
 
         refreshControl.addTarget(self, action: #selector(RefreshSkips(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        refreshControl.tintColor = UIColor(red:0.36, green:0.53, blue:0.66, alpha:1.0)
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...")
         
     }
