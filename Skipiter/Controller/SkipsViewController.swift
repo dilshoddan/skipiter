@@ -16,7 +16,7 @@ class SkipsViewController: UIViewController {
     public var skipsView: SkipsView!
     public var user: User!
     public var skips: [AlamofireWorker.listAllSkipsJsonData] = [AlamofireWorker.listAllSkipsJsonData] ()
-    
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +50,13 @@ class SkipsViewController: UIViewController {
         
     }
     
+    @objc private func RefreshSkips(_ sender: Any) {
+        ListAllSkips()
+        self.refreshControl.endRefreshing()
+        self.skipsView.activityIndicator.stopAnimating()
+    }
+
+    
     func render(){
         view.sv(skipsView)
         skipsView.height(100%).width(100%).centerInContainer()
@@ -59,8 +66,16 @@ class SkipsViewController: UIViewController {
         skipsView = SkipsView(frame: view.bounds)
         skipsView.backgroundColor = .white
         
-        
-        
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            skipsView.skipsTable.refreshControl = refreshControl
+        } else {
+            skipsView.skipsTable.addSubview(refreshControl)
+        }
+
+        refreshControl.addTarget(self, action: #selector(RefreshSkips(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...")
         
     }
     
@@ -69,8 +84,8 @@ class SkipsViewController: UIViewController {
         skipsView.activityIndicator.startAnimating()
         
         
-        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2018", text: "Let's have a long text to see cell is able to show them all propperly. I doubt but still hope", userName: "myName"))
-        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "I doubt but still hope", userName: "myName"))
+//        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2018", text: "Let's have a long text to see cell is able to show them all propperly. I doubt but still hope", userName: "myName"))
+//        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "I doubt but still hope", userName: "myName"))
         self.skipsView.skipsTable.reloadData()
         
         self.skipsView.skipsTable.rowHeight = UITableView.automaticDimension

@@ -111,7 +111,7 @@ class AlamofireWorker {
                         switch response.result {
                         case .success(let json):
                             
-                            guard let arrayOfDictionary = json  as? [String: Any], let text = arrayOfDictionary["text"] as? String  else {
+                            guard let arrayOfDictionary = json  as? [String: Any], let _ = arrayOfDictionary["text"] as? String  else {
                                 return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
                             }
                             
