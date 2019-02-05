@@ -156,6 +156,34 @@ class AlamofireWorker {
     
     }
     
+    public static func ListAllUsers() -> Promise<([[String: Any]], Bool)> {
+        
+        return Promise { seal in
+            if let sessionManager = sessionManager {
+                
+                sessionManager.request("https://skipiter.vapor.cloud/users", encoding: URLEncoding.httpBody)
+                    .responseJSON { response in
+                        
+                        switch response.result {
+                        case .success(let json):
+                            
+                            guard let arrayOfDictionary = json  as? [[String: Any]] else {
+                                return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                            }
+                            
+                            seal.fulfill((arrayOfDictionary, true))
+                        case .failure(let error):
+                            seal.reject(error)
+                        }
+                }
+                
+                
+            }
+            
+        }
+        
+    }
+    
     public static func ListUserSkips() -> Promise<([[String: Any]], Bool)> {
         
         return Promise { seal in
@@ -201,6 +229,21 @@ class AlamofireWorker {
                                                               userName: userName))
         }
         return skips
+    }
+    
+    public static func ConvertDictionaryToUsers(_ arrayOfDictionaries: [[String: Any]]) -> [AlamofireWorker.JsonUser]{
+        var users = [AlamofireWorker.JsonUser] ()
+        for user in arrayOfDictionaries {
+            guard
+                let name = user["name"] as? String,
+                let email = user["email"] as? String
+                else {
+                    continue
+                    
+            }
+            users.append(AlamofireWorker.JsonUser(name: name, email: email))
+        }
+        return users
     }
     
     

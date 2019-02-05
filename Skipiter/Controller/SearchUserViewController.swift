@@ -93,6 +93,55 @@ class SearchUserViewController: UIViewController {
     
     
     func ListAllUsers(){
+        searchUserView.activityIndicator.isHidden = false
+        searchUserView.activityIndicator.startAnimating()
+        
+        
+        users.append(AlamofireWorker.JsonUser(name: "DoctorStrange", email: "doctor@strange.place"))
+        users.append(AlamofireWorker.JsonUser(name: "@RealDoctor", email: "doctor@hospital.bed"))
+        self.searchUserView.usersTable.reloadData()
+        
+        searchUserView.usersTable.rowHeight = UITableView.automaticDimension
+        searchUserView.usersTable.estimatedRowHeight = 600
+        searchUserView.usersTable.setNeedsUpdateConstraints()
+        searchUserView.usersTable.updateConstraintsIfNeeded()
+        
+        searchUserView.usersTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "User")
+        searchUserView.usersTable.delegate = self
+        searchUserView.usersTable.dataSource = self
+        
+        AlamofireWorker.ListAllUsers()
+            .done{ tuple in
+                
+                if tuple.1 {
+                    self.users = AlamofireWorker.ConvertDictionaryToUsers(tuple.0)
+                    
+                    self.searchUserView.usersTable.reloadData()
+                    
+                    self.searchUserView.usersTable.rowHeight = UITableView.automaticDimension
+                    self.searchUserView.usersTable.estimatedRowHeight = 600
+                    self.searchUserView.usersTable.setNeedsUpdateConstraints()
+                    self.searchUserView.usersTable.updateConstraintsIfNeeded()
+                }
+                else {
+                    let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                        print("Cannot connect to Internet")
+                    }))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                self.searchUserView.activityIndicator.stopAnimating()
+                self.searchUserView.activityIndicator.isHidden = true
+                self.searchUserView.activityIndicator.removeFromSuperview()
+                
+            }
+            .catch { error in
+                print(error.localizedDescription)
+                
+        }
+        
+        searchUserView.usersTable.estimatedRowHeight = 600
+        searchUserView.usersTable.rowHeight = UITableView.automaticDimension
         
     }
 
@@ -110,7 +159,7 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Skip", for: indexPath) as! UsersTableViewCell;
+        let cell = tableView.dequeueReusableCell(withIdentifier: "User", for: indexPath) as! UsersTableViewCell;
         let user: AlamofireWorker.JsonUser
         if isFiltering() {
             user = filteredUsers[indexPath.row]
