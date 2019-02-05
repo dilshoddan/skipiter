@@ -111,10 +111,16 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Skip", for: indexPath) as! UsersTableViewCell;
-        let user = users[indexPath.row]
+        let user: AlamofireWorker.JsonUser
+        if isFiltering() {
+            user = filteredUsers[indexPath.row]
+        } else {
+            user = users[indexPath.row]
+        }
         cell.user = user
         cell.detailTextLabel?.text = user.email
         return cell;
+        
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
