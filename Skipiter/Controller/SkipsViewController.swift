@@ -166,7 +166,7 @@ extension SkipsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Skip", for: indexPath) as! SkipTableViewCell;
         let skip = skips[indexPath.row]
         cell.skip = skip
-        cell.detailTextLabel?.text = skips[indexPath.row].date
+        cell.detailTextLabel?.text = skip.date
         return cell;
     }
     

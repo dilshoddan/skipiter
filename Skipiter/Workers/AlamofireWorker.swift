@@ -212,6 +212,11 @@ class AlamofireWorker {
         let email: String
     }
     
+    struct JsonUser: Codable {
+        let name: String
+        let email: String
+    }
+    
     struct loginJsonData: Codable {
         let id: Int
         let token: String

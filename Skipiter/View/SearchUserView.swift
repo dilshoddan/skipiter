@@ -14,7 +14,7 @@ class SearchUserView: UIView {
     public var shouldSetupConstraints = true
     public var usersTable: UITableView!
     
-    public var search: UISearchController!
+    public var searchController: UISearchController!
     
     public var activityIndicator: UIActivityIndicatorView!
     
@@ -53,7 +53,8 @@ class SearchUserView: UIView {
         
         usersTable = UITableView()
         
-        search = UISearchController()
+        searchController = UISearchController()
+        
 //        searchButton.setBackgroundImage(UIImage(named: "Search_S")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
         
         activityIndicator = UIActivityIndicatorView(style: .gray)
