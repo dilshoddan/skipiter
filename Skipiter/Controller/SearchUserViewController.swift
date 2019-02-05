@@ -30,3 +30,10 @@ class SearchUserViewController: UIViewController {
     */
 
 }
+
+extension SearchUserViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        // TODO
+    }
+}
