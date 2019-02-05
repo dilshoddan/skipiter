@@ -73,6 +73,10 @@ class SearchUserViewController: UIViewController {
         
     }
     
+    func isFiltering() -> Bool {
+        return searchUserView.searchController.isActive && !searchBarIsEmpty()
+    }
+    
     func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
         return searchUserView.searchController.searchBar.text?.isEmpty ?? true
@@ -86,6 +90,8 @@ class SearchUserViewController: UIViewController {
         searchUserView.usersTable.reloadData()
     }
     
+    
+    
     func ListAllUsers(){
         
     }
@@ -95,6 +101,11 @@ class SearchUserViewController: UIViewController {
 
 extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return users.count
+        if isFiltering() {
+            return filteredUsers.count
+        }
+        
         return users.count
     }
     
@@ -117,8 +128,10 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SearchUserViewController: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
+    
     func updateSearchResults(for searchController: UISearchController) {
-        // TODO
+        filterContentForSearchText(searchController.searchBar.text!)
     }
+    
+    
 }
