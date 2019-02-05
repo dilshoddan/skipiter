@@ -16,6 +16,7 @@ class SearchUserViewController: UIViewController {
     public var searchUserView: SearchUserView!
     private let refreshControl = UIRefreshControl()
     public var users: [AlamofireWorker.JsonUser] = [AlamofireWorker.JsonUser] ()
+    public var filteredUsers: [AlamofireWorker.JsonUser] = [AlamofireWorker.JsonUser] ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,19 @@ class SearchUserViewController: UIViewController {
         
     }
     
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchUserView.searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredUsers = users.filter({( user : AlamofireWorker.JsonUser) -> Bool in
+            return user.name.lowercased().contains(searchText.lowercased())
+        })
+        
+        searchUserView.usersTable.reloadData()
+    }
+    
     func ListAllUsers(){
         
     }
@@ -95,6 +109,8 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    
     
     
     
