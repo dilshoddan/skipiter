@@ -13,7 +13,8 @@ class AlamofireWorker {
     
     public static var sessionManagerWithBearer: Alamofire.SessionManager?
     public static var sessionManager: Alamofire.SessionManager?
-    
+    private static var hostName = "https://skipiter.vapor.cloud/"
+//    private static var hostName = "http://localhost:8080/"
     
     
     public static func registerUser(with userName: String, and email: String, and password: String) -> Promise<Bool> {
@@ -28,7 +29,7 @@ class AlamofireWorker {
         ]
         
         return Promise { seal in
-            Alamofire.request("https://skipiter.vapor.cloud/register", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: headers)
+            Alamofire.request("\(hostName)register", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: headers)
                 .responseJSON  { response in
                     
                     switch response.result {
@@ -61,7 +62,7 @@ class AlamofireWorker {
         ]
         
         return Promise { seal in
-            Alamofire.request("https://skipiter.vapor.cloud/login", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: headers)
+            Alamofire.request("\(hostName)login", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: headers)
                 .responseJSON  { response in
                     
                     switch response.result {
@@ -105,7 +106,7 @@ class AlamofireWorker {
         return Promise { seal in
             if let sessionManagerWithBearer = sessionManagerWithBearer {
                 
-                sessionManagerWithBearer.request("https://skipiter.vapor.cloud/skip", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody)
+                sessionManagerWithBearer.request("\(hostName)skip", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         
                         switch response.result {
@@ -133,7 +134,7 @@ class AlamofireWorker {
         return Promise { seal in
             if let sessionManager = sessionManager {
                 
-                sessionManager.request("https://skipiter.vapor.cloud/listAllSkips", encoding: URLEncoding.httpBody)
+                sessionManager.request("\(hostName)listAllSkips", encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                     
                     switch response.result {
@@ -161,7 +162,7 @@ class AlamofireWorker {
         return Promise { seal in
             if let sessionManager = sessionManager {
                 
-                sessionManager.request("https://skipiter.vapor.cloud/users", encoding: URLEncoding.httpBody)
+                sessionManager.request("\(hostName)users", encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         
                         switch response.result {
@@ -189,7 +190,7 @@ class AlamofireWorker {
         return Promise { seal in
             if let sessionManager = sessionManager {
                 
-                sessionManager.request("https://skipiter.vapor.cloud/listSkips", encoding: URLEncoding.httpBody)
+                sessionManager.request("\(hostName)listSkips", encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         
                         switch response.result {

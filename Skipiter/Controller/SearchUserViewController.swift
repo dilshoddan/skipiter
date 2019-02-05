@@ -98,7 +98,7 @@ class SearchUserViewController: UIViewController {
         
         
         users.append(AlamofireWorker.JsonUser(name: "DoctorStrange", email: "doctor@strange.place"))
-        users.append(AlamofireWorker.JsonUser(name: "@RealDoctor", email: "doctor@hospital.bed"))
+        users.append(AlamofireWorker.JsonUser(name: "RealDoctor", email: "doctor@hospital.bed"))
         self.searchUserView.usersTable.reloadData()
         
         searchUserView.usersTable.rowHeight = UITableView.automaticDimension
@@ -106,7 +106,7 @@ class SearchUserViewController: UIViewController {
         searchUserView.usersTable.setNeedsUpdateConstraints()
         searchUserView.usersTable.updateConstraintsIfNeeded()
         
-        searchUserView.usersTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "User")
+        searchUserView.usersTable.register(UsersTableViewCell.self, forCellReuseIdentifier: "User")
         searchUserView.usersTable.delegate = self
         searchUserView.usersTable.dataSource = self
         

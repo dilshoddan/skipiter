@@ -42,10 +42,10 @@
          contextName = "SkipTableViewCell.SetConstraints():SkipTableViewCell.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.userSkip.bounds.size">
+               value = "userSkip.frame">
             </PersistentString>
             <PersistentString
-               value = "userSkip.frame">
+               value = "self.userSkip.bounds.size">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -64,10 +64,10 @@
          contextName = "LoginViewController.keyboardWillShow(notification:):LoginViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.loginView.frame.origin.y">
+               value = "self.loginView.frame">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
+               value = "loginViewBottomY - keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
                value = "keyboardSize">
@@ -76,13 +76,13 @@
                value = "loginViewBottomY">
             </PersistentString>
             <PersistentString
+               value = "self.loginView.frame.origin.y">
+            </PersistentString>
+            <PersistentString
                value = "keyboardSize.origin.y">
             </PersistentString>
             <PersistentString
-               value = "self.loginView.frame">
-            </PersistentString>
-            <PersistentString
-               value = "loginViewBottomY - keyboardSize.origin.y">
+               value = "self.loginView.frame.origin.y + self.loginView.frame.size.height">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -128,13 +128,16 @@
          contextName = "closure #1 in closure #1 in static AlamofireWorker.loginPromise(with:and:):AlamofireWorker.swift">
          <PersistentStrings>
             <PersistentString
-               value = "response.result">
+               value = "json[&quot;error&quot;] as? String">
             </PersistentString>
             <PersistentString
                value = "json[&quot;token&quot;] as? String">
             </PersistentString>
             <PersistentString
-               value = "json[&quot;error&quot;] as? String">
+               value = "&quot;\(hostName)login&quot;">
+            </PersistentString>
+            <PersistentString
+               value = "response.result">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -156,6 +159,9 @@
                value = "json  as? [String: Any] ">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in static AlamofireWorker.ListAllUsers():AlamofireWorker.swift">
       </ContextState>
       <ContextState
          contextName = "SqliteWorker.UpdateUserProfileImage(ofUser:imageName:):SqliteWorker.swift">

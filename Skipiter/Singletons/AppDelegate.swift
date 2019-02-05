@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let splashView = SplashScreenViewController()
 //            let loginVC = LoginViewController()
             navigationController?.hero.isEnabled = true
-            window.rootViewController = MainNavigationController(rootViewController: MainTabBarController())
+            window.rootViewController = splashView
             window.makeKeyAndVisible()
             
             
