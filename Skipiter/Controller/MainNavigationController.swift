@@ -20,7 +20,7 @@ class MainNavigationController: UINavigationController {
 
     func SetControllerDefaults(){
         view.backgroundColor = ColorConstants.MainNavigation
-        self.navigationBar.isHidden = true
+//        self.navigationBar.isHidden = true
     }
 
 }

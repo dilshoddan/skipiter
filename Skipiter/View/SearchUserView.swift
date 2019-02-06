@@ -14,8 +14,6 @@ class SearchUserView: UIView {
     public var shouldSetupConstraints = true
     public var usersTable: UITableView!
     
-    public var searchController: UISearchController!
-    
     public var activityIndicator: UIActivityIndicatorView!
     
     let screenSize = UIScreen.main.bounds
@@ -52,9 +50,6 @@ class SearchUserView: UIView {
         self.backgroundColor = .white
         
         usersTable = UITableView()
-        
-        searchController = UISearchController()
-        
 //        searchButton.setBackgroundImage(UIImage(named: "Search_S")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
         
         activityIndicator = UIActivityIndicatorView(style: .gray)

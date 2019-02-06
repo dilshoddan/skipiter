@@ -11,10 +11,11 @@ import Hero
 import Stevia
 import PromiseKit
 
-class SearchUserViewController: UIViewController {
+class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchResultsUpdating {
 
     public var searchUserView: SearchUserView!
-    private let refreshControl = UIRefreshControl()
+    private var searchController: UISearchController!
+//    private let refreshControl = UIRefreshControl()
     public var users: [AlamofireWorker.JsonUser] = [AlamofireWorker.JsonUser] ()
     public var filteredUsers: [AlamofireWorker.JsonUser] = [AlamofireWorker.JsonUser] ()
     
@@ -22,45 +23,52 @@ class SearchUserViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .yellow
-//        navigationController?.isNavigationBarHidden = false
-//        Hero.shared.defaultAnimation = .none
-        navigationController?.hero.isEnabled = true
+        
         hero.isEnabled = true
         SetControlDefaults()
         render()
         ListAllUsers()
         
+        navigationController?.isNavigationBarHidden = false
+        
+        Hero.shared.defaultAnimation = .none
+        navigationController?.hero.isEnabled = true
     }
     deinit {
         
     }
     
-    @objc private func RefreshUsers(_ sender: Any) {
-        ListAllUsers()
-        self.refreshControl.endRefreshing()
-        self.searchUserView.activityIndicator.stopAnimating()
-    }
+//    @objc private func RefreshUsers(_ sender: Any) {
+//        ListAllUsers()
+//        self.refreshControl.endRefreshing()
+//        self.searchUserView.activityIndicator.stopAnimating()
+//    }
     
     
     func SetControlDefaults(){
         searchUserView = SearchUserView(frame: self.view.bounds)
         
-        searchUserView.searchController.searchResultsUpdater = self
-        searchUserView.searchController.obscuresBackgroundDuringPresentation = false
-        searchUserView.searchController.searchBar.placeholder = "User name"
-        navigationItem.searchController = searchUserView.searchController
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "User name"
+        navigationController?.navigationItem.searchController = searchController
         definesPresentationContext = true
+//        navigationController?.navigationItem.hidesSearchBarWhenScrolling = false
 
-        // Add Refresh Control to Table View
-        if #available(iOS 10.0, *) {
-            searchUserView.usersTable.refreshControl = refreshControl
-        } else {
-            searchUserView.usersTable.addSubview(refreshControl)
-        }
         
-        refreshControl.addTarget(self, action: #selector(RefreshUsers(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor(red:0.36, green:0.53, blue:0.66, alpha:1.0)
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Users ...")
+        
+//        // Add Refresh Control to Table View
+//        if #available(iOS 10.0, *) {
+//            searchUserView.usersTable.refreshControl = refreshControl
+//        } else {
+//            searchUserView.usersTable.addSubview(refreshControl)
+//        }
+//
+//        refreshControl.addTarget(self, action: #selector(RefreshUsers(_:)), for: .valueChanged)
+//        refreshControl.tintColor = UIColor(red:0.36, green:0.53, blue:0.66, alpha:1.0)
+//        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Users ...")
         
     }
     
@@ -73,13 +81,18 @@ class SearchUserViewController: UIViewController {
         
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    
     func isFiltering() -> Bool {
-        return searchUserView.searchController.isActive && !searchBarIsEmpty()
+        return searchController.isActive && !searchBarIsEmpty()
     }
     
     func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
-        return searchUserView.searchController.searchBar.text?.isEmpty ?? true
+        return searchController.searchBar.text?.isEmpty ?? true
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
@@ -182,11 +195,3 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension SearchUserViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-    
-    
-}
