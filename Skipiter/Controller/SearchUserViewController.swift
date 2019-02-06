@@ -29,7 +29,7 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
         render()
         ListAllUsers()
         
-        navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = true
         
         Hero.shared.defaultAnimation = .none
         navigationController?.hero.isEnabled = true
@@ -49,15 +49,20 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
         searchUserView = SearchUserView(frame: self.view.bounds)
         
         searchController = UISearchController(searchResultsController: nil)
+        // Setup the Search Controller
         searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "User name"
-        navigationController?.navigationItem.searchController = searchController
+        searchController.searchBar.placeholder = "User Name Here"
+        searchController.searchBar.isHidden = false
+        searchController.searchBar.tintColor = ColorConstants.LoginViewVC
+        searchController.searchBar.backgroundColor = .white
+        searchController.searchBar.isUserInteractionEnabled  = true
+//        navigationController?.navigationItem.searchController = searchController
         definesPresentationContext = true
-//        navigationController?.navigationItem.hidesSearchBarWhenScrolling = false
-
         
+        searchController.searchBar.delegate = self
+
+        searchUserView.usersTable.tableHeaderView = searchController.searchBar
         
 //        // Add Refresh Control to Table View
 //        if #available(iOS 10.0, *) {
@@ -79,6 +84,15 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
         searchUserView.updateConstraints()
         
         
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let urlString = searchBar.text
+//        if let urlString = urlString {
+//            RedirectTo(urlString)
+//        }
+//
+        searchBar.resignFirstResponder()
     }
     
     func updateSearchResults(for searchController: UISearchController) {
