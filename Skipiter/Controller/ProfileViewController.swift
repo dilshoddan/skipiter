@@ -26,13 +26,13 @@ class ProfileViewController: UIViewController,
         
         Hero.shared.defaultAnimation = .none
         navigationController?.hero.isEnabled = true
-        navigationController?.isNavigationBarHidden = false
         SetControlDefaults()
         render()
         hero.isEnabled = true
         SetDBDefaults()
         AddTapGestures()
         ListUserSkips()
+        navigationController?.isNavigationBarHidden = true
     }
     
     func ListUserSkips(){

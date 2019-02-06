@@ -15,7 +15,7 @@ class MessagesViewController: UIViewController {
 
         
         view.backgroundColor = .green
-        navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view.
     }
 

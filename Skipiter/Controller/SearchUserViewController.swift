@@ -15,7 +15,7 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
 
     public var searchUserView: SearchUserView!
     private var searchController: UISearchController!
-//    private let refreshControl = UIRefreshControl()
+    private let refreshControl = UIRefreshControl()
     public var users: [AlamofireWorker.JsonUser] = [AlamofireWorker.JsonUser] ()
     public var filteredUsers: [AlamofireWorker.JsonUser] = [AlamofireWorker.JsonUser] ()
     
@@ -33,16 +33,17 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
         
         Hero.shared.defaultAnimation = .none
         navigationController?.hero.isEnabled = true
+        navigationController?.isNavigationBarHidden = true
     }
     deinit {
         
     }
     
-//    @objc private func RefreshUsers(_ sender: Any) {
-//        ListAllUsers()
-//        self.refreshControl.endRefreshing()
-//        self.searchUserView.activityIndicator.stopAnimating()
-//    }
+    @objc private func RefreshUsers(_ sender: Any) {
+        ListAllUsers()
+        self.refreshControl.endRefreshing()
+        self.searchUserView.activityIndicator.stopAnimating()
+    }
     
     
     func SetControlDefaults(){
@@ -54,7 +55,7 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "User Name Here"
         searchController.searchBar.isHidden = false
-        searchController.searchBar.tintColor = ColorConstants.LoginViewVC
+        searchController.searchBar.tintColor = .black
         searchController.searchBar.backgroundColor = .white
         searchController.searchBar.isUserInteractionEnabled  = true
 //        navigationController?.navigationItem.searchController = searchController
@@ -64,16 +65,16 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
 
         searchUserView.usersTable.tableHeaderView = searchController.searchBar
         
-//        // Add Refresh Control to Table View
-//        if #available(iOS 10.0, *) {
-//            searchUserView.usersTable.refreshControl = refreshControl
-//        } else {
-//            searchUserView.usersTable.addSubview(refreshControl)
-//        }
-//
-//        refreshControl.addTarget(self, action: #selector(RefreshUsers(_:)), for: .valueChanged)
-//        refreshControl.tintColor = UIColor(red:0.36, green:0.53, blue:0.66, alpha:1.0)
-//        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Users ...")
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            searchUserView.usersTable.refreshControl = refreshControl
+        } else {
+            searchUserView.usersTable.addSubview(refreshControl)
+        }
+
+        refreshControl.addTarget(self, action: #selector(RefreshUsers(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor(red:0.36, green:0.53, blue:0.66, alpha:1.0)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Users ...")
         
     }
     
@@ -86,14 +87,14 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
         
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let urlString = searchBar.text
-//        if let urlString = urlString {
-//            RedirectTo(urlString)
-//        }
-//
-        searchBar.resignFirstResponder()
-    }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        let urlString = searchBar.text
+////        if let urlString = urlString {
+////            RedirectTo(urlString)
+////        }
+////
+//        searchBar.resignFirstResponder()
+//    }
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)

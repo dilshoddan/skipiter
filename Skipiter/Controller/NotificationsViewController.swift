@@ -15,7 +15,7 @@ class NotificationsViewController: UIViewController {
 
         
         view.backgroundColor = .blue
-        navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view.
     }
 
