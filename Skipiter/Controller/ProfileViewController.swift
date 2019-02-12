@@ -19,6 +19,8 @@ class ProfileViewController: UIViewController,
     private var profileImagePicker: UIImagePickerController!
     private var profileBannerPicker: UIImagePickerController!
     public var skips: [AlamofireWorker.listAllSkipsJsonData] = [AlamofireWorker.listAllSkipsJsonData] ()
+    private let refreshControl = UIRefreshControl()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +84,7 @@ class ProfileViewController: UIViewController,
         view.sv(profileView)
         profileView.height(100%).width(100%).centerInContainer()
     }
+    
     func SetControlDefaults(){
         
         profileView = ProfileView(frame: view.bounds)
@@ -90,8 +93,22 @@ class ProfileViewController: UIViewController,
         profileImagePicker = UIImagePickerController()
         profileBannerPicker = UIImagePickerController()
         
+        if #available(iOS 10.0, *) {
+            profileView.skipsTable.refreshControl = refreshControl
+        } else {
+            profileView.skipsTable.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(RefreshSkips(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor(red:0.36, green:0.53, blue:0.66, alpha:1.0)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...")
         
         
+    }
+    
+    @objc private func RefreshSkips(_ sender: Any) {
+        ListUserSkips()
+        self.refreshControl.endRefreshing()
+        self.profileView.activityIndicator.stopAnimating()
     }
     
     @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){

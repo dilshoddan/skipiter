@@ -52,7 +52,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginView.loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
         loginView.userName.delegate = self
         loginView.userPassword.delegate = self
-        loginView.hero.modifiers = [.cascade(delta: 1, direction: CascadeDirection.bottomToTop, delayMatchedViews: true), .scale(1.5)]
+        loginView.userPassword.returnKeyType = .done
+//        loginView.hero.modifiers = [.cascade(delta: 1, direction: CascadeDirection.bottomToTop, delayMatchedViews: true), .scale(1.5)]
         
         
         
@@ -73,7 +74,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         case loginView.userName:
             loginView.userPassword.becomeFirstResponder()
         default:
+            LoginClicked()
             textField.resignFirstResponder()
+            
         }
         
         return true;
@@ -98,6 +101,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_: Set<UITouch>, with: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    
     
     @objc func LoginClicked(){
         let userName = loginView.userName.text
