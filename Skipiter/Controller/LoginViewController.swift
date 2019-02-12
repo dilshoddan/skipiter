@@ -52,7 +52,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginView.loginButton.addTarget(self, action: #selector(LoginClicked), for: .touchUpInside)
         loginView.userName.delegate = self
         loginView.userPassword.delegate = self
-        loginView.userPassword.returnKeyType = .done
+        loginView.userPassword.returnKeyType = .go
 //        loginView.hero.modifiers = [.cascade(delta: 1, direction: CascadeDirection.bottomToTop, delayMatchedViews: true), .scale(1.5)]
         
         

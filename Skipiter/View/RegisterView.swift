@@ -75,7 +75,7 @@ class RegisterView: UIView {
         
         okButton = UIButton()
         okButton.backgroundColor = ColorConstants.LoginViewVC
-        okButton.setTitle("Save", for: .normal)
+        okButton.setTitle("Join", for: .normal)
         okButton.tintColor = .white
         okButton.layer.cornerRadius = 5
         okButton.clipsToBounds = true

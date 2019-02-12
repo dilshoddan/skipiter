@@ -35,18 +35,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         SetDBDefaults()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField {
-        case registerView.email:
-            registerView.userPassword.becomeFirstResponder()
-        default:
-            textField.resignFirstResponder()
-        }
-        
-        return true;
-    }
     
-    @objc func OkClicked() {
+    @objc func Join() {
         if let userName = registerView.userName.text,
             let email = registerView.email.text,
             let userPassword = registerView.userPassword.text
@@ -85,11 +75,27 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.title = "RegisterVC"
         view.backgroundColor = ColorConstants.RegisterVC
         registerView = RegisterView(frame: view.bounds)
-        registerView.okButton.addTarget(self, action: #selector(OkClicked), for: .touchUpInside)
+        registerView.okButton.addTarget(self, action: #selector(Join), for: .touchUpInside)
         
         registerView.email.delegate = self
         registerView.userName.delegate = self
         registerView.userPassword.delegate = self
+        registerView.userPassword.returnKeyType = .join
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case registerView.userName:
+            registerView.email.becomeFirstResponder()
+        case registerView.email:
+            registerView.userPassword.becomeFirstResponder()
+        default:
+            Join()
+            textField.resignFirstResponder()
+            
+        }
+        
+        return true;
     }
     
     func render(){

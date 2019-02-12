@@ -21,7 +21,7 @@ class PasswordResetViewController: UIViewController {
         render()
     }
     
-    @objc func OkClicked(){
+    @objc func ResetPassword(){
         navigationController?.popViewController(animated: true)
         
     }
@@ -48,7 +48,7 @@ class PasswordResetViewController: UIViewController {
         okButton.clipsToBounds = true
         okButton.isEnabled = true
         okButton.isUserInteractionEnabled = true
-        okButton.addTarget(self, action: #selector(OkClicked), for: .touchUpInside)
+        okButton.addTarget(self, action: #selector(ResetPassword), for: .touchUpInside)
         
     }
     
