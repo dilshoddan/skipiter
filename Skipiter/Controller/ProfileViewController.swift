@@ -47,7 +47,7 @@ class ProfileViewController: UIViewController,
         profileView.skipsTable.delegate = self
         profileView.skipsTable.dataSource = self
         
-        AlamofireWorker.ListUserSkips()
+        AlamofireWorker.GetUserSkips()
             .done { tuple in
                 
                 if tuple.1 {

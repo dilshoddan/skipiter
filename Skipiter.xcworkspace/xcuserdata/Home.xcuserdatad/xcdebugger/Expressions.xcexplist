@@ -3,10 +3,29 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SkipTableViewCell.ReplyTapped(_:):SkipTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.skip">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RegisterViewController.SetControllerDefaults():RegisterViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "registerView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SkipTableViewCell.ReplyImageTapped():SkipTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "skip">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

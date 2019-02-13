@@ -8,7 +8,16 @@
 import UIKit
 import Stevia
 
+protocol SkipTableViewCellDelegate: class {
+    func replyTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?)
+    func reTweetTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?)
+    func loveTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?)
+    func messageTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?)
+}
+
 class SkipTableViewCell: UITableViewCell {
+    
+    public var delegate: SkipTableViewCellDelegate?
     
     var rightView: UIView = UIView()
     var leftView: UIView = UIView()
@@ -35,7 +44,7 @@ class SkipTableViewCell: UITableViewCell {
         return img
     }()
     
-    private let replyImage : UIButton = {
+    public let replyImage : UIButton = {
         let img = UIButton()
         img.setBackgroundImage(UIImage(named: "Reply")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
         return img
@@ -171,27 +180,29 @@ class SkipTableViewCell: UITableViewCell {
         
     }
     
-    @objc func ReplyImageTapped(){
-        print("REPLY: \(skip?.userName)")
+    @objc func ReplyTapped(_ sender: UIButton){
+        delegate?.replyTapped(skip)
+            //skip)
     }
     
-    @objc func ReTweetImageTapped(){
-        print("RETWEET: \(skip?.userName)")
+    @objc func ReTweetTapped(_ sender: UIButton){
+        delegate?.reTweetTapped(skip)
+        
     }
     
-    @objc func LoveImageTapped(){
-        print("LOVE : \(skip?.userName)")
+    @objc func LoveTapped(_ sender: UIButton){
+        delegate?.loveTapped(skip)
     }
     
-    @objc func MessageImageTapped(){
-        print("MESSAGE: \(skip?.userName)")
+    @objc func MessageTapped(_ sender: UIButton){
+        delegate?.messageTapped(skip)
     }
         
     func AddButtonActions(){
-        replyImage.addTarget(self, action: #selector(ReplyImageTapped), for: .touchUpInside)
-        reTweetImage.addTarget(self, action: #selector(ReTweetImageTapped), for: .touchUpInside)
-        loveImage.addTarget(self, action: #selector(LoveImageTapped), for: .touchUpInside)
-        messageImage.addTarget(self, action: #selector(MessageImageTapped), for: .touchUpInside)
+        replyImage.addTarget(self, action: #selector(ReplyTapped(_:)), for: .touchUpInside)
+        reTweetImage.addTarget(self, action: #selector(ReTweetTapped(_:)), for: .touchUpInside)
+        loveImage.addTarget(self, action: #selector(LoveTapped(_:)), for: .touchUpInside)
+        messageImage.addTarget(self, action: #selector(MessageTapped(_:)), for: .touchUpInside)
     }
     
 }

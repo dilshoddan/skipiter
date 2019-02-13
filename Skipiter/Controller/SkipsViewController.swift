@@ -97,7 +97,7 @@ class SkipsViewController: UIViewController {
         skipsView.skipsTable.delegate = self
         skipsView.skipsTable.dataSource = self
         
-        AlamofireWorker.ListAllSkips()
+        AlamofireWorker.GetAllSkips()
             .done{ tuple in
 
                 if tuple.1 {
@@ -167,6 +167,7 @@ extension SkipsViewController: UITableViewDelegate, UITableViewDataSource {
         let skip = skips[indexPath.row]
         cell.skip = skip
         cell.detailTextLabel?.text = skip.date
+        cell.delegate = self
         return cell;
     }
     
@@ -176,6 +177,47 @@ extension SkipsViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     
+}
+
+extension SkipsViewController: SkipTableViewCellDelegate {
+    
+    func replyTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?)
+    {
+        if let skip = sender {
+            print("\(skip.userName) tapped Reply ")
+        }
+//        guard let tappedIndexPath = self.skipsView.skipsTable.indexPath(for: sender) else { return }
+//        print("Reply", sender, tappedIndexPath)
+        //        items[tappedIndexPath.row].love()
+        
+        // Delete the row
+        //        items.remove(at: tappedIndexPath.row)
+        //        tableView.deleteRows(at: [tappedIndexPath], with: .automatic)
+    }
+    
+    func reTweetTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?) {
+        if let skip = sender {
+            print("\(skip.userName) tapped reTweet ")
+        }
+//        guard let tappedIndexPath = self.skipsView.skipsTable.indexPath(for: sender) else { return }
+//        print("reTweet", sender, tappedIndexPath)
+    }
+    
+    func loveTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?) {
+        if let skip = sender {
+            print("\(skip.userName) tapped love ")
+        }
+//        guard let tappedIndexPath = self.skipsView.skipsTable.indexPath(for: sender) else { return }
+//        print("love", sender, tappedIndexPath)
+    }
+    
+    func messageTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?) {
+        if let skip = sender {
+            print("\(skip.userName) tapped message ")
+        }
+//        guard let tappedIndexPath = self.skipsView.skipsTable.indexPath(for: sender) else { return }
+//        print("message", sender, tappedIndexPath)
+    }
 }
 
 

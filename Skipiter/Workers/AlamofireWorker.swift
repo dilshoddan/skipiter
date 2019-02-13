@@ -93,6 +93,34 @@ class AlamofireWorker {
         }
     }
     
+    public static func GetAllUsers() -> Promise<([[String: Any]], Bool)> {
+        
+        return Promise { seal in
+            if let sessionManager = sessionManager {
+                
+                sessionManager.request("\(hostName)users", encoding: URLEncoding.httpBody)
+                    .responseJSON { response in
+                        
+                        switch response.result {
+                        case .success(let json):
+                            
+                            guard let arrayOfDictionary = json  as? [[String: Any]] else {
+                                return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                            }
+                            
+                            seal.fulfill((arrayOfDictionary, true))
+                        case .failure(let error):
+                            seal.reject(error)
+                        }
+                }
+                
+                
+            }
+            
+        }
+        
+    }
+    
 
     public static func ComposeSkip(text: String) -> Promise<Bool> {
 //        let headers: HTTPHeaders = [
@@ -129,7 +157,7 @@ class AlamofireWorker {
         
     }
     
-    public static func ListAllSkips() -> Promise<([[String: Any]], Bool)> {
+    public static func GetAllSkips() -> Promise<([[String: Any]], Bool)> {
        
         return Promise { seal in
             if let sessionManager = sessionManager {
@@ -157,12 +185,14 @@ class AlamofireWorker {
     
     }
     
-    public static func ListAllUsers() -> Promise<([[String: Any]], Bool)> {
+    
+    
+    public static func GetUserSkips() -> Promise<([[String: Any]], Bool)> {
         
         return Promise { seal in
             if let sessionManager = sessionManager {
                 
-                sessionManager.request("\(hostName)users", encoding: URLEncoding.httpBody)
+                sessionManager.request("\(hostName)listSkips", encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         
                         switch response.result {
@@ -185,12 +215,13 @@ class AlamofireWorker {
         
     }
     
-    public static func ListUserSkips() -> Promise<([[String: Any]], Bool)> {
+    
+    public static func GetCommentsOfSkip() -> Promise<([[String: Any]], Bool)> {
         
         return Promise { seal in
             if let sessionManager = sessionManager {
                 
-                sessionManager.request("\(hostName)listSkips", encoding: URLEncoding.httpBody)
+                sessionManager.request("\(hostName)comments", encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         
                         switch response.result {
@@ -247,6 +278,24 @@ class AlamofireWorker {
         return users
     }
     
+    public static func ConvertDictionaryToComments(_ arrayOfDictionaries: [[String: Any]]) -> [AlamofireWorker.CommentForm]{
+        var comments = [AlamofireWorker.CommentForm] ()
+        for comment in arrayOfDictionaries {
+            guard
+                let id = comment["id"] as? Int,
+                let text = comment["text"] as? String,
+                let date = comment["date"] as? String,
+                let userName = comment["userName"] as? String,
+                let skipID = comment["skipID"] as? Int
+                else {
+                    continue
+                    
+            }
+            comments.append(AlamofireWorker.CommentForm(id: id, text: text, date: date, userName: userName, skipID: skipID))
+        }
+        return comments
+    }
+    
     
     
     
@@ -272,5 +321,12 @@ class AlamofireWorker {
         let userName: String
     }
     
+    struct CommentForm: Codable {
+        let id: Int
+        let text: String
+        let date: String
+        let userName: String
+        let skipID: Int
+    }
     
 }

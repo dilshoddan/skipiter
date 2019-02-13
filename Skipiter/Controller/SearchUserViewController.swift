@@ -138,7 +138,7 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
         searchUserView.usersTable.delegate = self
         searchUserView.usersTable.dataSource = self
         
-        AlamofireWorker.ListAllUsers()
+        AlamofireWorker.GetAllUsers()
             .done{ tuple in
                 
                 if tuple.1 {

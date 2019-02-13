@@ -45,6 +45,8 @@
 		F4B2AA5221AC096200A3AEDA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2AA5121AC096200A3AEDA /* ProfileView.swift */; };
 		F4B2AA5421AC0A7A00A3AEDA /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2AA5321AC0A7A00A3AEDA /* RegisterView.swift */; };
 		F4EDB5B521A2946D00E1B544 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EDB5B421A2946D00E1B544 /* ColorConstants.swift */; };
+		F4EEF1E72213F1EF0057197D /* CommentsOfSkipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EEF1E62213F1EF0057197D /* CommentsOfSkipView.swift */; };
+		F4EEF1E92213F56E0057197D /* CommentOfSkipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EEF1E82213F56E0057197D /* CommentOfSkipViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,8 @@
 		F4B2AA5121AC096200A3AEDA /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F4B2AA5321AC0A7A00A3AEDA /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		F4EDB5B421A2946D00E1B544 /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
+		F4EEF1E62213F1EF0057197D /* CommentsOfSkipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsOfSkipView.swift; sourceTree = "<group>"; };
+		F4EEF1E82213F56E0057197D /* CommentOfSkipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentOfSkipViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +278,7 @@
 				8437C2BB22022C16007B81F9 /* ComposeView.swift */,
 				84E9E5F0220977390095EF25 /* SearchUserView.swift */,
 				84E9E5F2220984A50095EF25 /* UsersTableViewCell.swift */,
+				F4EEF1E62213F1EF0057197D /* CommentsOfSkipView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				8437C2B52201F13F007B81F9 /* NotificationsViewController.swift */,
 				8437C2B72201F158007B81F9 /* MessagesViewController.swift */,
 				8437C2B9220211E8007B81F9 /* ComposeViewController.swift */,
+				F4EEF1E82213F56E0057197D /* CommentOfSkipViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -512,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4EEF1E72213F1EF0057197D /* CommentsOfSkipView.swift in Sources */,
 				F485B79E21A28BF300520C36 /* LoginViewController.swift in Sources */,
 				F4B2AA5421AC0A7A00A3AEDA /* RegisterView.swift in Sources */,
 				8461532A21FB30800098FD59 /* SplashView.swift in Sources */,
@@ -519,6 +526,7 @@
 				8461532C21FB3DC30098FD59 /* SplashScreenViewController.swift in Sources */,
 				F4B2AA5221AC096200A3AEDA /* ProfileView.swift in Sources */,
 				84AA9B0821C77A8D0043A58D /* skipiter.xcdatamodeld in Sources */,
+				F4EEF1E92213F56E0057197D /* CommentOfSkipViewController.swift in Sources */,
 				84076AE821EFBAD60025F63A /* SkipTableViewCell.swift in Sources */,
 				84AA9B0521C7745C0043A58D /* CoreDataWorker.swift in Sources */,
 				840A57A021EA0C5400A40854 /* SkipsViewController.swift in Sources */,
