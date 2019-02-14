@@ -21,9 +21,7 @@ class CommentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Hero.shared.defaultAnimation = .none
-        navigationController?.hero.isEnabled = true
-        navigationController?.isNavigationBarHidden = false
+        
         SetControlDefaults()
         render()
         hero.isEnabled = true
@@ -31,8 +29,17 @@ class CommentsViewController: UIViewController {
         AddTapGestures()
         ListCommentsOfSkip()
         
+        
+        Hero.shared.defaultAnimation = .none
+        navigationController?.hero.isEnabled = true
+        
+        
         //test data
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
     }
     
     @objc private func RefreshComments(_ sender: Any) {
@@ -73,18 +80,6 @@ class CommentsViewController: UIViewController {
         commentsView.activityIndicator.startAnimating()
         
         
-        comments.append(AlamofireWorker.CommentForm(id: 1,
-                                                    text: "Comment1 ~ Let's have a long text to see cell is able to show them all propperly. I doubt but still hope",
-                                                    date: "2018",
-                                                    userName: "userName",
-                                                    skipID: 1))
-        
-        comments.append(AlamofireWorker.CommentForm(id: 1,
-                                                    text: "Comment2 ~ I doubt but still hope",
-                                                    date: "2019",
-                                                    userName: "userName",
-                                                    skipID: 1))
-        
         self.commentsView.commentsTable.reloadData()
         
         self.commentsView.commentsTable.rowHeight = UITableView.automaticDimension
@@ -96,12 +91,24 @@ class CommentsViewController: UIViewController {
         commentsView.commentsTable.delegate = self
         commentsView.commentsTable.dataSource = self
         
-        AlamofireWorker.GetCommentsOfSkip()
+        AlamofireWorker.GetCommentsOfSkip(skip.id)
             .done{ tuple in
                 
                 if tuple.1 {
                     self.comments = AlamofireWorker.ConvertDictionaryToComments(tuple.0)
-                    
+                    if self.comments.count == 0 {
+                        self.comments.append(AlamofireWorker.CommentForm(id: 1,
+                                                                    text: "Comment1 ~ Let's have a long text to see cell is able to show them all propperly. I doubt but still hope",
+                                                                    date: "2018",
+                                                                    userName: "userName",
+                                                                    skipID: 1))
+                        
+                        self.comments.append(AlamofireWorker.CommentForm(id: 2,
+                                                                    text: "Comment2 ~ I doubt but still hope",
+                                                                    date: "2019",
+                                                                    userName: "userName",
+                                                                    skipID: 1))
+                    }
                     self.commentsView.commentsTable.reloadData()
                     
                     self.commentsView.commentsTable.rowHeight = UITableView.automaticDimension
@@ -154,7 +161,10 @@ extension CommentsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Skip", for: indexPath) as! SkipTableViewCell;
         let comment = comments[indexPath.row]
-        let skip = AlamofireWorker.listAllSkipsJsonData(date: comment.date, text: comment.text, userName: comment.userName)
+        let skip = AlamofireWorker.listAllSkipsJsonData(id: comment.id,
+                                                        date: comment.date,
+                                                        text: comment.text,
+                                                        userName: comment.userName)
         cell.skip = skip
         cell.detailTextLabel?.text = skip.date
         

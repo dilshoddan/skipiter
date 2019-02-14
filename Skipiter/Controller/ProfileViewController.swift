@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController,
         profileView.activityIndicator.isHidden = false
         profileView.activityIndicator.startAnimating()
         
-        skips.append(AlamofireWorker.listAllSkipsJsonData(date: "2019", text: "some text", userName: "MyName"))
+        skips.append(AlamofireWorker.listAllSkipsJsonData(id:1, date: "2019", text: "some text", userName: "MyName"))
         
         profileView.skipsTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "Skip")
         profileView.skipsTable.delegate = self

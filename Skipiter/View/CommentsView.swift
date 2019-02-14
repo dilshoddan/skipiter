@@ -38,12 +38,13 @@ class CommentsView: UIView {
     override func updateConstraints(){
         if(shouldSetupConstraints){
             commentView.sv([commentField, addComment])
-            commentField.width(80%)
+            commentField.width(74%)
+            commentField.left(2%)
             commentField.Left == self.Left
             commentField.Right == addComment.Left
-            addComment.width(20%)
+            addComment.width(20%).left(2%).right(2%)
             
-            self.sv([commentsTable, commentView, activityIndicator])
+            self.sv([commentsTable, activityIndicator])
             
             commentsTable.top(2%).height(86%).width(100%)
             

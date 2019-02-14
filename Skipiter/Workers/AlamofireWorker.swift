@@ -216,12 +216,15 @@ class AlamofireWorker {
     }
     
     
-    public static func GetCommentsOfSkip() -> Promise<([[String: Any]], Bool)> {
+    public static func GetCommentsOfSkip(_ skipId: Int) -> Promise<([[String: Any]], Bool)> {
+        let parameters = [
+            "skipId": skipId
+        ]
         
         return Promise { seal in
-            if let sessionManager = sessionManager {
+            if let sessionManagerWithBearer = sessionManagerWithBearer {
                 
-                sessionManager.request("\(hostName)comments", encoding: URLEncoding.httpBody)
+                sessionManagerWithBearer.request("\(hostName)comments", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         
                         switch response.result {
@@ -249,6 +252,7 @@ class AlamofireWorker {
         var skips = [AlamofireWorker.listAllSkipsJsonData] ()
         for skip in arrayOfDictionaries {
             guard
+                let id = skip["id"] as? Int,
                 let date = skip["date"] as? String,
                 let text = skip["text"] as? String,
                 let userName = skip["userName"] as? String
@@ -256,7 +260,8 @@ class AlamofireWorker {
                     continue
                     
             }
-            skips.append(AlamofireWorker.listAllSkipsJsonData(date: date,
+            skips.append(AlamofireWorker.listAllSkipsJsonData(id: id,
+                                                              date: date,
                                                               text: text,
                                                               userName: userName))
         }
@@ -316,6 +321,7 @@ class AlamofireWorker {
     }
     
     struct listAllSkipsJsonData: Codable {
+        let id: Int
         let date: String
         let text: String
         let userName: String

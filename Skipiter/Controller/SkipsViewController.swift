@@ -21,9 +21,6 @@ class SkipsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Hero.shared.defaultAnimation = .none
-        navigationController?.hero.isEnabled = true
-        navigationController?.isNavigationBarHidden = false
         SetControlDefaults()
         render()
         hero.isEnabled = true
@@ -31,8 +28,17 @@ class SkipsViewController: UIViewController {
         AddTapGestures()
         ListAllSkips()
         
+        Hero.shared.defaultAnimation = .none
+        navigationController?.hero.isEnabled = true
+        
+        
+        
         //test data
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
     }
     
     @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){

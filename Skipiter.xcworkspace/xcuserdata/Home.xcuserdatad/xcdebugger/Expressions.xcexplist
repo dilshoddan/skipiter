@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SkipTableViewCell.ReplyImageTapped():SkipTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "skip">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SkipTableViewCell.ReplyTapped(_:):SkipTableViewCell.swift">
          <PersistentStrings>
             <PersistentString
@@ -19,13 +30,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SkipTableViewCell.ReplyImageTapped():SkipTableViewCell.swift">
+         contextName = "closure #1 in SkipsViewController.ListAllSkips():SkipsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static AlamofireWorker.ConvertDictionaryToSkips(_:):AlamofireWorker.swift">
          <PersistentStrings>
             <PersistentString
-               value = "skip">
-            </PersistentString>
-            <PersistentString
-               value = "indexPath">
+               value = " skip[&quot;id&quot;] as? Int">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
