@@ -185,6 +185,9 @@ extension SkipsViewController: SkipTableViewCellDelegate {
     {
         if let skip = sender {
             print("\(skip.userName) tapped Reply ")
+            let commentsVC = CommentsViewController()
+            commentsVC.skip = skip
+            navigationController?.pushViewController(commentsVC, animated: true)
         }
 //        guard let tappedIndexPath = self.skipsView.skipsTable.indexPath(for: sender) else { return }
 //        print("Reply", sender, tappedIndexPath)
@@ -199,24 +202,18 @@ extension SkipsViewController: SkipTableViewCellDelegate {
         if let skip = sender {
             print("\(skip.userName) tapped reTweet ")
         }
-//        guard let tappedIndexPath = self.skipsView.skipsTable.indexPath(for: sender) else { return }
-//        print("reTweet", sender, tappedIndexPath)
     }
     
     func loveTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?) {
         if let skip = sender {
             print("\(skip.userName) tapped love ")
         }
-//        guard let tappedIndexPath = self.skipsView.skipsTable.indexPath(for: sender) else { return }
-//        print("love", sender, tappedIndexPath)
     }
     
     func messageTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?) {
         if let skip = sender {
             print("\(skip.userName) tapped message ")
         }
-//        guard let tappedIndexPath = self.skipsView.skipsTable.indexPath(for: sender) else { return }
-//        print("message", sender, tappedIndexPath)
     }
 }
 

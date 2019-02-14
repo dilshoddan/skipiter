@@ -10,7 +10,7 @@
 import UIKit
 import Stevia
 
-class CommentsOfSkipView: UIView {
+class CommentsView: UIView {
     
     public var shouldSetupConstraints = true
     public var commentsTable: UITableView!

@@ -11,10 +11,11 @@ import Hero
 import Stevia
 import PromiseKit
 
-class CommentOfSkipViewController: UIViewController {
+class CommentsViewController: UIViewController {
     
-    public var commentOfSkipView: CommentsOfSkipView!
+    public var commentsView: CommentsView!
     public var comments: [AlamofireWorker.CommentForm] = [AlamofireWorker.CommentForm] ()
+    public var skip: AlamofireWorker.listAllSkipsJsonData?
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -37,24 +38,24 @@ class CommentOfSkipViewController: UIViewController {
     @objc private func RefreshComments(_ sender: Any) {
         ListCommentsOfSkip()
         self.refreshControl.endRefreshing()
-        self.commentOfSkipView.activityIndicator.stopAnimating()
+        self.commentsView.activityIndicator.stopAnimating()
     }
     
     
     func render(){
-        view.sv(commentOfSkipView)
-        commentOfSkipView.height(100%).width(100%).centerInContainer()
+        view.sv(commentsView)
+        commentsView.height(100%).width(100%).centerInContainer()
     }
     func SetControlDefaults(){
         
-        commentOfSkipView = CommentsOfSkipView(frame: view.bounds)
-        commentOfSkipView.backgroundColor = .white
+        commentsView = CommentsView(frame: view.bounds)
+        commentsView.backgroundColor = .white
         
         // Add Refresh Control to Table View
         if #available(iOS 10.0, *) {
-            commentOfSkipView.commentsTable.refreshControl = refreshControl
+            commentsView.commentsTable.refreshControl = refreshControl
         } else {
-            commentOfSkipView.commentsTable.addSubview(refreshControl)
+            commentsView.commentsTable.addSubview(refreshControl)
         }
         
         refreshControl.addTarget(self, action: #selector(RefreshComments(_:)), for: .valueChanged)
@@ -64,8 +65,12 @@ class CommentOfSkipViewController: UIViewController {
     }
     
     func ListCommentsOfSkip(){
-        commentOfSkipView.activityIndicator.isHidden = false
-        commentOfSkipView.activityIndicator.startAnimating()
+        guard let skip = skip else {
+            return
+        }
+        
+        commentsView.activityIndicator.isHidden = false
+        commentsView.activityIndicator.startAnimating()
         
         
         comments.append(AlamofireWorker.CommentForm(id: 1,
@@ -80,16 +85,16 @@ class CommentOfSkipViewController: UIViewController {
                                                     userName: "userName",
                                                     skipID: 1))
         
-        self.commentOfSkipView.commentsTable.reloadData()
+        self.commentsView.commentsTable.reloadData()
         
-        self.commentOfSkipView.commentsTable.rowHeight = UITableView.automaticDimension
-        self.commentOfSkipView.commentsTable.estimatedRowHeight = 600
-        self.commentOfSkipView.commentsTable.setNeedsUpdateConstraints()
-        self.commentOfSkipView.commentsTable.updateConstraintsIfNeeded()
+        self.commentsView.commentsTable.rowHeight = UITableView.automaticDimension
+        self.commentsView.commentsTable.estimatedRowHeight = 600
+        self.commentsView.commentsTable.setNeedsUpdateConstraints()
+        self.commentsView.commentsTable.updateConstraintsIfNeeded()
         
-        commentOfSkipView.commentsTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "Skip")
-        commentOfSkipView.commentsTable.delegate = self
-        commentOfSkipView.commentsTable.dataSource = self
+        commentsView.commentsTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "Skip")
+        commentsView.commentsTable.delegate = self
+        commentsView.commentsTable.dataSource = self
         
         AlamofireWorker.GetCommentsOfSkip()
             .done{ tuple in
@@ -97,12 +102,12 @@ class CommentOfSkipViewController: UIViewController {
                 if tuple.1 {
                     self.comments = AlamofireWorker.ConvertDictionaryToComments(tuple.0)
                     
-                    self.commentOfSkipView.commentsTable.reloadData()
+                    self.commentsView.commentsTable.reloadData()
                     
-                    self.commentOfSkipView.commentsTable.rowHeight = UITableView.automaticDimension
-                    self.commentOfSkipView.commentsTable.estimatedRowHeight = 600
-                    self.commentOfSkipView.commentsTable.setNeedsUpdateConstraints()
-                    self.commentOfSkipView.commentsTable.updateConstraintsIfNeeded()
+                    self.commentsView.commentsTable.rowHeight = UITableView.automaticDimension
+                    self.commentsView.commentsTable.estimatedRowHeight = 600
+                    self.commentsView.commentsTable.setNeedsUpdateConstraints()
+                    self.commentsView.commentsTable.updateConstraintsIfNeeded()
                 }
                 else {
                     let alertController = UIAlertController(title: "Error", message: "Cannot connect to Internet", preferredStyle: .alert)
@@ -111,9 +116,9 @@ class CommentOfSkipViewController: UIViewController {
                     }))
                     self.present(alertController, animated: true, completion: nil)
                 }
-                self.commentOfSkipView.activityIndicator.stopAnimating()
-                self.commentOfSkipView.activityIndicator.isHidden = true
-                self.commentOfSkipView.activityIndicator.removeFromSuperview()
+                self.commentsView.activityIndicator.stopAnimating()
+                self.commentsView.activityIndicator.isHidden = true
+                self.commentsView.activityIndicator.removeFromSuperview()
                 
             }
             .catch { error in
@@ -121,8 +126,8 @@ class CommentOfSkipViewController: UIViewController {
                 
         }
         
-        commentOfSkipView.commentsTable.estimatedRowHeight = 600
-        commentOfSkipView.commentsTable.rowHeight = UITableView.automaticDimension
+        commentsView.commentsTable.estimatedRowHeight = 600
+        commentsView.commentsTable.rowHeight = UITableView.automaticDimension
         
     }
     
@@ -139,7 +144,7 @@ class CommentOfSkipViewController: UIViewController {
 }
 
 //CHEATING HERE ~ REUSING SKIP CELL FOR A COMMENT SINCE THE FORM IS THE SAME
-extension CommentOfSkipViewController: UITableViewDelegate, UITableViewDataSource {
+extension CommentsViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
