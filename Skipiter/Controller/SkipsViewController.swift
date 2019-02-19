@@ -39,6 +39,7 @@ class SkipsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
+        ListAllSkips()
     }
     
     @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){
@@ -190,7 +191,7 @@ extension SkipsViewController: SkipTableViewCellDelegate {
     func replyTapped(_ sender: AlamofireWorker.listAllSkipsJsonData?)
     {
         if let skip = sender {
-            print("\(skip.userName) tapped Reply ")
+//            print("\(skip.userName) tapped Reply ")
             let commentsVC = CommentsViewController()
             commentsVC.skip = skip
             navigationController?.pushViewController(commentsVC, animated: true)

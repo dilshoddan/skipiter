@@ -247,6 +247,42 @@ class AlamofireWorker {
         
     }
     
+    public static func AddComment(text: String, withSkipID: Int) -> Promise<Bool> {
+        //        let headers: HTTPHeaders = [
+        //            "Accept": "application/json"
+        //        ]
+        
+        let parameters = [
+            "text": text,
+            "skipID": withSkipID
+            ] as [String : Any]
+        
+        return Promise { seal in
+            if let sessionManagerWithBearer = sessionManagerWithBearer {
+                
+                sessionManagerWithBearer.request("\(hostName)comment", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody)
+                    .responseJSON { response in
+                        
+                        switch response.result {
+                        case .success(let json):
+                            
+                            guard let arrayOfDictionary = json  as? [String: Any], let _ = arrayOfDictionary["text"] as? String  else {
+                                return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                            }
+                            
+                            seal.fulfill(true)
+                        case .failure(let error):
+                            seal.reject(error)
+                        }
+                }
+                
+                
+            }
+            
+        }
+        
+    }
+    
     
     public static func ConvertDictionaryToSkips(_ arrayOfDictionaries: [[String: Any]]) -> [AlamofireWorker.listAllSkipsJsonData]{
         var skips = [AlamofireWorker.listAllSkipsJsonData] ()

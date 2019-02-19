@@ -49,6 +49,7 @@ class CommentsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
+        ListCommentsOfSkip()
     }
     
     @objc func keyboardNotification(notification: NSNotification) {
@@ -89,6 +90,12 @@ class CommentsViewController: UIViewController {
         commentsView = CommentsView(frame: view.bounds)
         commentsView.backgroundColor = .white
         
+        if let skip = skip {
+            commentsView.userName.text = skip.userName
+            commentsView.userSkip.text = skip.text
+            commentsView.userSkipDate.text = skip.date
+        }
+        
         commentsView.addComment.addTarget(self, action: #selector(AddComment), for: .touchUpInside)
         
         // Add Refresh Control to Table View
@@ -106,7 +113,53 @@ class CommentsViewController: UIViewController {
     
     @objc
     func AddComment(){
-        self.view.endEditing(true)
+        let comment = commentsView.commentField.text
+        if let comment = comment,
+            let skip = skip,
+            !(comment.isEmpty)
+        {
+            self.view.endEditing(true)
+            commentsView.activityIndicator.isHidden = false
+            commentsView.activityIndicator.startAnimating()
+            
+            
+            self.commentsView.commentsTable.reloadData()
+            
+            self.commentsView.commentsTable.rowHeight = UITableView.automaticDimension
+            self.commentsView.commentsTable.estimatedRowHeight = 600
+            self.commentsView.commentsTable.setNeedsUpdateConstraints()
+            self.commentsView.commentsTable.updateConstraintsIfNeeded()
+            
+            commentsView.commentsTable.register(SkipTableViewCell.self, forCellReuseIdentifier: "Skip")
+            commentsView.commentsTable.delegate = self
+            commentsView.commentsTable.dataSource = self
+            
+            AlamofireWorker.AddComment(text: comment, withSkipID: skip.id)
+                .done{ sent -> Void in
+                    if sent {
+                        self.ListCommentsOfSkip()
+                        self.commentsView.commentField.text = ""
+                    }
+                    else {
+                        let alertController = UIAlertController(title: "Error", message: "Sorry, Connection issues", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            print("Sorry, Connection issues")
+                        }))
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                    self.commentsView.activityIndicator.stopAnimating()
+                    self.commentsView.activityIndicator.isHidden = true
+                    self.commentsView.activityIndicator.removeFromSuperview()
+                    
+                }
+                .catch { error in
+                    print(error.localizedDescription)
+                    
+            }
+            
+            commentsView.commentsTable.estimatedRowHeight = 600
+            commentsView.commentsTable.rowHeight = UITableView.automaticDimension
+        }
     }
     
     func ListCommentsOfSkip(){
