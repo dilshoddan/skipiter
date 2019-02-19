@@ -97,7 +97,7 @@ class CommentsView: UIView {
             
             commentView.sv([commentField, addComment])
             commentView.layout(
-                0,
+                5,
                 |-commentField-addComment-|,
                 5
             )
@@ -109,11 +109,12 @@ class CommentsView: UIView {
             
             self.sv([skipView, commentsTable, commentView, activityIndicator])
             
-            skipView.top(2%).height(10%).width(100%)
+            skipView.height(10%).width(100%)
             skipView.Bottom == commentsTable.Top
             
             commentsTable.height(76%).width(90%)
             commentsTable.Bottom == self.Bottom
+//            commentsTable.Bottom == commentView.Top
             commentsTable.left(10%)
 
 
