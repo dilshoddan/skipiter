@@ -38,18 +38,29 @@ class CommentsView: UIView {
     override func updateConstraints(){
         if(shouldSetupConstraints){
             commentView.sv([commentField, addComment])
+            commentView.layout(
+                0,
+                |-commentField-addComment-|,
+                10
+            )
             commentField.width(74%)
-            commentField.left(2%)
-            commentField.Left == self.Left
-            commentField.Right == addComment.Left
-            addComment.width(20%).left(2%).right(2%)
+            addComment.width(20%)
+            commentField.left(2%).right(2%)
             
-            self.sv([commentsTable, activityIndicator])
+                //.left(2%).right(2%)
             
-            commentsTable.top(2%).height(86%).width(100%)
+            self.sv([commentsTable, commentView])
             
-            commentView.top(2%).height(10%).width(100%)
+            
+            
+            commentsTable.top(2%).height(86%).width(90%)
+            commentsTable.Bottom == self.Bottom
+            commentsTable.left(10%)
+
+
             commentView.Bottom == self.Bottom
+            commentView.width(100%)
+//            commentView.bottom(2%)
             
             activityIndicator.fillContainer()
             
@@ -74,9 +85,10 @@ class CommentsView: UIView {
         commentField.autocapitalizationType = .none
         commentField.spellCheckingType = .yes
         
+        
         addComment = UIButton()
         addComment.backgroundColor = ColorConstants.LoginViewVC
-        addComment.setTitle("Login", for: .normal)
+        addComment.setTitle("Add", for: .normal)
         addComment.tintColor = .white
         addComment.layer.cornerRadius = 5
         addComment.clipsToBounds = true

@@ -69,6 +69,7 @@ class ComposeView: UIView {
         
         composeText = UITextView()
         
+        
         activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.isHidden = true

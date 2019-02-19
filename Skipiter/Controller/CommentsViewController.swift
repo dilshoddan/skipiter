@@ -34,12 +34,42 @@ class CommentsViewController: UIViewController {
         navigationController?.hero.isEnabled = true
         
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardNotification),
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
+                                               object: nil)
+        
         //test data
         
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
+    }
+    
+    @objc func keyboardNotification(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let commentViewBottomY = self.commentsView.commentView.frame.origin.y + self.commentsView.commentView.frame.size.height
+            if commentViewBottomY > keyboardSize.origin.y {
+                self.commentsView.commentView.frame.origin.y = self.commentsView.commentView.frame.origin.y - (commentViewBottomY - keyboardSize.origin.y)
+            }
+            else{
+                render()
+                commentsView.updateConstraints()
+            }
+        }
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.commentsView.layoutIfNeeded()
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    override func touchesBegan(_: Set<UITouch>, with: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     @objc private func RefreshComments(_ sender: Any) {
@@ -53,10 +83,13 @@ class CommentsViewController: UIViewController {
         view.sv(commentsView)
         commentsView.height(100%).width(100%).centerInContainer()
     }
+    
     func SetControlDefaults(){
         
         commentsView = CommentsView(frame: view.bounds)
         commentsView.backgroundColor = .white
+        
+        commentsView.addComment.addTarget(self, action: #selector(AddComment), for: .touchUpInside)
         
         // Add Refresh Control to Table View
         if #available(iOS 10.0, *) {
@@ -69,6 +102,11 @@ class CommentsViewController: UIViewController {
         refreshControl.tintColor = UIColor(red:0.36, green:0.53, blue:0.66, alpha:1.0)
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...")
         
+    }
+    
+    @objc
+    func AddComment(){
+        self.view.endEditing(true)
     }
     
     func ListCommentsOfSkip(){
