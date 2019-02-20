@@ -21,7 +21,7 @@ class CommentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        navigationController?.navigationBar.isHidden = false
         SetControlDefaults()
         render()
         hero.isEnabled = true

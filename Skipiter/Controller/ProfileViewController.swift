@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController,
     UINavigationControllerDelegate {
     
     public var profileView: ProfileView!
-    public var user: User!
+    public var userId: Int?
     private var profileImagePicker: UIImagePickerController!
     private var profileBannerPicker: UIImagePickerController!
     public var skips: [AlamofireWorker.listAllSkipsJsonData] = [AlamofireWorker.listAllSkipsJsonData] ()
@@ -38,6 +38,18 @@ class ProfileViewController: UIViewController,
     }
     
     func ListUserSkips(){
+        
+        if let sentUserId = userId {
+            self.userId = sentUserId
+        } else {
+            let defaults = UserDefaults.standard
+            self.userId = defaults.integer(forKey: "userId")
+        }
+        
+        guard let userID = self.userId else {
+            return
+        }
+        
         profileView.activityIndicator.isHidden = false
         profileView.activityIndicator.startAnimating()
         
@@ -47,7 +59,8 @@ class ProfileViewController: UIViewController,
         profileView.skipsTable.delegate = self
         profileView.skipsTable.dataSource = self
         
-        AlamofireWorker.GetUserSkips()
+        AlamofireWorker.GetUserSkips(for: userID)
+        //GetUserSkips()
             .done { tuple in
                 
                 if tuple.1 {

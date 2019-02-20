@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in closure #1 in static AlamofireWorker.loginPromise(with:and:):AlamofireWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "json[&quot;userId&quot;] as? Int">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SkipTableViewCell.ReplyImageTapped():SkipTableViewCell.swift">
          <PersistentStrings>
             <PersistentString

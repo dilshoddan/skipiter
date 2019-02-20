@@ -68,10 +68,15 @@ class AlamofireWorker {
                     switch response.result {
                     case .success(let json):
                         
-                        guard let json = json  as? [String: Any], let token = json["token"] as? String else {
+                        guard let json = json  as? [String: Any],
+                            let token = json["token"] as? String,
+                            let userId = json["userId"] as? Int
+                            else {
                             return seal.fulfill(false)
                                 //seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
                         }
+                        
+                        SaveUser(id: userId)
                         
                         var headers = Alamofire.SessionManager.defaultHTTPHeaders
                         headers["Authorization"] = "Bearer \(token)"
@@ -187,19 +192,24 @@ class AlamofireWorker {
     
     
     
-    public static func GetUserSkips() -> Promise<([[String: Any]], Bool)> {
+    public static func GetUserSkips(for userId: Int) -> Promise<([[String: Any]], Bool)> {
+        let parameters = [
+            "userId": userId
+        ]
         
         return Promise { seal in
-            if let sessionManager = sessionManager {
+            if let sessionManagerWithBearer = sessionManagerWithBearer {
                 
-                sessionManager.request("\(hostName)listSkips", encoding: URLEncoding.httpBody)
+                sessionManagerWithBearer.request("\(hostName)skipsOfUser", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         
                         switch response.result {
                         case .success(let json):
                             
                             guard let arrayOfDictionary = json  as? [[String: Any]] else {
-                                return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                                let nilValue: [[String : Any]] = [["nil": "value"]]
+                                return seal.fulfill((nilValue, false))
+                                    //seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
                             }
                             
                             seal.fulfill((arrayOfDictionary, true))
@@ -338,6 +348,10 @@ class AlamofireWorker {
     }
     
     
+    private static func SaveUser(id: Int){
+        let defaults = UserDefaults.standard
+        defaults.set(id, forKey: "userId")
+    }
     
     
     struct registerJsonData: Codable {
