@@ -34,10 +34,12 @@ class ProfileViewController: UIViewController,
         if IsFromSearchView() {
             isFromSearchView = true
             navigationController?.navigationBar.isHidden = false
+            navigationController?.isNavigationBarHidden = false
         }
         else {
             isFromSearchView = false
             navigationController?.navigationBar.isHidden = true
+            navigationController?.isNavigationBarHidden = true
         }
         
         SetControlDefaults()
@@ -53,9 +55,22 @@ class ProfileViewController: UIViewController,
     override func viewWillAppear(_ animated: Bool) {
         if isFromSearchView {
             navigationController?.navigationBar.isHidden = false
+            navigationController?.isNavigationBarHidden = false
         }
         else {
             navigationController?.navigationBar.isHidden = true
+            navigationController?.isNavigationBarHidden = true
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if isFromSearchView {
+            navigationController?.navigationBar.isHidden = false
+            navigationController?.isNavigationBarHidden = false
+        }
+        else {
+            navigationController?.navigationBar.isHidden = true
+            navigationController?.isNavigationBarHidden = true
         }
     }
     
@@ -157,18 +172,18 @@ class ProfileViewController: UIViewController,
         self.profileView.activityIndicator.stopAnimating()
     }
     
-    @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){
-        switch selectedControl.selectedSegmentIndex {
-        case 0:
-            let skipsVC = SkipsViewController()
-            navigationController?.pushViewController(skipsVC, animated: true)
-        case 3:
-            navigationController?.popToRootViewController(animated: true)
-        default:
-            break
-        }
-        
-    }
+//    @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){
+//        switch selectedControl.selectedSegmentIndex {
+//        case 0:
+//            let skipsVC = SkipsViewController()
+//            navigationController?.pushViewController(skipsVC, animated: true)
+//        case 3:
+//            navigationController?.popToRootViewController(animated: true)
+//        default:
+//            break
+//        }
+//
+//    }
     
     @objc func PickProfileImage(recognizer:UITapGestureRecognizer){
         profileImagePicker.delegate = self
