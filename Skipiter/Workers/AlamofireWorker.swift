@@ -76,7 +76,7 @@ class AlamofireWorker {
                                 //seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
                         }
                         
-                        SaveUser(id: userId)
+                        SaveUser(id: userId, userName: userName)
                         
                         var headers = Alamofire.SessionManager.defaultHTTPHeaders
                         headers["Authorization"] = "Bearer \(token)"
@@ -192,10 +192,11 @@ class AlamofireWorker {
     
     
     
-    public static func GetUserSkips(for userId: Int) -> Promise<([[String: Any]], Bool)> {
+    public static func GetUserSkips(for userId: Int, with userName: String) -> Promise<([[String: Any]], Bool)> {
         let parameters = [
-            "userId": userId
-        ]
+            "userId": userId,
+            "name": userName
+            ] as [String : Any]
         
         return Promise { seal in
             if let sessionManagerWithBearer = sessionManagerWithBearer {
@@ -318,13 +319,14 @@ class AlamofireWorker {
         var users = [AlamofireWorker.JsonUser] ()
         for user in arrayOfDictionaries {
             guard
+                let id = user["id"] as? Int,
                 let name = user["name"] as? String,
                 let email = user["email"] as? String
                 else {
                     continue
                     
             }
-            users.append(AlamofireWorker.JsonUser(name: name, email: email))
+            users.append(AlamofireWorker.JsonUser(id: id, name: name, email: email))
         }
         return users
     }
@@ -348,9 +350,10 @@ class AlamofireWorker {
     }
     
     
-    private static func SaveUser(id: Int){
+    private static func SaveUser(id: Int, userName: String){
         let defaults = UserDefaults.standard
         defaults.set(id, forKey: "userId")
+        defaults.set(userName, forKey: "userName")
     }
     
     
@@ -361,6 +364,7 @@ class AlamofireWorker {
     }
     
     struct JsonUser: Codable {
+        let id: Int
         let name: String
         let email: String
     }

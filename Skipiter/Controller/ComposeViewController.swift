@@ -31,6 +31,10 @@ class ComposeViewController: UIViewController, UITabBarDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        composeView.composeText.becomeFirstResponder()
+    }
+    
     func SetControlDefaults(){
         
         composeView = ComposeView(frame: self.view.bounds)

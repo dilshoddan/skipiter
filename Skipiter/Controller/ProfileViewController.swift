@@ -16,6 +16,8 @@ class ProfileViewController: UIViewController,
     
     public var profileView: ProfileView!
     public var userId: Int?
+    public var userName: String?
+    public var isFromSearchView: Bool = false
     private var profileImagePicker: UIImagePickerController!
     private var profileBannerPicker: UIImagePickerController!
     public var skips: [AlamofireWorker.listAllSkipsJsonData] = [AlamofireWorker.listAllSkipsJsonData] ()
@@ -28,25 +30,56 @@ class ProfileViewController: UIViewController,
         
         Hero.shared.defaultAnimation = .none
         navigationController?.hero.isEnabled = true
+        hero.isEnabled = true
+        if IsFromSearchView() {
+            isFromSearchView = true
+            navigationController?.navigationBar.isHidden = false
+        }
+        else {
+            isFromSearchView = false
+            navigationController?.navigationBar.isHidden = true
+        }
+        
         SetControlDefaults()
         render()
-        hero.isEnabled = true
+        
         SetDBDefaults()
         AddTapGestures()
         ListUserSkips()
-        navigationController?.isNavigationBarHidden = true
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if isFromSearchView {
+            navigationController?.navigationBar.isHidden = false
+        }
+        else {
+            navigationController?.navigationBar.isHidden = true
+        }
+    }
+    
+    func IsFromSearchView() -> Bool {
+        if let sentUserId = userId, let sentUserName = userName {
+            self.userId = sentUserId
+            self.userName = sentUserName
+            return true
+        } else {
+            let defaults = UserDefaults.standard
+            self.userId = defaults.integer(forKey: "userId")
+            self.userName = defaults.string(forKey: "userName")
+            return false
+        }
     }
     
     func ListUserSkips(){
         
-        if let sentUserId = userId {
-            self.userId = sentUserId
-        } else {
-            let defaults = UserDefaults.standard
-            self.userId = defaults.integer(forKey: "userId")
-        }
-        
-        guard let userID = self.userId else {
+        guard let userID = self.userId, let userNAME = self.userName else {
+            let alertController = UIAlertController(title: "Error", message: "User id and name not found", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                print("User id and name not found")
+            }))
+            self.present(alertController, animated: true, completion: nil)
             return
         }
         
@@ -59,7 +92,7 @@ class ProfileViewController: UIViewController,
         profileView.skipsTable.delegate = self
         profileView.skipsTable.dataSource = self
         
-        AlamofireWorker.GetUserSkips(for: userID)
+        AlamofireWorker.GetUserSkips(for: userID, with: userNAME)
         //GetUserSkips()
             .done { tuple in
                 

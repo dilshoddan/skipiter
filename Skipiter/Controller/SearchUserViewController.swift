@@ -29,14 +29,17 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
         render()
         ListAllUsers()
         
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.navigationBar.isHidden = true
         
         Hero.shared.defaultAnimation = .none
         navigationController?.hero.isEnabled = true
-        navigationController?.isNavigationBarHidden = true
+        
     }
     deinit {
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
     }
     
     @objc private func RefreshUsers(_ sender: Any) {
@@ -125,8 +128,8 @@ class SearchUserViewController: UIViewController, UISearchBarDelegate, UISearchR
         searchUserView.activityIndicator.startAnimating()
         
         
-        users.append(AlamofireWorker.JsonUser(name: "DoctorStrange", email: "doctor@strange.place"))
-        users.append(AlamofireWorker.JsonUser(name: "RealDoctor", email: "doctor@hospital.bed"))
+        users.append(AlamofireWorker.JsonUser(id: 1, name: "DoctorStrange", email: "doctor@strange.place"))
+        users.append(AlamofireWorker.JsonUser(id: 2, name: "RealDoctor", email: "doctor@hospital.bed"))
         self.searchUserView.usersTable.reloadData()
         
         searchUserView.usersTable.rowHeight = UITableView.automaticDimension
@@ -205,7 +208,20 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user: AlamofireWorker.JsonUser
+        if isFiltering() {
+            user = filteredUsers[indexPath.row]
+        } else {
+            user = users[indexPath.row]
+        }
+        print(user.id)
+        let profileVC = ProfileViewController()
+        profileVC.userId = user.id
+        profileVC.userName = user.name
+        profileVC.navigationController?.navigationBar.isHidden = false
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
     
     
 }

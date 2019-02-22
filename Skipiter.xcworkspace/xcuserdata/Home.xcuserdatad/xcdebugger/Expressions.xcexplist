@@ -3,10 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in closure #1 in static AlamofireWorker.loginPromise(with:and:):AlamofireWorker.swift">
+         contextName = "ProfileViewController.ListUserSkips():ProfileViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "json[&quot;userId&quot;] as? Int">
+               value = "self.userId">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RegisterViewController.SetControllerDefaults():RegisterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "registerView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -22,29 +30,37 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SkipTableViewCell.ReplyTapped(_:):SkipTableViewCell.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.skip">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "RegisterViewController.SetControllerDefaults():RegisterViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "registerView">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in SkipsViewController.ListAllSkips():SkipsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in static AlamofireWorker.loginPromise(with:and:):AlamofireWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "json[&quot;userId&quot;] as? Int">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchUserViewController.tableView(_:didSelectRowAt:):SearchUserViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "profileVC.userId">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "static AlamofireWorker.ConvertDictionaryToSkips(_:):AlamofireWorker.swift">
          <PersistentStrings>
             <PersistentString
                value = " skip[&quot;id&quot;] as? Int">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SkipTableViewCell.ReplyTapped(_:):SkipTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.skip">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
